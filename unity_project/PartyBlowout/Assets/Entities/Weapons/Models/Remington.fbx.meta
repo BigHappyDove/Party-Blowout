@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 4409d089b8bbde44b80fc57d2cae96a9
+=======
+guid: d669f3f3dfea01745a4399addba8b766
+>>>>>>> clovisdev
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []

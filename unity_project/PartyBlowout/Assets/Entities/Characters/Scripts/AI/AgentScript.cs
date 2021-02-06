@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ public class AgentScript : MonoBehaviour
     private Vector3 _target;
     public float maxDist;
     public NavMeshAgent agent;
+    public PhotonView PV;
 
     /// <summary>
     /// Generate a random position on the NavMesh
@@ -24,7 +26,8 @@ public class AgentScript : MonoBehaviour
 
     void Update()
     {
-        if (agent.isPathStale || !float.IsPositiveInfinity(agent.remainingDistance) &&
+        if (!PV.IsMine) return;
+        if (agent.velocity.magnitude == 0 || !float.IsPositiveInfinity(agent.remainingDistance) &&
             agent.pathStatus == NavMeshPathStatus.PathComplete &&
             agent.remainingDistance <= agent.stoppingDistance)
         {

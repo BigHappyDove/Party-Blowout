@@ -150,7 +150,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!114 &-3170966501893264849
 MonoBehaviour:
   m_ObjectHideFlags: 0

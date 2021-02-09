@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class RoomMatch : MonoBehaviourPunCallbacks
 {
-    public byte maxPlayersInRoom; // 0 <= x <= 255
+    public byte maxPlayersInRoom = 10; // 0 <= x <= 255
 
     public override void OnConnectedToMaster()
     {

@@ -4,7 +4,6 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
-//TODO SYNC MOVEMENTS FOR ALL PLAYERS
 public class AgentScript : MonoBehaviour
 {
     private Vector3 _target;
@@ -24,7 +23,7 @@ public class AgentScript : MonoBehaviour
         return hit.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!PV.IsMine) return;
         if (agent.velocity.magnitude == 0 || !float.IsPositiveInfinity(agent.remainingDistance) &&

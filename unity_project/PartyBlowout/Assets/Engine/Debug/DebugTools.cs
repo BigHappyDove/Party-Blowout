@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DebugTools : MonoBehaviour
 {
+    public bool showOnGui = true;
+
     public enum LogType
     {
         ERROR,
@@ -19,30 +21,34 @@ public class DebugTools : MonoBehaviour
     /// </summary>
     /// <param name="log">The text to print</param>
     /// <param name="logType">Type of log</param>
-    public static void PrintOnGUI(string log, LogType logType = LogType.LOG)
+    public static void PrintOnGUI(object log, LogType logType = LogType.LOG)
     {
         string color;
+        string logStr = log.ToString();
         switch (logType)
         {
             case LogType.ERROR:
-                Debug.LogError(log);
+                Debug.LogError(logStr);
                 color = "red";
                 break;
             case LogType.WARNING:
-                Debug.LogWarning(log);
+                Debug.LogWarning(logStr);
                 color = "yellow";
                 break;
             default:
-                print(log);
+                print(logStr);
                 color = "white";
                 break;
         }
-        _logText = $"<color={color}>{log}</color>\n" + _logText;
+        _logText = $"<color={color}>{logStr}</color>\n" + _logText;
     }
 
     private void OnGUI()
     {
-        GUI.TextArea(new Rect(10, 10, Screen.width / 2, Screen.height - 10),
-            $"<size=15>{ _logText}</size>", new GUIStyle {richText = true});
+        if (showOnGui)
+        {
+            GUI.TextArea(new Rect(10, 10, Screen.width / 4, Screen.height - 10),
+                $"<size=15>{_logText}</size>", new GUIStyle {richText = true});
+        }
     }
 }

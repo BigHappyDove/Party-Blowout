@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="063e8393-41ae-42ec-8c68-5c37ce567bec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials/Remington-Gris.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials/Remington-Marron.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials/Remington-Noir Met.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Engine/Multiplayer.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials/Remington-Gris.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Entities/Characters/Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials/Remington-Marron.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Entities/Misc/Models.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials/Remington-Noir Met.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Entities/Misc/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Entities/Weapons/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gamemodes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Maps.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUtilities/PackObject/CodeGen/Editor/Resources/TypeCatalogue.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUtilities/PackObject/CodeGen/Editor/Resources/TypeCatalogue.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Shaders.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/bleu.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/bleu.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/testmap.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/jackdev/testmap.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +22,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scenes/jackdev/Transformation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkController.cs" />
       </list>
     </option>
   </component>
@@ -89,6 +81,8 @@
       <option name="presentableId" value="Default" />
       <updated>1612988338139</updated>
       <workItem from="1612988360041" duration="5871000" />
+      <workItem from="1612996985002" duration="142000" />
+      <workItem from="1612997375693" duration="984000" />
     </task>
     <servers />
   </component>

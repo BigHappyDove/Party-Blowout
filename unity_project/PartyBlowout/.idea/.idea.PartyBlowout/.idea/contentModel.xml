@@ -626,6 +626,7 @@
         </e>
         <e p="Scenes" t="Include">
           <e p="jackdev" t="Include">
+            <e p="NetworkController.cs" t="Include" />
             <e p="Transformation.cs" t="Include" />
           </e>
         </e>

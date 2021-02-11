@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="063e8393-41ae-42ec-8c68-5c37ce567bec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Clovisdev.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/general-textures/general-texture-pack/General Textures.unitypackage.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/bleu.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/bleu.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/testmap.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/jackdev/testmap.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUtilities/PackObject/CodeGen/Editor/Resources/TypeCatalogue.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUtilities/PackObject/CodeGen/Editor/Resources/TypeCatalogue.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkController.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkController.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,12 +24,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assets/Scenes/jackdev/Transformation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkController.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scenes/jackdev/NetworkControllerJack.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1oIyGNpggFKAUNDPSBJA182cEYT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -35,6 +37,7 @@
   <component name="PropertiesComponent">
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -58,7 +61,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -67,7 +70,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -83,6 +86,7 @@
       <workItem from="1612988360041" duration="5871000" />
       <workItem from="1612996985002" duration="142000" />
       <workItem from="1612997375693" duration="984000" />
+      <workItem from="1613037133343" duration="39000" />
     </task>
     <servers />
   </component>

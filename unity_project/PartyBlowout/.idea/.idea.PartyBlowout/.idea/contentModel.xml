@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\titou\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\titou\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_PartyBlowout.1544306267.00" t="ExcludeRecursive" />
-    <e p="C:\Users\titou\Documents\EPITA\S2\PartyBlowout\unity_project\PartyBlowout" t="IncludeRecursive">
+    <e p="C:\Users\jacqu\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\jacqu\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_PartyBlowout.867849332.00" t="ExcludeRecursive" />
+    <e p="C:\Users\jacqu\Desktop\Projet S2\Party-Blowout\unity_project\PartyBlowout" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -12,7 +12,10 @@
             <e p="DebugTools.cs" t="Include" />
           </e>
           <e p="Multiplayer" t="Include">
+            <e p="GameSetupController.cs" t="Include" />
             <e p="NetworkController.cs" t="Include" />
+            <e p="QuickStartLobbyController.cs" t="Include" />
+            <e p="QuickStartRoomController.cs" t="Include" />
             <e p="RoomController.cs" t="Include" />
             <e p="RoomMatch.cs" t="Include" />
           </e>
@@ -26,6 +29,11 @@
               <e p="Player" t="Include">
                 <e p="Player.cs" t="Include" />
               </e>
+            </e>
+          </e>
+          <e p="Misc" t="Include">
+            <e p="Car" t="Include">
+              <e p="SimpleCarController.cs" t="Include" />
             </e>
           </e>
           <e p="Weapons" t="Include">
@@ -670,13 +678,9 @@
               <e p="movementTest.cs" t="Include" />
               <e p="spawnPlayer.cs" t="Include" />
             </e>
-          </e>
-          <e p="jackdev" t="Include">
-            <e p="Car" t="Include">
-              <e p="SimpleCarController.cs" t="Include" />
+            <e p="jackdev" t="Include">
+              <e p="Transformation.cs" t="Include" />
             </e>
-            <e p="NetworkControllerJack.cs" t="Include" />
-            <e p="Transformation.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">

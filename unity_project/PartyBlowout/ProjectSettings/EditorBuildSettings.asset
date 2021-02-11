@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DevMaps/jackdev/testmap.unity
     guid: 570bfc22b15cd7b469f1e065b4b13f43
+  - enabled: 1
+    path: Assets/Scenes/DevMaps/cryxDev/movementsTestr.unity
+    guid: 1f11855cc7dd7424fb75271e5ba1f193
   m_configObjects: {}

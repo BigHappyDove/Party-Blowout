@@ -18,6 +18,14 @@ MonoBehaviour:
     vals:
     - hashcode: 1161234830446200393
       filepath: Assets/Photon/PhotonUtilities\PackObject\_GeneratedPackExtensions\Pack_TestPackObject.cs
+<<<<<<< HEAD
       codegenFileWriteTime: 637481391940768028
+=======
+<<<<<<< HEAD
+      codegenFileWriteTime: 637485839282883313
+=======
+      codegenFileWriteTime: 637482135040114963
+>>>>>>> 709bd5955c7d87af49289b43bf10bf4ec1444ee7
+>>>>>>> 0b077d12b24129a03f45c0e74f4fa2bb39b14fe3
       localFieldCount: 2
       totalFieldCount: 2

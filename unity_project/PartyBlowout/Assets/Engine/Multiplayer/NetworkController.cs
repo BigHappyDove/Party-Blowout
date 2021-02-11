@@ -15,6 +15,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        print($"CONNECTED TO {PhotonNetwork.CloudRegion}");
+        DebugTools.PrintOnGUI($"CONNECTED TO {PhotonNetwork.CloudRegion}");
     }
 }

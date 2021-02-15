@@ -1459,7 +1459,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 263074245}
-  - component: {fileID: 263074246}
   m_Layer: 0
   m_Name: ListPlayers
   m_TagString: Untagged
@@ -1487,19 +1486,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -16}
   m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &263074246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263074244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1c63fc4060c69448a15cb18733db6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textPlayerList: {fileID: 395710713}
 --- !u!1 &298309429
 GameObject:
   m_ObjectHideFlags: 0
@@ -4236,6 +4222,7 @@ GameObject:
   - component: {fileID: 1158121652}
   - component: {fileID: 1158121651}
   - component: {fileID: 1158121653}
+  - component: {fileID: 1158121654}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -4372,6 +4359,19 @@ MonoBehaviour:
   roomMenu: {fileID: 1125974962}
   loadingScreen: {fileID: 601244315}
   _inputField: {fileID: 130724098}
+--- !u!114 &1158121654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158121646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1c63fc4060c69448a15cb18733db6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textPlayerList: {fileID: 395710713}
 --- !u!1 &1165389734
 GameObject:
   m_ObjectHideFlags: 0

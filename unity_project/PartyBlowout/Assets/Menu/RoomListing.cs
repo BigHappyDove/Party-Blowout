@@ -13,22 +13,17 @@ public class RoomListing : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         UpdateListPlayers();
-        DebugTools.PrintOnGUI("OK1");
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         UpdateListPlayers();
-        DebugTools.PrintOnGUI("OK2");
     }
 
     public override void OnJoinedRoom()
     {
-        DebugTools.PrintOnGUI("OK3");
+        UpdateListPlayers();
     }
-
-
-    public override void OnEnable() { UpdateListPlayers();}
 
 
     private void UpdateListPlayers()

@@ -9,7 +9,35 @@ public class PlayMenu : MonoBehaviourPunCallbacks
 
     public void CreateMultiplayerGame()
     {
+        playMenu.SetActive(false);
+        roomMenu.SetActive(false);
+        loadingScreen.SetActive(true);
         RoomMatch.TryCreateRoom();
         //TODO: handle when we can't join/create room
+    }
+
+    public void LeaveRoom()
+    {
+        playMenu.SetActive(true);
+        roomMenu.SetActive(false);
+        loadingScreen.SetActive(false);
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        playMenu.SetActive(false);
+        loadingScreen.SetActive(false);
+        roomMenu.SetActive(true);
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        DebugTools.PrintOnGUI($"Couldn't join the room!\n" +
+                              $"Code:{returnCode}\n" +
+                              $"Msg:{message}",DebugTools.LogType.ERROR);
+        playMenu.SetActive(true);
+        loadingScreen.SetActive(false);
+        roomMenu.SetActive(false);
     }
 }

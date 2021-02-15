@@ -11,16 +11,6 @@ public class RoomMatch : MonoBehaviourPunCallbacks
 {
     public static byte maxPlayersInRoom = 10; // 0 <= x <= 255
 
-    public override void OnConnectedToMaster()
-    {
-        PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnJoinedLobby()
-    {
-        DebugTools.PrintOnGUI($"Joined lobby {PhotonNetwork.CurrentLobby.Name}");
-    }
 
     public static void TryJoinRoom()
     {

@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void JoinGame()
+    public void CreateMultiplayerGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        string name = RoomMatch.TryCreateRoom();
+        RoomMatch.TryJoinRoom(name);
+        //TODO: handle when we can't join/create room
     }
+    
 
     public void QuitGame()
     {

@@ -9,29 +9,34 @@ using UnityEngine;
 /// </summary>
 public class RoomMatch : MonoBehaviourPunCallbacks
 {
-    public byte maxPlayersInRoom = 10; // 0 <= x <= 255
+    public static byte maxPlayersInRoom = 10; // 0 <= x <= 255
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    public void TryJoinRoom()
+    public static void TryJoinRoom()
     {
         PhotonNetwork.JoinRandomRoom();
     }
+    public static void TryJoinRoom(string room)
+    {
+        PhotonNetwork.JoinRoom(room);
+    }
 
-    public void CancelJoinRoom()
+    public static void CancelJoinRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
-    public void TryCreateRoom()
+    public static string TryCreateRoom()
     {
         string roomName = Random.Range(0, 2147483647).ToString("X");
         RoomOptions roomOptions = new RoomOptions {IsVisible = true, IsOpen = true, MaxPlayers = maxPlayersInRoom};
         PhotonNetwork.CreateRoom(roomName, roomOptions);
         DebugTools.PrintOnGUI($"Created room {roomName}");
+        return roomName;
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -50,4 +55,6 @@ public class RoomMatch : MonoBehaviourPunCallbacks
         DebugTools.PrintOnGUI($"Failed to create a room!", DebugTools.LogType.WARNING);
         TryCreateRoom();
     }
+
+    
 }

@@ -30,7 +30,7 @@ public class RoomListing : MonoBehaviourPunCallbacks
     {
         _textPlayerList.text = "";
         foreach (KeyValuePair<int, Photon.Realtime.Player> val in PhotonNetwork.CurrentRoom.Players)
-            _textPlayerList.text += val.Value.NickName + "\n";
+            _textPlayerList.text += val.Value.NickName + (val.Value.IsMasterClient ? " (Admin)" : "") + "\n";
     }
 
 }

@@ -14,7 +14,6 @@ public class RoomMatch : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        TryJoinRoom();
     }
 
     public void TryJoinRoom()

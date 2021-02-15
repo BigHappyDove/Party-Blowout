@@ -14,6 +14,12 @@ public class RoomMatch : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        DebugTools.PrintOnGUI($"Joined lobby {PhotonNetwork.CurrentLobby.Name}");
     }
 
     public static void TryJoinRoom()
@@ -50,11 +56,16 @@ public class RoomMatch : MonoBehaviourPunCallbacks
         DebugTools.PrintOnGUI($"Joined room {PhotonNetwork.CurrentRoom.Name}");
     }
 
+    public override void OnLeftRoom()
+    {
+        DebugTools.PrintOnGUI("No longer in a room.");
+    }
+
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         DebugTools.PrintOnGUI($"Failed to create a room!", DebugTools.LogType.WARNING);
         TryCreateRoom();
     }
 
-    
+
 }

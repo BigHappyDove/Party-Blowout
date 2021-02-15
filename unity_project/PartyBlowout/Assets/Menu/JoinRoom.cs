@@ -17,7 +17,7 @@ public class JoinRoom : MonoBehaviourPunCallbacks
         if (_inputField.text == "")
             PhotonNetwork.JoinRandomRoom();
         else
-            PhotonNetwork.JoinRoom(_inputField.text);
+            PhotonNetwork.JoinRoom(_inputField.text.ToUpper());
     }
 
     public override void OnJoinedRoom()

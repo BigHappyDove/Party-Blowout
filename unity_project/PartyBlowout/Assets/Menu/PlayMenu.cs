@@ -9,11 +9,13 @@ public class PlayMenu : MonoBehaviourPunCallbacks
 
     public void CreateMultiplayerGame()
     {
-        playMenu.SetActive(false);
-        roomMenu.SetActive(false);
-        loadingScreen.SetActive(true);
-        RoomMatch.TryCreateRoom();
-        //TODO: handle when we can't join/create room
+        if (PhotonNetwork.InLobby)
+        {
+            playMenu.SetActive(false);
+            roomMenu.SetActive(false);
+            loadingScreen.SetActive(true);
+            RoomMatch.TryCreateRoom();
+        }
     }
 
     public void LeaveRoom()

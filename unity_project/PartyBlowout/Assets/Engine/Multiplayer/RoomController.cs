@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviourPunCallbacks
 {
-    public int indexSceneToLoad;
 
     public override void OnEnable()
     {
@@ -17,7 +16,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public override void OnJoinedRoom()
+    public void LoadScene(int indexSceneToLoad)
     {
         if (PhotonNetwork.IsMasterClient)
         {

@@ -25,4 +25,9 @@ public class NetworkController : MonoBehaviourPunCallbacks
     {
         DebugTools.PrintOnGUI($"Joined lobby {PhotonNetwork.CurrentLobby.Name}");
     }
+
+    public override void OnLeftLobby()
+    {
+        PhotonNetwork.JoinLobby();
+    }
 }

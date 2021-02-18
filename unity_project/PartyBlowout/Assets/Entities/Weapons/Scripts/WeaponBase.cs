@@ -17,9 +17,9 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected int ammoInReserve;
 
     //Muzzle Flash (sinon c'est moche quand on tire)
-    [SerializeField] protected Image muzzleFlashImage;
+    [SerializeField] private Image muzzleFlashImage;
     [SerializeField] protected Sprite[] flashes;
-    
+
     //Viser
     [SerializeField] protected Vector3 normalLocalPosition;
     [SerializeField] protected Vector3 aimingLocalPosition;
@@ -63,7 +63,7 @@ public class WeaponBase : MonoBehaviour
             }
         }
     }
-    
+
     /// <summary>
     /// shifts into aim mode when right click is pressed.
     /// </summary>
@@ -113,10 +113,10 @@ public class WeaponBase : MonoBehaviour
             }
             catch
             {
-                
+
             }
         }
-        
+
     }
 
     /// <summary>

@@ -16,13 +16,16 @@ public class Transformation : MonoBehaviourPunCallbacks
     [SerializeField]
     private float _doubleJumpMultiplier = 0.8f;
     [SerializeField]
-    private float _rotationSpeed;
-
+    private float _mouseSensitivity = 6;
+    [SerializeField] 
+    GameObject cameraHolder;
+    
     private PhotonView _photonView;
-
+    
     private CharacterController _controller; // Méthode pour déplacer un objet
 
     private float _directionY;
+    private float _verticalLookRotation;
 
     private bool _canDoubleJump;
     
@@ -39,37 +42,49 @@ public class Transformation : MonoBehaviourPunCallbacks
     {
         if (_photonView.IsMine)
         {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-            float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
-
-            Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
-            Vector3 rotation = new Vector3(0, mouseX, 0);
-
-            if (_controller.isGrounded) // Eviter le jump infini
-            {
-                _canDoubleJump = true;
-                if (Input.GetButtonDown("Jump"))
-                {
-                    _directionY = _jumpSpeed;
-                }
-            }
-            else
-            {
-                if (Input.GetButtonDown("Jump") && _canDoubleJump)
-                {
-                    _directionY = _jumpSpeed * _doubleJumpMultiplier;
-                    _canDoubleJump = false;
-                }
-            }
-
-            _directionY -= _gravity * Time.deltaTime; // * Time.deltaTime : redescente de l'objet en douceur 
-
-            direction.y = _directionY; // Eviter de réinitialiser la position en y à 0 chaque frame
-
-
-            _controller.Move(direction * (_moveSpeed * Time.deltaTime));
-            transform.Rotate(rotation * (Time.deltaTime * _rotationSpeed));
+            Controller();
+            Rotation();
         }
+    }
+
+    void Controller()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
+        
+        if (_controller.isGrounded) // Eviter le jump infini
+        {
+            _canDoubleJump = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                _directionY = _jumpSpeed;
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Jump") && _canDoubleJump)
+            {
+                _directionY = _jumpSpeed * _doubleJumpMultiplier;
+                _canDoubleJump = false;
+            }
+        }
+
+        _directionY -= _gravity * Time.deltaTime; // * Time.deltaTime : redescente de l'objet en douceur 
+
+        direction.y = _directionY; // Eviter de réinitialiser la position en y à 0 chaque frame
+
+
+        _controller.Move(direction * (_moveSpeed * Time.deltaTime));
+    }
+
+    void Rotation()
+    {
+        transform.Rotate(Vector3.up * (Input.GetAxisRaw("Mouse X") * _mouseSensitivity));
+
+        _verticalLookRotation += Input.GetAxisRaw("Mouse Y") * _mouseSensitivity;
+        _verticalLookRotation = Mathf.Clamp(_verticalLookRotation, -90f, 90f);
+
+        cameraHolder.transform.localEulerAngles = Vector3.left * _verticalLookRotation;
     }
 }

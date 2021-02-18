@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PlayerGroundCheck : MonoBehaviour
 {
-    PlayerController playerController;
+    Player playerController;
 
     private void Awake()
     {
-        playerController = GetComponentInParent<PlayerController>();
+        playerController = GetComponentInParent<Player>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == playerController.gameObject)
             return;
-        
+
         playerController.SetGroundedState(true);
     }
 
@@ -23,7 +23,7 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         if (other.gameObject == playerController.gameObject)
             return;
-        
+
         playerController.SetGroundedState(false);
     }
 
@@ -31,7 +31,7 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         if (other.gameObject == playerController.gameObject)
             return;
-        
+
         playerController.SetGroundedState(true);
     }
 
@@ -39,7 +39,7 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         if (collision.gameObject == playerController.gameObject)
             return;
-        
+
         playerController.SetGroundedState(true);
     }
 
@@ -47,7 +47,7 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         if (collision.gameObject == playerController.gameObject)
             return;
-        
+
         playerController.SetGroundedState(false);
     }
 
@@ -55,7 +55,7 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         if (collision.gameObject == playerController.gameObject)
             return;
-        
+
         playerController.SetGroundedState(true);
     }
 }

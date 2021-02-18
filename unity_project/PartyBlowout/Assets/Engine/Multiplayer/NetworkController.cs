@@ -15,6 +15,19 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        DebugTools.PrintOnGUI($"CONNECTED TO {PhotonNetwork.CloudRegion}");
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.JoinLobby();
+        PhotonNetwork.NickName = "Player" + Random.Range(0, 2147483647).ToString("X");
+        DebugTools.PrintOnGUI($"CONNECTED TO {PhotonNetwork.CloudRegion} as {PhotonNetwork.NickName}");
+    }
+
+    public override void OnJoinedLobby()
+    {
+        DebugTools.PrintOnGUI($"Joined lobby {PhotonNetwork.CurrentLobby.Name}");
+    }
+
+    public override void OnLeftLobby()
+    {
+        PhotonNetwork.JoinLobby();
     }
 }

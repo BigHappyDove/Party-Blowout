@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:unity_project/PartyBlowout/Assets/Entities/Weapons/Models/Materials.meta
+guid: 9acd79e4a371ecd44a034e7f4c529101
+========
+guid: 7d497b164e4d24f4d9810906c81a7810
+>>>>>>>> 769fd363ca8d36c27a7f981fd3b513e018341d92:unity_project/PartyBlowout/Assets/Textures/Materials.meta
+=======
+guid: e3fac15635702d74c93bf26b53e516fa
+>>>>>>> 769fd363ca8d36c27a7f981fd3b513e018341d92
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

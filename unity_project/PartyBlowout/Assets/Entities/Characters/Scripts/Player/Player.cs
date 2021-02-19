@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
+    [SerializeField] float health;
+
     float verticalLookRotation;
     bool grounded;
     bool canDoubleJump;
@@ -44,6 +46,19 @@ public class Player : MonoBehaviour
         Look();
         Move();
         Jump();
+    }
+
+    /// <summary>
+    /// set health regarding the damage taken.
+    /// </summary>
+    /// <param name="amount"> damage the target receive</param>
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0f)
+        {
+            Destroy(this);
+        }
     }
 
 

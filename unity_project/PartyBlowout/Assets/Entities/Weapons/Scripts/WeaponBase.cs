@@ -11,6 +11,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected float fireRate;
     [SerializeField] protected int clipSize;
     [SerializeField] protected int damage;
+    [SerializeField] protected int impactForce;
     [SerializeField] protected int reservedAmmoCapacity;
 
     [SerializeField] protected bool canShoot;
@@ -97,27 +98,30 @@ public class WeaponBase : MonoBehaviour
         // }
     }
 
+
+    private int range = 500;
     /// <summary>
     /// shoots raycasts from the gun, to the enemy's direction but it hits only those who have the layer AliveEntities.
     /// </summary>
     void RayCastForEnemy()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, 1 << LayerMask.NameToLayer("AliveEntities")))
+        if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, range))
         {
-            Debug.Log("Enemy is hit");
-            try
+            Debug.Log(hit.transform.name);
+            Player target = hit.transform.GetComponent<Player>();
+            if (target != null)
             {
-                Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
-                rb.constraints = RigidbodyConstraints.None;
-                rb.AddForce(transform.parent.transform.forward * 500);
+                target.TakeDamage(damage);
             }
-            catch
-            {
 
+            Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.constraints = RigidbodyConstraints.None;
+                rb.AddForce(transform.parent.transform.forward * impactForce);
             }
         }
-
     }
 
     /// <summary>

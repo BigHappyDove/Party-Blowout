@@ -13,6 +13,7 @@ public class PhotonPlayerManager : MonoBehaviour
 
     void CreateController()
     {
-        PhotonNetwork.Instantiate(Path.Combine("Entities", "Player/Player"), Vector3.zero, Quaternion.identity);
+        Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
+        PhotonNetwork.Instantiate(Path.Combine("Entities", "Player/Player"), spawnpoint.position, spawnpoint.rotation);
     }
 }

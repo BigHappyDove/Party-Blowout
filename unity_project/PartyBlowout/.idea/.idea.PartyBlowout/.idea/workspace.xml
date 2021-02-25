@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="063e8393-41ae-42ec-8c68-5c37ce567bec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials.meta~merged" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/JackDevPrefabs/playerRED.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PartyBlowout/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/PhotonPlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/PhotonPlayerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUtilities/PackObject/CodeGen/Editor/Resources/TypeCatalogue.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUtilities/PackObject/CodeGen/Editor/Resources/TypeCatalogue.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/NetworkControllerJack.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/NetworkControllerJack.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/Transformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/Transformation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Entities/Player/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Entities/Player/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/testmap.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/testmap.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Maps.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Entities/Weapons/Models/Materials.meta~merged.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/JackDevPrefabs/playerRED.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Shaders.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/JackDevPrefabs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,10 +36,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/SpawnManager.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scenes/DevMaps/jackdev/Transformation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/SpawnManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/PhotonPlayerManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Entities/Characters/Scripts/Player/SpawnPoint.cs" />
       </list>
     </option>
   </component>
@@ -92,6 +110,8 @@
       <workItem from="1612997375693" duration="984000" />
       <workItem from="1613037133343" duration="39000" />
       <workItem from="1613053671372" duration="5051000" />
+      <workItem from="1613655506656" duration="2934000" />
+      <workItem from="1614200174823" duration="1173000" />
     </task>
     <servers />
   </component>
@@ -100,6 +120,18 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

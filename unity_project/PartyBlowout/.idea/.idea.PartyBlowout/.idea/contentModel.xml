@@ -10,14 +10,14 @@
         <e p="Engine" t="Include">
           <e p="Debug" t="Include">
             <e p="DebugTools.cs" t="Include" />
+            <e p="NetworkDebug.cs" t="Include" />
           </e>
           <e p="Multiplayer" t="Include">
             <e p="GameSetupController.cs" t="Include" />
             <e p="NetworkController.cs" t="Include" />
-            <e p="QuickStartLobbyController.cs" t="Include" />
-            <e p="QuickStartRoomController.cs" t="Include" />
+            <e p="NewBehaviourScript.cs" t="Include" />
             <e p="RoomController.cs" t="Include" />
-            <e p="RoomMatch.cs" t="Include" />
+            <e p="RoomManager.cs" t="Include" />
           </e>
         </e>
         <e p="Entities" t="Include">
@@ -27,7 +27,11 @@
                 <e p="AgentScript.cs" t="Include" />
               </e>
               <e p="Player" t="Include">
+                <e p="PhotonPlayerManager.cs" t="Include" />
                 <e p="Player.cs" t="Include" />
+                <e p="PlayerGroundCheck.cs" t="Include" />
+                <e p="SpawnManager.cs" t="Include" />
+                <e p="SpawnPoint.cs" t="Include" />
               </e>
             </e>
           </e>
@@ -37,12 +41,8 @@
             </e>
           </e>
           <e p="Weapons" t="Include">
-            <e p="Models" t="Include">
-              <e p="general-textures" t="Include">
-                <e p="general-texture-pack" t="Include">
-                  <e p="readme.txt" t="Include" />
-                </e>
-              </e>
+            <e p="Scripts" t="Include">
+              <e p="WeaponBase.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -53,7 +53,11 @@
           <e p="Shooter.cs" t="Include" />
         </e>
         <e p="Menu" t="Include">
+          <e p="JoinRoom.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
+          <e p="PlayMenu.cs" t="Include" />
+          <e p="RoomListing.cs" t="Include" />
+          <e p="updateNickname.cs" t="Include" />
         </e>
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
@@ -677,6 +681,7 @@
             <e p="cryxDev" t="Include">
               <e p="movementTest.cs" t="Include" />
               <e p="spawnPlayer.cs" t="Include" />
+              <e p="testScript.cs" t="Include" />
             </e>
             <e p="jackdev" t="Include">
               <e p="Transformation.cs" t="Include" />
@@ -712,6 +717,11 @@
           </e>
           <e p="Sprites" t="Include">
             <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Textures" t="Include">
+          <e p="general-texture-pack" t="Include">
+            <e p="readme.txt" t="Include" />
           </e>
         </e>
       </e>

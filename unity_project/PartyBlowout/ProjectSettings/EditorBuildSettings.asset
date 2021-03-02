@@ -8,15 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menu/Menu.unity
     guid: ecffeec50def6ef458cfcf29ecdfd983
-  - enabled: 0
-    path: Assets/Scenes/DevMaps/cryxDev/cryxDev.unity
-    guid: 5e9edef51c2125948a57a6ed7ed6f50f
   - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Scenes/DevMaps/ClovisDev/FPStest.unity
-    guid: acb0b50a72978634a9b4630ef253061c
-=======
-    path: Assets/Scenes/DevMaps/jackdev/testmap.unity
-    guid: 570bfc22b15cd7b469f1e065b4b13f43
->>>>>>> player
+    path: Assets/Scenes/DevMaps/ClovisDev/TestMaps.unity
+    guid: ff3394d767c2e8e4a82a85de1a28794e
   m_configObjects: {}

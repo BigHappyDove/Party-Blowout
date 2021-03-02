@@ -8,11 +8,13 @@ public class SimpleCarController : MonoBehaviour {
     public float maxMotorTorque; // maximum torque the motor can apply to wheel
     public float maxSteeringAngle; // maximum steer angle the wheel can have
     public float maxBrakes;
+    
+    
     public void FixedUpdate()
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
-        float brakes = maxBrakes * 150 * Input.GetAxis("Jump");
+        float brakes = maxBrakes * Input.GetAxis("Jump");
 
         foreach (AxleInfo axleInfo in axleInfos) {
             if (axleInfo.steering)
@@ -35,7 +37,7 @@ public class SimpleCarController : MonoBehaviour {
     }
 }
     
-[System.Serializable]
+[Serializable]
 public class AxleInfo {
     public WheelCollider leftWheel;
     public WheelCollider rightWheel;

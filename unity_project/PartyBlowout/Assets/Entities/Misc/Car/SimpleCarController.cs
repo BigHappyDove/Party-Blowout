@@ -2,9 +2,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-    
+using System.IO;
+using Photon.Pun;
+
 public class SimpleCarController : MonoBehaviour
-{
+{ 
+    PhotonView PV;
 
     public Rigidbody theRB;
     public float forwardAccel, reverseAccel, maxSpeed, turnStrength, gravityForce, dragGround;
@@ -20,13 +23,27 @@ public class SimpleCarController : MonoBehaviour
     //public float maxWheelTurn;
 
 
+    void Awake()
+    {
+        //theRB = GetComponent<Rigidbody>();
+        PV = GetComponent<PhotonView>();
+    }
+
     void Start()
     {
+        if (!PV.IsMine)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        }
         theRB.transform.parent = null;
     }
 
     void Update()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
         speedInput = 0;
         if (Input.GetAxis("Vertical") > 0)
         {

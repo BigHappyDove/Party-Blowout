@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
+using NUnit.Framework;
 
 
 public class GameSetupController : MonoBehaviour
 {
-    void Start()
-    {
-        CreatePlayer();
-    }
+    public List<EntitiesManager.EntityObjects> entitesToCreate = new List<EntitiesManager.EntityObjects>();
+    // entitesToCreate.Add(new EntitiesManager.EntityObjects(
+    // {
+    //     path = "abc/aaaa",
+    //     pos = new Vector3(0,0,0),
+    //     rotation = new Quaternion(0,0,0)
+    //
+    // }));
 
-    private void CreatePlayer()
-    {
-        
-        Debug.Log("Creating a player");
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
-    }
+    void Start() => EntitiesManager.CreateEntity(entitesToCreate);
 }
+

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] GameObject graphics; 
+    [SerializeField] GameObject graphics;
 
     /// <summary>
     /// Hide visuals of the spawn points
     /// </summary>
     void Awake()
     {
-        graphics.SetActive(false);
+        if(graphics)
+            graphics.SetActive(false);
     }
 }

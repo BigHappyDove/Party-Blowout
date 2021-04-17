@@ -29,7 +29,7 @@ public class CheckpointSingle : MonoBehaviour
         {
             return;
         }
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out SimpleCarController player))
         {
             _trackCheckpoints.PlayerThroughCheckpoint(this, other.transform);
         }

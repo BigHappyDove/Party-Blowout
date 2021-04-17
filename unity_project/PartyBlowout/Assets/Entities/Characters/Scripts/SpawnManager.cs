@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public static SpawnManager Instance;
-
     SpawnPoint[] spawnpoints;
 
-    void Awake()
-    {
-        Instance = this;
-        spawnpoints = GetComponentsInChildren<SpawnPoint>();
-    }
+    void Awake() => spawnpoints = GetComponentsInChildren<SpawnPoint>();
 
     public Transform GetSpawnpoint()
     {

@@ -38,8 +38,21 @@ public class EntitiesManager : MonoBehaviour
     /// Instantiate a multiplayer object from a EntitiesObjects struct
     /// </summary>
     /// <param name="obj">An EntitiesObjects struct (example of constructor in EntitiesManager.cs)</param>
-    public static void CreateEntity(EntityObjects obj)
-    {
-        PhotonNetwork.Instantiate(obj.path, obj.pos, obj.rotation);
-    }
+    public static void CreateEntity(EntityObjects obj) => PhotonNetwork.Instantiate(obj.path, obj.pos, obj.rotation);
+
+    /// <summary>
+    /// Create an entity from its path and a transform object
+    /// </summary>
+    /// <param name="path">The path to the entity (relative to ressources/)</param>
+    /// <param name="transform">Transform object</param>
+    public static void CreateEntity(string path, Transform transform) =>
+        PhotonNetwork.Instantiate(path, transform.position, transform.rotation);
+
+    /// <summary>
+    /// Create an entity from its path and a pos / rotation values
+    /// </summary>
+    /// <param name="path">The path to the entity (relative to ressources/)</param>
+    /// <param name="pos">A Vector3 object for the position</param>
+    /// <param name="rot">A Quaternion object for the roatation</param>
+    public static void CreateEntity(string path, Vector3 pos, Quaternion rot) => PhotonNetwork.Instantiate(path, pos, rot);
 }

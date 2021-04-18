@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 700950319757612563}
   - component: {fileID: 9048228138323851755}
   m_Layer: 0
-  m_Name: Checkpoint
+  m_Name: CheckPointsAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4952d3b3a841b43888933daea8dde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRadius: 0
   _linkedCheckPointsList: []
 --- !u!65 &700950319757612563
 BoxCollider:
@@ -104,7 +103,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700950319757612560}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

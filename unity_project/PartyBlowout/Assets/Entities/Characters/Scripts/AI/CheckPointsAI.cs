@@ -20,11 +20,12 @@ public class CheckPointsAI : MonoBehaviour
         _pv = GetComponent<PhotonView>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider col)
     {
         if(!_pv.IsMine || _linkedCheckPointsList.Count <= 0) return;
-        AgentScript agentScript = collision.gameObject.GetComponent<AgentScript>();
+        AgentScript agentScript = col.gameObject.GetComponent<AgentScript>();
         if (agentScript != null)
             agentScript.UpdatePath(_linkedCheckPointsList, this);
     }
+
 }

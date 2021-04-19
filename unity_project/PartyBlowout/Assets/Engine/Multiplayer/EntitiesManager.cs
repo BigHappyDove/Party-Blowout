@@ -28,25 +28,29 @@ public class EntitiesManager : MonoBehaviour
     /// Instantiate multiplayer objects from a list of EntitiesObjects structs
     /// </summary>
     /// <param name="objs">A list EntitiesObjects structs (example of constructor in EntitiesManager.cs)</param>
-    public static void CreateEntity(List<EntityObjects> objs)
+    /// <param name="customObj">Optional arguments to pass</param>
+    public static void CreateEntity(List<EntityObjects> objs, object[] customObj = null)
     {
         foreach (var obj in objs)
-            PhotonNetwork.Instantiate(obj.path, obj.pos, obj.rotation);
+            PhotonNetwork.Instantiate(obj.path, obj.pos, obj.rotation, 0, customObj);
     }
 
     /// <summary>
     /// Instantiate a multiplayer object from a EntitiesObjects struct
     /// </summary>
     /// <param name="obj">An EntitiesObjects struct (example of constructor in EntitiesManager.cs)</param>
-    public static void CreateEntity(EntityObjects obj) => PhotonNetwork.Instantiate(obj.path, obj.pos, obj.rotation);
+    /// <param name="customObj">Optional arguments to pass</param>
+    public static GameObject CreateEntity(EntityObjects obj, object[] customObj = null) =>
+        PhotonNetwork.Instantiate(obj.path, obj.pos, obj.rotation, 0, customObj);
 
     /// <summary>
     /// Create an entity from its path and a transform object
     /// </summary>
     /// <param name="path">The path to the entity (relative to ressources/)</param>
     /// <param name="transform">Transform object</param>
-    public static void CreateEntity(string path, Transform transform) =>
-        PhotonNetwork.Instantiate(path, transform.position, transform.rotation);
+    /// <param name="customObj">Optional arguments to pass</param>
+    public static GameObject CreateEntity(string path, Transform transform, object[] customObj = null) =>
+        PhotonNetwork.Instantiate(path, transform.position, transform.rotation, 0, customObj);
 
     /// <summary>
     /// Create an entity from its path and a pos / rotation values
@@ -54,5 +58,7 @@ public class EntitiesManager : MonoBehaviour
     /// <param name="path">The path to the entity (relative to ressources/)</param>
     /// <param name="pos">A Vector3 object for the position</param>
     /// <param name="rot">A Quaternion object for the roatation</param>
-    public static void CreateEntity(string path, Vector3 pos, Quaternion rot) => PhotonNetwork.Instantiate(path, pos, rot);
+    /// <param name="customObj">Optional arguments to pass</param>
+    public static GameObject CreateEntity(string path, Vector3 pos, Quaternion rot, object[] customObj = null) =>
+        PhotonNetwork.Instantiate(path, pos, rot, 0, customObj);
 }

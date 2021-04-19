@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
-    [SerializeField] float health;
+    [SerializeField] public float health;
 
     float verticalLookRotation;
     bool grounded;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     Vector3 moveAmount;
 
     Rigidbody rb;
-    PhotonView PV;
+    public PhotonView PV;
 
 
     void Awake()
@@ -47,6 +47,15 @@ public class Player : MonoBehaviour
         Move();
         Jump();
     }
+    private void FixedUpdate()
+    {
+        if (!PV.IsMine)
+            return;
+
+        rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+        // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
+    }
+
 
     /// <summary>
     /// set health regarding the damage taken.
@@ -103,14 +112,5 @@ public class Player : MonoBehaviour
     public void SetGroundedState(bool _grounded)
     {
         grounded = _grounded;
-    }
-
-    private void FixedUpdate()
-    {
-        if (!PV.IsMine)
-            return;
-
-        rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-        // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }
 }

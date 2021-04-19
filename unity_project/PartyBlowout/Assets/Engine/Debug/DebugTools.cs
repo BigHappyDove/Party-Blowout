@@ -24,7 +24,7 @@ public class DebugTools : MonoBehaviour
     public static void PrintOnGUI(object log, LogType logType = LogType.LOG)
     {
         string color;
-        string logStr = log.ToString();
+        string logStr = log != null ? log.ToString() : "NULL.STRING";
         switch (logType)
         {
             case LogType.ERROR:

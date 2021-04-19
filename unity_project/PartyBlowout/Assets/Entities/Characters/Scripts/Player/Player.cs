@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using Object = System.Object;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
     [SerializeField] public float health;
+
+    public SpawnEntity spawnEntity;
 
     float verticalLookRotation;
     bool grounded;
@@ -63,10 +66,16 @@ public class Player : MonoBehaviour
     /// <param name="amount"> damage the target receive</param>
     public void TakeDamage(float amount)
     {
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, amount);
+    }
+
+    [PunRPC]
+    public void RPC_TakeDamage(float amount)
+    {
         health -= amount;
-        if (health <= 0f)
+        if (health <= 0f && PV.IsMine)
         {
-            Destroy(this);
+            spawnEntity.RespawnController(gameObject);
         }
     }
 

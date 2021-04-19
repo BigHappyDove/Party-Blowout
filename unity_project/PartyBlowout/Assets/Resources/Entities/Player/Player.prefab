@@ -839,6 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f671a12908041ca46baf661e4777c156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   cameraHolder: {fileID: 155350226521495897}
   mouseSensitivity: 3
   sprintSpeed: 6
@@ -846,8 +847,6 @@ MonoBehaviour:
   jumpForce: 400
   smoothTime: 0.15
   doubleJumpMultiplier: 0.8
-  health: 100
-  PV: {fileID: 0}
 --- !u!114 &-776044859405588562
 MonoBehaviour:
   m_ObjectHideFlags: 0

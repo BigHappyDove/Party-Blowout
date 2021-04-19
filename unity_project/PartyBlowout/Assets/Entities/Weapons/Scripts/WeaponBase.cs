@@ -112,7 +112,7 @@ public class WeaponBase : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, range))
         {
-            Player target = hit.transform.GetComponent<Player>();
+            AliveEntity target = hit.transform.GetComponent<AliveEntity>();
             if (target != null)
             {
                 target.TakeDamage(damage);

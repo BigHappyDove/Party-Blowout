@@ -5,15 +5,11 @@ using Photon.Pun;
 using UnityEngine;
 using Object = System.Object;
 
-public class Player : MonoBehaviour
+public class Player : AliveEntity
 {
     [SerializeField] GameObject cameraHolder;
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
-
-    [SerializeField] public float health;
-
-    public SpawnEntity spawnEntity;
 
     float verticalLookRotation;
     bool grounded;
@@ -21,16 +17,6 @@ public class Player : MonoBehaviour
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
-
-    Rigidbody rb;
-    public PhotonView PV;
-
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        PV = GetComponent<PhotonView>();
-    }
 
     void Start()
     {
@@ -57,26 +43,6 @@ public class Player : MonoBehaviour
 
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
-    }
-
-
-    /// <summary>
-    /// set health regarding the damage taken.
-    /// </summary>
-    /// <param name="amount"> damage the target receive</param>
-    public void TakeDamage(float amount)
-    {
-        PV.RPC("RPC_TakeDamage", RpcTarget.All, amount);
-    }
-
-    [PunRPC]
-    public void RPC_TakeDamage(float amount)
-    {
-        health -= amount;
-        if (health <= 0f && PV.IsMine)
-        {
-            spawnEntity.RespawnController(gameObject);
-        }
     }
 
 

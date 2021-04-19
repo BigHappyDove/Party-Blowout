@@ -133,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6bcc1e5db29e24f860d3ddb19d46eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   maxDist: 50
   agent: {fileID: 7848923199276474614}
-  PV: {fileID: -3170966501893264849}
 --- !u!114 &-6156046889432874978
 MonoBehaviour:
   m_ObjectHideFlags: 0

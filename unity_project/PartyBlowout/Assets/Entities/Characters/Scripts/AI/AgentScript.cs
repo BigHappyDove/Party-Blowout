@@ -7,12 +7,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class AgentScript : MonoBehaviour
+public class AgentScript : AliveEntity
 {
     private Vector3 _target;
     public float maxDist;
     public NavMeshAgent agent;
-    public PhotonView PV;
     private CheckPointsAI _lastCheckpoint;
 
     private void Start()

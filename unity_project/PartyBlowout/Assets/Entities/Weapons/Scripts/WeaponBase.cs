@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -26,6 +27,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected Vector3 normalLocalPosition;
     [SerializeField] protected Vector3 aimingLocalPosition;
     private float aimSmoothing = 10f;
+    private PhotonView PV;
 
     // voir plus bas dans DetermineRecoil.
     // public bool randomizeRecoil;
@@ -36,10 +38,12 @@ public class WeaponBase : MonoBehaviour
         currentAmmoClip = clipSize;
         ammoInReserve = reservedAmmoCapacity;
         canShoot = true;
+        PV = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
+        if(!PV.IsMine) return; //TODO: THIS IS A TEMPORARY FIX. WE MUST FIND A WAY TO DEAL WITH DAMAGES
         DetermineAim();
         //shoots
         if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
@@ -108,19 +112,18 @@ public class WeaponBase : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
-            Player target = hit.transform.GetComponent<Player>();
+            AliveEntity target = hit.transform.GetComponent<AliveEntity>();
             if (target != null)
             {
                 target.TakeDamage(damage);
             }
 
-            Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.constraints = RigidbodyConstraints.None;
-                rb.AddForce(transform.parent.transform.forward * impactForce);
-            }
+            // Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+            // if (rb != null)
+            // {
+            //     rb.constraints = RigidbodyConstraints.None;
+            //     rb.AddForce(transform.parent.transform.forward * impactForce);
+            // }
         }
     }
 

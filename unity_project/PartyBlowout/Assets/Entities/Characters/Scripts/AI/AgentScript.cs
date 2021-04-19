@@ -7,12 +7,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class AgentScript : MonoBehaviour
+public class AgentScript : AliveEntity
 {
     private Vector3 _target;
     public float maxDist;
     public NavMeshAgent agent;
-    public PhotonView PV;
     private CheckPointsAI _lastCheckpoint;
 
     private void Start()
@@ -40,7 +39,7 @@ public class AgentScript : MonoBehaviour
         CheckPointsAI checkpoint = null;
         // while (checkpoint == null || checkpoint != _lastCheckpoint)
         while (checkpoint == null)
-            checkpoint = checkPoints[Random.Range(0, checkPoints.Count - 1)];
+            checkpoint = checkPoints[Random.Range(0, checkPoints.Count)];
         _lastCheckpoint = curCheckpoint;
         Bounds cpBounds = checkpoint.GetComponent<Collider>().bounds;
         _target = _randomPosVector3(cpBounds.min, cpBounds.max);

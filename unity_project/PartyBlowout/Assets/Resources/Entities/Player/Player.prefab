@@ -27,6 +27,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4814999164808993092}
+  - {fileID: 5573435410532164238}
   - {fileID: 6775600502933611483}
   m_Father: {fileID: 7179952754007625746}
   m_RootOrder: 0
@@ -55,14 +57,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692120020326671273}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.49999994, z: 0.2}
+  m_LocalScale: {x: 1, y: 0.98198, z: 1}
   m_Children:
   - {fileID: 7147158293521198302}
   - {fileID: 7465683336699401214}
   - {fileID: 6420378092423070893}
-  m_Father: {fileID: 6775600502933611483}
+  m_Father: {fileID: 4948708305591617339}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4930751482276251003
@@ -206,11 +208,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0.2}
   m_LocalScale: {x: 1, y: 0.98198, z: 1}
-  m_Children:
-  - {fileID: 4814999164808993092}
-  - {fileID: 5573435410532164238}
+  m_Children: []
   m_Father: {fileID: 4948708305591617339}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4348337847537903337
 Camera:
@@ -498,13 +498,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6484105653949299928}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.49999994, z: 0.2}
+  m_LocalScale: {x: 1, y: 0.98198, z: 1}
   m_Children:
   - {fileID: 7134380191530736060}
   - {fileID: 5097030813324974701}
-  m_Father: {fileID: 6775600502933611483}
+  m_Father: {fileID: 4948708305591617339}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7205753990352293928

@@ -14,17 +14,41 @@ public class CheckpointSingle : MonoBehaviour
     // private int lastCheckpointPassed;
     //
     // private Transform checkpointsParent;
-    // private int checkPointCount;
+    // private int checkpointCount;
     // private int checkpointLayer;
-    // private SimpleCarController carController;
+    //
     // void Awake()
     // {
     //     checkpointsParent = GameObject.Find("CHECKPOINTS").transform;
-    //     checkPointCount = checkpointsParent.childCount;
+    //     checkpointCount = checkpointsParent.childCount;
     //     checkpointLayer = LayerMask.NameToLayer("Checkpoint");
-    //     carController = GetComponent<SimpleCarController>();
     // }
+    // private void OnTriggerEnter(Collider collider)
+    // {
+    //     if (collider.gameObject.layer != checkpointLayer)
+    //     {
+    //         return;
+    //     }
     //
+    //     if (collider.gameObject.name == "1")
+    //     {
+    //         if (lastCheckpointPassed == checkpointCount)
+    //         {
+    //             EndLap();
+    //         }
+    //
+    //         if (CurrentLap == 0 || lastCheckpointPassed == checkpointCount)
+    //         {
+    //             StartLap();
+    //         }
+    //         return;
+    //     }
+    //
+    //     if (collider.gameObject.name == (lastCheckpointPassed+1).ToString())
+    //     {
+    //         lastCheckpointPassed++;
+    //     }
+    // }
     // void StartLap()
     // {
     //     CurrentLap++;
@@ -38,37 +62,11 @@ public class CheckpointSingle : MonoBehaviour
     //     BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
     // }
     //
-    // private void OnTriggerEnter(Collider collider)
-    // {
-    //     if (collider.gameObject.layer != checkpointLayer)
-    //     {
-    //         return;
-    //     }
-    //
-    //     if (collider.gameObject.name == "1")
-    //     {
-    //         if (lastCheckpointPassed == checkPointCount)
-    //         {
-    //             EndLap();
-    //         }
-    //
-    //         if (CurrentLap == 0 || lastCheckpointPassed == checkPointCount)
-    //         {
-    //             StartLap();
-    //         }
-    //         return;
-    //     }
-    //
-    //     if (collider.gameObject.name == (lastCheckpointPassed+1).ToString())
-    //     {
-    //         lastCheckpointPassed++;
-    //     }
-    // }
-    //
-    // void Update()
+    // private void Update()
     // {
     //     CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;
     // }
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // private PhotonView _pv;

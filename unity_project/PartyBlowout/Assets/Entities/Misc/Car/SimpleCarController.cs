@@ -21,6 +21,8 @@ public class SimpleCarController : MonoBehaviour
 
     //public Transform leftFrontWheel, rightFrontWheel;
     //public float maxWheelTurn;
+    
+    
     public float BestLapTime { get; private set; } = Mathf.Infinity;
     public float LastLapTime { get; private set; } = 0;
     public float CurrentLapTime { get; private set; } = 0;
@@ -29,18 +31,17 @@ public class SimpleCarController : MonoBehaviour
     private int lastCheckpointPassed;
     
     private Transform checkpointsParent;
-    private int checkPointCount;
+    private int checkpointCount;
     private int checkpointLayer;
-    private SimpleCarController carController;
 
 
     void Awake()
     {
         PV = GetComponent<PhotonView>();
+        //
         checkpointsParent = GameObject.Find("CHECKPOINTS").transform;
-        checkPointCount = checkpointsParent.childCount;
+        checkpointCount = checkpointsParent.childCount;
         checkpointLayer = LayerMask.NameToLayer("Checkpoint");
-        carController = GetComponent<SimpleCarController>();
     }
 
     void Start()
@@ -60,12 +61,12 @@ public class SimpleCarController : MonoBehaviour
 
         if (collider.gameObject.name == "1")
         {
-            if (lastCheckpointPassed == checkPointCount)
+            if (lastCheckpointPassed == checkpointCount)
             {
                 EndLap();
             }
 
-            if (CurrentLap == 0 || lastCheckpointPassed == checkPointCount)
+            if (CurrentLap == 0 || lastCheckpointPassed == checkpointCount)
             {
                 StartLap();
             }
@@ -88,6 +89,12 @@ public class SimpleCarController : MonoBehaviour
     {
         LastLapTime = Time.time - lapTimer;
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
+    }
+
+    void EndRace()
+    {
+        Destroy(this);
+        Debug.Log("Race Finished");
     }
 
     void Update()
@@ -115,9 +122,13 @@ public class SimpleCarController : MonoBehaviour
         
         //leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) -180,  leftFrontWheel.localRotation.eulerAngles.z);
         //rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
+        
 
         CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;
-
+        if (CurrentLap == 4)
+        {
+            EndRace();
+        }
 
         transform.position = theRB.transform.position;
     }

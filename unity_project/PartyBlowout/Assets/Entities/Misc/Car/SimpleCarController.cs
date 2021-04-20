@@ -19,8 +19,8 @@ public class SimpleCarController : MonoBehaviour
     public float groundRayLength = 0.5f;
     public Transform groundRayPoint;
 
-    //public Transform leftFrontWheel, rightFrontWheel;
-    //public float maxWheelTurn;
+    public Transform leftFrontWheel, rightFrontWheel;
+    public float maxWheelTurn;
     
     
     public float BestLapTime { get; private set; } = Mathf.Infinity;
@@ -120,8 +120,8 @@ public class SimpleCarController : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));   
         }
         
-        //leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) -180,  leftFrontWheel.localRotation.eulerAngles.z);
-        //rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
+        leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) -180,  leftFrontWheel.localRotation.eulerAngles.z);
+        rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
         
 
         CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;

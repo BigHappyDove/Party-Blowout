@@ -115,7 +115,7 @@ public class WeaponBase : MonoBehaviour
             AliveEntity target = hit.transform.GetComponent<AliveEntity>();
             if (target != null)
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, GetComponentInParent<Player>());
             }
 
             // Rigidbody rb = hit.transform.GetComponent<Rigidbody>();

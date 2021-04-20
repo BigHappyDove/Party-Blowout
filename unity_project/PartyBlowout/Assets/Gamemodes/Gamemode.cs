@@ -15,25 +15,25 @@ public abstract class Gamemode : MonoBehaviour
 
 
     //TODO: Add arguments and documentation for each events
-    public event Action onRoundEndedHook;
-    public void onRoundEnded() { onRoundEndedHook?.Invoke(); }
+    public static event Action onRoundEndedHook;
+    public static void onRoundEnded() { onRoundEndedHook?.Invoke(); }
 
-    public event Action onRoundStartedHook;
-    public void onRoundStarted() {onRoundStartedHook?.Invoke();}
+    public static event Action onRoundStartedHook;
+    public static void onRoundStarted() {onRoundStartedHook?.Invoke();}
 
-    public event Action onGamemodeEndedHook;
+    public static event Action onGamemodeEndedHook;
     public void onGamemodended() { onRoundEndedHook?.Invoke(); }
 
-    public event Action onGamemodeStartedHook;
-    public void onGamemodeStarted() {onRoundStartedHook?.Invoke();}
+    public static event Action onGamemodeStartedHook;
+    public static void onGamemodeStarted() {onRoundStartedHook?.Invoke();}
 
-    public event Action onTakeDamageHook;
-    public void onTakeDamageDeath() {onPlayerDeathHook?.Invoke();}
+    public static event Action<AliveEntity, object> onTakeDamageHook;
+    public static void onTakeDamage(AliveEntity victim, object origin) {onTakeDamageHook?.Invoke(victim, origin);}
 
-    public event Action onPlayerDeathHook;
-    public void onPlayerDeath() {onPlayerDeathHook?.Invoke();}
+    public static event Action<AliveEntity, object> onPlayerDeathHook;
+    public static void onPlayerDeath(AliveEntity victim, object origin) {onPlayerDeathHook?.Invoke(victim, origin);}
 
-    public event Action onPlayerSpawnHook;
-    public void onPlayerSpawn() {onPlayerSpawnHook?.Invoke();}
+    public static event Action onPlayerSpawnHook;
+    public static void onPlayerSpawn() {onPlayerSpawnHook?.Invoke();}
 
 }

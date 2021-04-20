@@ -16,7 +16,6 @@ public class AgentScript : AliveEntity
 
     private void Start()
     {
-        DebugTools.PrintOnGUI(PV.IsMine);
         if(!PV.IsMine) return;
         _target = GetRandomPosOnNavMesh();
     }

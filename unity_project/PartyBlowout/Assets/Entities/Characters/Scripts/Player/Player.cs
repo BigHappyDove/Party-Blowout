@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using Object = System.Object;
 
-public class Player : MonoBehaviour
+public class Player : AliveEntity
 {
     [SerializeField] GameObject cameraHolder;
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
-
-    [SerializeField] float health;
 
     float verticalLookRotation;
     bool grounded;
@@ -18,16 +17,6 @@ public class Player : MonoBehaviour
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
-
-    Rigidbody rb;
-    PhotonView PV;
-
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        PV = GetComponent<PhotonView>();
-    }
 
     void Start()
     {
@@ -47,18 +36,13 @@ public class Player : MonoBehaviour
         Move();
         Jump();
     }
-
-    /// <summary>
-    /// set health regarding the damage taken.
-    /// </summary>
-    /// <param name="amount"> damage the target receive</param>
-    public void TakeDamage(float amount)
+    private void FixedUpdate()
     {
-        health -= amount;
-        if (health <= 0f)
-        {
-            Destroy(this);
-        }
+        if (!PV.IsMine)
+            return;
+
+        rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+        // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }
 
 
@@ -103,14 +87,5 @@ public class Player : MonoBehaviour
     public void SetGroundedState(bool _grounded)
     {
         grounded = _grounded;
-    }
-
-    private void FixedUpdate()
-    {
-        if (!PV.IsMine)
-            return;
-
-        rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-        // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }
 }

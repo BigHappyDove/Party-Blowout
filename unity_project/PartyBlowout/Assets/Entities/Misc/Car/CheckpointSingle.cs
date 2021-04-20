@@ -68,48 +68,18 @@ public class CheckpointSingle : MonoBehaviour
     // }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    // private PhotonView _pv;
-    // private SimpleCarController car;
-    //
-    // private TrackCheckpoints _trackCheckpoints;
-    // private MeshRenderer _meshRenderer;
-    //
-    // private void Awake()
-    // {
-    //     _meshRenderer = GetComponent<MeshRenderer>();
-    // }
-    //
-    // private void Start()
-    // {
-    //     Hide();
-    //     _pv = GetComponent<PhotonView>();
-    //     car = GetComponent<SimpleCarController>();
-    //
-    // }
-    //
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     SimpleCarController car = collision.gameObject.GetComponent<SimpleCarController>();
-    //     if (!car.PV.IsMine)
-    //     {
-    //         return;
-    //     }
-    //     _trackCheckpoints.PlayerThroughCheckpoint(this, car.transform);
-    // }
-    //
-    // public void SetTrackCheckpoints(TrackCheckpoints trackCheckpoints)
-    // {
-    //     this._trackCheckpoints = trackCheckpoints;
-    // }
-    //
-    // public void Hide()
-    // {
-    //     _meshRenderer.enabled = false;
-    // }
-    //
-    // public void Show()
-    // {
-    //     _meshRenderer.enabled = true;
-    // }
+    private TrackCheckpoints trackCheckpoints;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+        if (other.TryGetComponent<SimpleCarController>(out SimpleCarController car))
+        {
+            trackCheckpoints.PlayerThroughCheckpoint(this, car); //car => other.transform
+        }
+    }
+    public void SetTrackCheckpoints(TrackCheckpoints trackCheckpoints)
+    {
+        this.trackCheckpoints = trackCheckpoints;
+    }
 }

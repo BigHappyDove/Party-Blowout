@@ -27,26 +27,29 @@ public class UIControllerRaceGame : MonoBehaviour
             return;
         }
 
-        if (UpdateUIForPlayer.CurrentLap != currentLap)
+        if (UpdateUIForPlayer.PV.IsMine)
         {
-            currentLap = UpdateUIForPlayer.CurrentLap;
-            UITextCurrentLap.text = $"LAP: {currentLap}";
+            if (UpdateUIForPlayer.CurrentLap != currentLap)
+            {
+                currentLap = UpdateUIForPlayer.CurrentLap;
+                UITextCurrentLap.text = $"LAP: {currentLap}";
+            }
+            if (UpdateUIForPlayer.CurrentLapTime != currentTime)
+            {
+                currentTime = UpdateUIForPlayer.CurrentLapTime;
+                UITextCurrentTime.text = $"TIME: {(int) currentTime/60}:{(currentTime) % 60:00.000}";
+            }
+            if (UpdateUIForPlayer.LastLapTime != lastLapTime)
+            {
+                lastLapTime = UpdateUIForPlayer.LastLapTime;
+                UITextLastLapTime.text = $"TIME: {(int) lastLapTime/60}:{(lastLapTime) % 60:00.000}";
+            }
+            if (UpdateUIForPlayer.BestLapTime != bestLapTime)
+            {
+                bestLapTime = UpdateUIForPlayer.BestLapTime;
+                UITextBestLapTime.text = bestLapTime < 100000000 ? $"TIME: {(int) bestLapTime/60}:{(bestLapTime) % 60:00.000}" : "BEST: NONE";
+            }
         }
-        if (UpdateUIForPlayer.CurrentLapTime != currentTime)
-        {
-            currentTime = UpdateUIForPlayer.CurrentLapTime;
-            UITextCurrentTime.text = $"TIME: {(int) currentTime/60}:{(currentTime) % 60:00.000}";
-        }
-        if (UpdateUIForPlayer.LastLapTime != lastLapTime)
-        {
-            lastLapTime = UpdateUIForPlayer.LastLapTime;
-            UITextLastLapTime.text = $"TIME: {(int) lastLapTime/60}:{(lastLapTime) % 60:00.000}";
-        }
-        if (UpdateUIForPlayer.BestLapTime != bestLapTime)
-        {
-            bestLapTime = UpdateUIForPlayer.BestLapTime;
-            UITextBestLapTime.text = bestLapTime < 100000000 ? $"TIME: {(int) bestLapTime/60}:{(bestLapTime) % 60:00.000}" : "BEST: NONE";
-        }
-        
+
     }
 }

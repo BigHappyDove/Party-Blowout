@@ -6,60 +6,56 @@ using Photon.Pun;
 
 public class TrackCheckpoints : MonoBehaviour
 {
-    // private List<CheckpointSingle> _checkpointSingleList;
-    // private List<int> nextCheckpointSingleIndexList;
-    // private List<Transform> carTransformList;
-    //
-    // private PhotonView _pv;
-    //
-    // private void Start()
-    // { 
-    //     _pv = GetComponent<PhotonView>();
-    //     //c'est bien ?..
-    //     for (int i = 0; i < FindObjectsOfType<SimpleCarController>().Length; i++)
-    //     {
-    //         carTransformList.Add(FindObjectsOfType<SimpleCarController>()[i].transform);
-    //     }
-    // }
-    //
-    // private void Awake()
-    // {
-    //     Transform checkpointsTransform = transform.Find("CHECKPOINTS");
-    //
-    //     _checkpointSingleList = new List<CheckpointSingle>();
-    //
-    //     foreach (Transform checkpointSingleTransform in checkpointsTransform)
-    //     {
-    //         CheckpointSingle checkpointSingle = checkpointsTransform.GetComponent<CheckpointSingle>();
-    //         checkpointSingle.SetTrackCheckpoints(this);
-    //         _checkpointSingleList.Add(checkpointSingle);
-    //     }
-    //
-    //     nextCheckpointSingleIndexList = new List<int>();
-    //     foreach (Transform carTransform in carTransformList)
-    //     {
-    //         nextCheckpointSingleIndexList.Add(0);
-    //     }
-    // }
-    //
-    // public void PlayerThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
-    // {
-    //     int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
-    //     
-    //     CheckpointSingle correctcheckpointSingle = _checkpointSingleList[nextCheckpointSingleIndex];
-    //     
-    //     if (_checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
-    //     {
-    //         nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % _checkpointSingleList.Count;
-    //         
-    //         correctcheckpointSingle.Hide();
-    //         
-    //     }
-    //     else
-    //     {
-    //         //faire une fonction qui tp au checkpoint précédent
-    //         //et affiche sur le UI que c'est pas le bon checkpoint.
-    //         correctcheckpointSingle.Show();
-    //     }
-    // }
+    private List<CheckpointSingle> checkpointSingleList;
+    
+    private List<int> nextCheckpointSingleIndexList;
+    
+    private List<SimpleCarController> carTransformList;
+
+    private int nextCheckpointSingleIndex;
+
+    public CarManager carManager;
+
+    public GameObject checkpoints;
+    
+    private void Start()
+    {
+        checkpointSingleList = new List<CheckpointSingle>();
+        carTransformList = carManager.listCars;
+
+        for (int i = 0; i < checkpoints.transform.childCount; i++)
+        {
+            GameObject checkpoint = checkpoints.transform.GetChild(i).gameObject;
+            CheckpointSingle checkpointSingle = checkpoint.GetComponent<CheckpointSingle>();
+            //DebugTools.PrintOnGUI(checkpoint.name + " :" + (checkpointSingle != null) + " " + (checkpoint.transform!= null));
+            checkpointSingle.SetTrackCheckpoints(this);
+            checkpointSingleList.Add(checkpointSingle);
+        }
+    
+        nextCheckpointSingleIndexList = new List<int>();
+        
+        foreach (SimpleCarController carTransform in carTransformList)
+        {
+            nextCheckpointSingleIndexList.Add(0);
+        }
+    }
+
+    public void PlayerThroughCheckpoint(CheckpointSingle checkpointSingle, SimpleCarController carTransform)
+    {
+        int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
+        
+        CheckpointSingle correctcheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
+        
+        if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
+        {
+            nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
+            
+            
+        }
+        else
+        {
+            //faire une fonction qui tp au checkpoint précédent
+            //et affiche sur le UI que c'est pas le bon checkpoint.
+        }
+    }
 }

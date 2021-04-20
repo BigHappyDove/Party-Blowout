@@ -7,7 +7,8 @@ using Photon.Pun;
 
 public class SimpleCarController : MonoBehaviour
 { 
-    public PhotonView PV;
+    [NonSerialized] public PhotonView PV;
+    [NonSerialized] public PhotonTransformView TPV;
 
     public Rigidbody theRB;
     public float forwardAccel, reverseAccel, maxSpeed, turnStrength, gravityForce, dragGround;
@@ -38,6 +39,8 @@ public class SimpleCarController : MonoBehaviour
     void Awake()
     {
         PV = GetComponent<PhotonView>();
+        TPV = GetComponent<PhotonTransformView>();
+       
         //
         checkpointsParent = GameObject.Find("CHECKPOINTS").transform;
         checkpointCount = checkpointsParent.childCount;
@@ -120,8 +123,8 @@ public class SimpleCarController : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));   
         }
         
-        leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) -180,  leftFrontWheel.localRotation.eulerAngles.z);
-        rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
+        //leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) -180,  leftFrontWheel.localRotation.eulerAngles.z);
+        //rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
         
 
         CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;

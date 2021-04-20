@@ -9,11 +9,6 @@ EditorBuildSettings:
     path: Assets/Menu/Menu.unity
     guid: ecffeec50def6ef458cfcf29ecdfd983
   - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Scenes/DevMaps/ClovisDev/TestMaps.unity
-    guid: ff3394d767c2e8e4a82a85de1a28794e
-=======
-    path: Assets/Scenes/DevMaps/cryxDev/cryxDev.unity
-    guid: 5e9edef51c2125948a57a6ed7ed6f50f
->>>>>>> pre-master
+    path: "Assets/Scenes/DevMaps/ClovisDev/Course Fruit\xE9e.unity"
+    guid: 0d1d42ee086b51343aa57555eac7ca36
   m_configObjects: {}

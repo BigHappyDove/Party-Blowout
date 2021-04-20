@@ -10,9 +10,12 @@ public class CarManager : MonoBehaviour
 {
     private PhotonView PV;
 
+    [NonSerialized] public List<SimpleCarController> listCars;
+
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+        listCars = new List<SimpleCarController>();
     }
 
     // Start is called before the first frame update
@@ -26,24 +29,32 @@ public class CarManager : MonoBehaviour
 
     void InstantiateCar()
     {
+        GameObject g = null;
         Random rand = new Random();
         int vehiclechoice = rand.Next(4);
         
         switch (vehiclechoice)
         {
             case 0:
-                PhotonNetwork.Instantiate(Path.Combine("Entities", "MotoCerise"), Vector3.zero, Quaternion.identity);
+                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "MotoCerise"), Vector3.zero, Quaternion.identity);
                 break;
             case 1:
-                PhotonNetwork.Instantiate(Path.Combine("Entities", "AvocatTuning"), Vector3.zero, Quaternion.identity);
+                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "AvocatTuning"), Vector3.zero, Quaternion.identity);
                 break;
             case 2:
-                PhotonNetwork.Instantiate(Path.Combine("Entities", "FormulaBanane"), Vector3.zero, Quaternion.identity);
+                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "FormulaBanane"), Vector3.zero, Quaternion.identity);
                 break;
             default:
-                PhotonNetwork.Instantiate(Path.Combine("Entities", "ScooterMelon"), Vector3.zero, Quaternion.identity);
+                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "ScooterMelon"), Vector3.zero, Quaternion.identity);
                 break;
+        }
+
+        if (g != null)
+        {
+            listCars.Add(g.GetComponent<SimpleCarController>());
         }
         
     }
+    
+    //Regarder le systeme de spawn de titouan pour modif les strings de pathspour varier les voiture.
 }

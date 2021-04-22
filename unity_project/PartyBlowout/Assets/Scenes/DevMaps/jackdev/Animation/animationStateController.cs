@@ -19,7 +19,7 @@ public class animationStateController : MonoBehaviour
 
         // Increase performance
         //isWalkingHash = Animator.StringToHash("isWalking");
-        //isWalkingHash = Animator.StringToHash("isRunning");
+        //isRunningHash = Animator.StringToHash("isRunning");
     }
 
     // Update is called once per frame
@@ -30,7 +30,9 @@ public class animationStateController : MonoBehaviour
         
         bool isRunning = animator.GetBool("isRunning");
         bool isWalking = animator.GetBool("isWalking");
+        bool isWalkingBack = animator.GetBool("isWalkingBack");
         bool forwardPressed = Input.GetKey("z");
+        bool backwardsPressed = Input.GetKey("s");
         bool runPressed = Input.GetKey("left shift");
         
         if (!isWalking && forwardPressed)
@@ -43,13 +45,21 @@ public class animationStateController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
         
+        if (!isWalkingBack && backwardsPressed)
+        {
+            animator.SetBool("isWalkingBack", true);
+        }
+        if (isWalkingBack && !backwardsPressed)
+        {
+            animator.SetBool("isWalkingBack", false);
+        }
         
-        if (!isRunning && (runPressed && forwardPressed))
+        if (!isRunning && (runPressed && (forwardPressed || backwardsPressed)))
         {
             animator.SetBool("isRunning", true);
         }
 
-        if (isRunning && (!runPressed || !forwardPressed))
+        if (isRunning && (!runPressed || (!forwardPressed || !backwardsPressed)))
         {
             animator.SetBool("isRunning", false);
         }

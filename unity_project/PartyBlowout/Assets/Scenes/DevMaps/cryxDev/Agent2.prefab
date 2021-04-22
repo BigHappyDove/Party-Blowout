@@ -1675,7 +1675,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxDist: 0
+  maxDist: 50
+  sprintSpeed: 6
+  walkSpeed: 3
 --- !u!195 &26183986965629113
 NavMeshAgent:
   m_ObjectHideFlags: 0

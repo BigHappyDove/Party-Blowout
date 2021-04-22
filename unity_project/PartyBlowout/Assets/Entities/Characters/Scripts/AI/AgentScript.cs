@@ -9,18 +9,23 @@ using Random = UnityEngine.Random;
 
 public class AgentScript : AliveEntity
 {
-    private Vector3 _target;
     public float maxDist;
+    public float sprintSpeed;
+    public float walkSpeed;
+    private Vector3 _target;
     private Animator animator;
     private NavMeshAgent agent;
     private CheckPointsAI _lastCheckpoint;
 
     private void Start()
     {
+        if(!PV.IsMine) return;
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        if(!PV.IsMine) return;
+        agent.speed = sprintSpeed;
+        InvokeRepeating(nameof(RandomMaxSpeed), 1, 1.5f);
         _target = GetRandomPosOnNavMesh();
+
     }
 
     /// <summary>
@@ -35,6 +40,27 @@ public class AgentScript : AliveEntity
         return hit.position;
     }
 
+    /// <summary>
+    /// Set randomly the agent.speed to walkSpeed or sprintSpeed
+    /// </summary>
+    private void RandomMaxSpeed()
+    {
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                agent.speed = walkSpeed;
+                return;
+            case 1:
+                agent.speed = sprintSpeed;
+                return;
+        }
+    }
+
+    /// <summary>
+    /// Update the path of the agent for a new checkpoint.
+    /// </summary>
+    /// <param name="checkPoints">The checkpoints where the ai can go</param>
+    /// <param name="curCheckpoint">The checkpoint he's currently on</param>
     public void UpdatePath(List<CheckPointsAI> checkPoints, CheckPointsAI curCheckpoint)
     {
         if(!PV.IsMine) return;
@@ -47,6 +73,12 @@ public class AgentScript : AliveEntity
         _target = _randomPosVector3(cpBounds.min, cpBounds.max);
     }
 
+    /// <summary>
+    /// Get a random Vector3 obj between two Vector3
+    /// </summary>
+    /// <param name="min">The minimum Vector3</param>
+    /// <param name="max">The maximum Vector3</param>
+    /// <returns>The random Vector3</returns>
     private Vector3 _randomPosVector3(Vector3 min, Vector3 max)
         => new Vector3(Random.Range(min.x, max.x), 0, Random.Range(min.z, max.z));
 
@@ -56,12 +88,10 @@ public class AgentScript : AliveEntity
             return;
 
         float velocity = agent.velocity.magnitude;
-        bool isRunningAnim = animator.GetBool("isRunning");
-        bool isWalkingAnim = animator.GetBool("isWalking");
-        bool isRunning = velocity >= agent.speed * 0.6;
-        bool isWalking = velocity >= agent.speed * 0.1;
+        bool isRunning = velocity >= sprintSpeed * 0.9;
+        bool isWalking = velocity >= walkSpeed * 0.1;
 
-        switch (isWalkingAnim)
+        switch (animator.GetBool("isWalking"))
         {
             case false when isWalking:
                 animator.SetBool("isWalking", true);
@@ -72,7 +102,7 @@ public class AgentScript : AliveEntity
         }
 
 
-        switch (isRunningAnim)
+        switch (animator.GetBool("isRunning"))
         {
             case false when isRunning && isWalking:
                 animator.SetBool("isRunning", true);

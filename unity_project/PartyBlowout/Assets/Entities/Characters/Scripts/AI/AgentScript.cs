@@ -11,11 +11,14 @@ public class AgentScript : AliveEntity
 {
     private Vector3 _target;
     public float maxDist;
-    public NavMeshAgent agent;
+    private Animator animator;
+    private NavMeshAgent agent;
     private CheckPointsAI _lastCheckpoint;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         if(!PV.IsMine) return;
         _target = GetRandomPosOnNavMesh();
     }
@@ -46,6 +49,39 @@ public class AgentScript : AliveEntity
 
     private Vector3 _randomPosVector3(Vector3 min, Vector3 max)
         => new Vector3(Random.Range(min.x, max.x), 0, Random.Range(min.z, max.z));
+
+    private void Update()
+    {
+        if (!PV.IsMine)
+            return;
+
+        float velocity = agent.velocity.magnitude;
+        bool isRunningAnim = animator.GetBool("isRunning");
+        bool isWalkingAnim = animator.GetBool("isWalking");
+        bool isRunning = velocity >= agent.speed * 0.6;
+        bool isWalking = velocity >= agent.speed * 0.1;
+
+        switch (isWalkingAnim)
+        {
+            case false when isWalking:
+                animator.SetBool("isWalking", true);
+                break;
+            case true when !isWalking:
+                animator.SetBool("isWalking", false);
+                break;
+        }
+
+
+        switch (isRunningAnim)
+        {
+            case false when isRunning && isWalking:
+                animator.SetBool("isRunning", true);
+                break;
+            case true when !isRunning || !isWalking:
+                animator.SetBool("isRunning", false);
+                break;
+        }
+    }
 
     private void FixedUpdate()
     {

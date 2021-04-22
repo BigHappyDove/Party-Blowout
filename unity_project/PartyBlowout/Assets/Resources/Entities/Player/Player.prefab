@@ -2675,16 +2675,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: isWalking
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: isRunning
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isWalkingBack
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!1 &6812503919358102740
 GameObject:

@@ -66,6 +66,8 @@ public class WeaponInventory : MonoBehaviour
         if(PV != null && PV.IsMine)
         {
             curWeapon = found ? curWeapon : null;
+            if (!(curWeapon is null))
+                curWeapon.canShoot = true; // Switching while shooting can stuck canShoot, this fix the issue
             onWeaponChanged();
         }
     }

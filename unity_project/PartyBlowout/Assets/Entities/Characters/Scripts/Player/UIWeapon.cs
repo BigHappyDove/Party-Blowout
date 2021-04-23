@@ -41,7 +41,15 @@ public class UIWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ammoInMag.SetText(_curWeapon.currentAmmoClip.ToString());
-        ammoInReserve.SetText("/ " + _curWeapon.ammoInReserve);
+        if (!(_curWeapon is null))
+        {
+            ammoInMag.SetText(_curWeapon.currentAmmoClip.ToString());
+            ammoInReserve.SetText("/ " + _curWeapon.ammoInReserve);
+        }
+        else
+        {
+            ammoInMag.SetText("");
+            ammoInReserve.SetText("");
+        }
     }
 }

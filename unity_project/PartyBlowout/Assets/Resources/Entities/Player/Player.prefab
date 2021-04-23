@@ -2035,7 +2035,6 @@ MonoBehaviour:
   clipSize: 12
   damage: 30
   impactForce: 250
-  reservedAmmoCapacity: 12
   canShoot: 1
   currentAmmoClip: 12
   ammoInReserve: 120
@@ -2240,7 +2239,6 @@ MonoBehaviour:
   clipSize: 5
   damage: 100
   impactForce: 1000
-  reservedAmmoCapacity: 15
   canShoot: 1
   currentAmmoClip: 5
   ammoInReserve: 10

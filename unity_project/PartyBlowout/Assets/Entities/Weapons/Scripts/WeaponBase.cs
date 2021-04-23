@@ -13,9 +13,9 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected int clipSize;
     [SerializeField] protected int damage;
     [SerializeField] protected int impactForce;
-    [SerializeField] protected int reservedAmmoCapacity;
+    // [SerializeField] protected int reservedAmmoCapacity;
 
-    [SerializeField] protected bool canShoot;
+    [SerializeField] public bool canShoot;
     [SerializeField] public int currentAmmoClip;
     [SerializeField] public int ammoInReserve;
 
@@ -36,7 +36,7 @@ public class WeaponBase : MonoBehaviour
     private void Start()
     {
         currentAmmoClip = clipSize;
-        ammoInReserve = reservedAmmoCapacity;
+        // ammoInReserve = reservedAmmoCapacity;
         canShoot = true;
         PV = GetComponent<PhotonView>();
     }

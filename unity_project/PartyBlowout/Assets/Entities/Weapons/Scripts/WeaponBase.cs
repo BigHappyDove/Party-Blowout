@@ -16,8 +16,8 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected int reservedAmmoCapacity;
 
     [SerializeField] protected bool canShoot;
-    [SerializeField] protected int currentAmmoClip;
-    [SerializeField] protected int ammoInReserve;
+    [SerializeField] public int currentAmmoClip;
+    [SerializeField] public int ammoInReserve;
 
     //Muzzle Flash (sinon c'est moche quand on tire)
     [SerializeField] private Image muzzleFlashImage;
@@ -58,15 +58,10 @@ public class WeaponBase : MonoBehaviour
         {
             int ammountNeeded = clipSize - currentAmmoClip;
             if (ammountNeeded >= ammoInReserve)
-            {
                 currentAmmoClip += ammoInReserve;
-                ammoInReserve -= ammountNeeded;
-            }
             else
-            {
                 currentAmmoClip = clipSize;
-                ammoInReserve -= ammountNeeded;
-            }
+            ammoInReserve = Math.Max(0, ammoInReserve - ammountNeeded);
         }
     }
 

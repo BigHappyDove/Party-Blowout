@@ -7,6 +7,7 @@ using UnityEngine;
 public class WeaponInventory : MonoBehaviour
 {
     public int selectedWeapon = 0;
+    private WeaponBase curWeapon = null;
     private PhotonView PV;
 
     void Start()
@@ -40,13 +41,25 @@ public class WeaponInventory : MonoBehaviour
         if (selectedWeapon != previousSelectedWeapon) SelectWeapon();
     }
 
+    public event Action onWeaponChangedHook;
+    public void onWeaponChanged() {onWeaponChangedHook?.Invoke();}
+
     void SelectWeapon()
     {
         int i = 0;
+        bool found = false;
         foreach (Transform weapon in transform)
         {
             weapon.gameObject.SetActive(i == selectedWeapon);
+            found = found || i == selectedWeapon;
+            if (i == selectedWeapon) curWeapon = weapon.GetComponent<WeaponBase>();
             i++;
         }
+
+        curWeapon = found ? curWeapon : null;
+        if(PV.IsMine)
+            onWeaponChanged();
     }
+
+    public WeaponBase GetCurrentWeapon() => curWeapon;
 }

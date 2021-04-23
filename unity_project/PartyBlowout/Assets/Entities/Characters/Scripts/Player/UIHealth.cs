@@ -42,7 +42,6 @@ public class UIHealth : MonoBehaviour
     /// <param name="obj">Useless arg</param>
     void UpdateHealth(AliveEntity ply = null, object obj = null)
     {
-        DebugTools.PrintOnGUI("Called!");
         if (!(_player is null) && !(healthUI is null))
         {
             healthUI.SetText(_player.health.ToString(CultureInfo.CurrentCulture));

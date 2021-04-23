@@ -43,7 +43,7 @@ public class WeaponBase : MonoBehaviour
 
     private void Update()
     {
-        if(!PV.IsMine) return; //TODO: THIS IS A TEMPORARY FIX. WE MUST FIND A WAY TO DEAL WITH DAMAGES
+        if(!PV.IsMine) return;
         DetermineAim();
         //shoots
         if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
@@ -62,6 +62,9 @@ public class WeaponBase : MonoBehaviour
             else
                 currentAmmoClip = clipSize;
             ammoInReserve = Math.Max(0, ammoInReserve - ammountNeeded);
+            // Let's call this event to update the player's ui, we may have to edit this in the future
+            // TODO: Edit this dirty implementation
+            onWeaponShoot();
         }
     }
 
@@ -122,12 +125,16 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
+    public static event Action onWeaponShootHook;
+    public static void onWeaponShoot() => onWeaponShootHook?.Invoke();
+
     /// <summary>
     /// applies recoil and shoots raycasts.
     /// </summary>
     /// <returns> return if the player can shoot another time</returns>
     IEnumerator ShootGun()
     {
+        onWeaponShoot();
         DetermineRecoil();
         StartCoroutine(MuzzleFlash());
         RayCastForEnemy();

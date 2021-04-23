@@ -26,23 +26,30 @@ public class UIWeapon : MonoBehaviour
         if (_weaponInventory == null)
             throw new Exception("UIWeapon: WEAPON INVENTORY NOT FOUND!");
         _curWeapon = _weaponInventory.GetCurrentWeapon();
+        UpdateAmmo();
         _weaponInventory.onWeaponChangedHook += ChangeCurWeapon;
+        WeaponBase.onWeaponShootHook += UpdateAmmo;
     }
 
     // So we don't have to check everytime if the weapon changed
     private void OnDestroy()
     {
-        if(_pv.IsMine)
-            _weaponInventory.onWeaponChangedHook -= ChangeCurWeapon;
+        if (!_pv.IsMine) return;
+        _weaponInventory.onWeaponChangedHook -= ChangeCurWeapon;
+        WeaponBase.onWeaponShootHook -= UpdateAmmo;
     }
 
     /// <summary>
     /// Called by the event onWeaponChanged : Edit the _curWeapon var.
     /// </summary>
-    private void ChangeCurWeapon() => _curWeapon = _weaponInventory.GetCurrentWeapon();
+    private void ChangeCurWeapon()
+    {
+        _curWeapon = _weaponInventory.GetCurrentWeapon();
+        UpdateAmmo();
+    }
 
-    // Update is called once per frame
-    void Update()
+
+    void UpdateAmmo()
     {
         if (!(_curWeapon is null))
         {

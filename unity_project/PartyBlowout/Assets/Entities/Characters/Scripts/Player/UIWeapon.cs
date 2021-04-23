@@ -36,6 +36,9 @@ public class UIWeapon : MonoBehaviour
             _weaponInventory.onWeaponChangedHook -= ChangeCurWeapon;
     }
 
+    /// <summary>
+    /// Called by the event onWeaponChanged : Edit the _curWeapon var.
+    /// </summary>
     private void ChangeCurWeapon() => _curWeapon = _weaponInventory.GetCurrentWeapon();
 
     // Update is called once per frame

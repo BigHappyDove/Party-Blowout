@@ -24,80 +24,39 @@ public class SimpleCarController : MonoBehaviour
     public float maxWheelTurn;
     
     
-    public float BestLapTime { get; private set; } = Mathf.Infinity;
-    public float LastLapTime { get; private set; } = 0;
-    public float CurrentLapTime { get; private set; } = 0;
-    public int CurrentLap { get; private set; } = 0;
-    private float lapTimer;
-    private int lastCheckpointPassed;
-    
-    private Transform checkpointsParent;
-    private int checkpointCount;
-    private int checkpointLayer;
+    // public float BestLapTime { get; private set; } = Mathf.Infinity;
+    // public float LastLapTime { get; private set; } = 0;
+    // public float CurrentLapTime { get; private set; } = 0;
+    // public int CurrentLap { get; private set; } = 0;
+    // private float lapTimer;
+    // private int lastCheckpointPassed;
+    //
+    // private Transform checkpointsParent;
+    // private int checkpointCount;
+    // private int checkpointLayer;
 
-
+    public LapTimeManager CarUI;
     void Awake()
     {
-        PV = GetComponent<PhotonView>();
-        TPV = GetComponent<PhotonTransformView>();
+        // PV = GetComponent<PhotonView>();
+        // TPV = GetComponent<PhotonTransformView>();
        
         //
-        checkpointsParent = GameObject.Find("CHECKPOINTS").transform;
-        checkpointCount = checkpointsParent.childCount;
-        checkpointLayer = LayerMask.NameToLayer("Checkpoint");
+        // checkpointsParent = GameObject.Find("CHECKPOINTS").transform;
+        // checkpointCount = checkpointsParent.childCount;
+        // checkpointLayer = LayerMask.NameToLayer("Checkpoint");
     }
 
     void Start()
     {
+        PV = GetComponent<PhotonView>();
+        TPV = GetComponent<PhotonTransformView>();
+        
         if (!PV.IsMine)
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
         }
         theRB.transform.parent = null;
-    }
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.layer != checkpointLayer)
-        {
-            return;
-        }
-
-        if (collider.gameObject.name == "1")
-        {
-            if (lastCheckpointPassed == checkpointCount)
-            {
-                EndLap();
-            }
-
-            if (CurrentLap == 0 || lastCheckpointPassed == checkpointCount)
-            {
-                StartLap();
-            }
-            return;
-        }
-
-        if (collider.gameObject.name == (lastCheckpointPassed+1).ToString())
-        {
-            lastCheckpointPassed++;
-        }
-    }
-    void StartLap()
-    {
-        CurrentLap++;
-        lastCheckpointPassed = 1;
-        lapTimer = Time.time;
-    }
-
-    void EndLap()
-    {
-        LastLapTime = Time.time - lapTimer;
-        BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
-    }
-
-    void EndRace()
-    {
-        Destroy(this);
-        Debug.Log("Race Finished");
     }
 
     void Update()
@@ -127,11 +86,11 @@ public class SimpleCarController : MonoBehaviour
         //rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
         
 
-        CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;
-        if (CurrentLap == 4)
-        {
-            EndRace();
-        }
+        //CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;
+        // if (CurrentLap == 4)
+        // {
+        //     EndRace();
+        // }
 
         transform.position = theRB.transform.position;
     }

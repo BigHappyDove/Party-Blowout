@@ -831,7 +831,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347813753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.117201, y: 6.4739113, z: 0.03128189}
+  m_LocalPosition: {x: 2.117201, y: -8, z: 0.03128189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 621524928}
@@ -2140,8 +2140,8 @@ Transform:
   m_Father: {fileID: 2023069678}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &796577334
-SphereCollider:
+--- !u!64 &796577334
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2150,9 +2150,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &796577335
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4712,6 +4713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f671a12908041ca46baf661e4777c156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   cameraHolder: {fileID: 911277080}
   mouseSensitivity: 1
   sprintSpeed: 10
@@ -4719,7 +4721,6 @@ MonoBehaviour:
   jumpForce: 2
   smoothTime: 10
   doubleJumpMultiplier: 2
-  health: 100
 --- !u!23 &1806660183
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5376,8 +5377,8 @@ Transform:
   m_Father: {fileID: 2023069678}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2006849097
-SphereCollider:
+--- !u!64 &2006849097
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5386,9 +5387,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2006849098
 MeshRenderer:
   m_ObjectHideFlags: 0

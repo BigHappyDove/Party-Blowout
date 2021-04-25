@@ -10,17 +10,17 @@ public class CarManager : MonoBehaviour
 {
     private PhotonView PV;
 
-    [NonSerialized] public List<SimpleCarController> listCars;
+    [NonSerialized] public List<SimpleCarController> listCars = new List<SimpleCarController>();
 
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
-        listCars = new List<SimpleCarController>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+
         if (PV.IsMine)
         {
             InstantiateCar();
@@ -29,7 +29,7 @@ public class CarManager : MonoBehaviour
 
     void InstantiateCar()
     {
-        GameObject g = null;
+        GameObject g;
         Random rand = new Random();
         int vehiclechoice = rand.Next(4);
         
@@ -52,8 +52,8 @@ public class CarManager : MonoBehaviour
         if (g != null)
         {
             listCars.Add(g.GetComponent<SimpleCarController>());
+            //DebugTools.PrintOnGUI(listCars != null);
         }
-        
     }
     
     //Regarder le systeme de spawn de titouan pour modif les strings de pathspour varier les voiture.

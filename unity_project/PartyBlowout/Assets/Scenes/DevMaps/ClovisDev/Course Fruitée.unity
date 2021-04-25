@@ -383,6 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1203440392}
+  nextCheckpoint: {fileID: 1865639676}
 --- !u!65 &175353226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -816,6 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1650737330}
+  nextCheckpoint: {fileID: 684583051}
 --- !u!65 &380609211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -967,6 +971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 684583051}
+  nextCheckpoint: {fileID: 1991674454}
 --- !u!65 &479430792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1464,6 +1470,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 380609210}
+  nextCheckpoint: {fileID: 479430791}
 --- !u!65 &684583052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1804,7 +1812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7fa32147b550346b7a81762cdae977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carManager: {fileID: 1318006062}
   checkpoints: {fileID: 1832481728}
 --- !u!1 &901067794
 GameObject:
@@ -1942,6 +1949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1991674454}
+  nextCheckpoint: {fileID: 1653767543}
 --- !u!65 &927110747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2172,6 +2181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1867128592}
+  nextCheckpoint: {fileID: 1304159412}
 --- !u!65 &1016800339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2793,6 +2804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1304159412}
+  nextCheckpoint: {fileID: 175353225}
 --- !u!65 &1203440393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3226,6 +3239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1016800338}
+  nextCheckpoint: {fileID: 1203440392}
 --- !u!65 &1304159413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3956,6 +3971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1865639676}
+  nextCheckpoint: {fileID: 1650737330}
 --- !u!65 &1504118656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4295,6 +4312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1504118655}
+  nextCheckpoint: {fileID: 380609210}
 --- !u!65 &1650737331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4352,6 +4371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 927110746}
+  nextCheckpoint: {fileID: 1867128592}
 --- !u!65 &1653767544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4814,7 +4835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832481728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.19, y: -3, z: 1.46}
+  m_LocalPosition: {x: -5.17, y: -0, z: 1.46}
   m_LocalScale: {x: 0.02, y: 1, z: 0.01}
   m_Children:
   - {fileID: 1867128591}
@@ -5051,6 +5072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 175353225}
+  nextCheckpoint: {fileID: 1504118655}
 --- !u!65 &1865639677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5108,6 +5131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 1653767543}
+  nextCheckpoint: {fileID: 1016800338}
 --- !u!65 &1867128593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5432,6 +5457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c097b3ff904770e43bc1cf21c6d3cfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousCheckpoint: {fileID: 479430791}
+  nextCheckpoint: {fileID: 927110746}
 --- !u!65 &1991674455
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -545,21 +545,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8153237835427610976}
     m_Modifications:
-    - target: {fileID: 2193343881149173964, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-        type: 3}
-      propertyPath: MilliBox
-      value: 
-      objectReference: {fileID: 2203788722692542794}
-    - target: {fileID: 2193343881149173964, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-        type: 3}
-      propertyPath: MinuteBox
-      value: 
-      objectReference: {fileID: 2203788723055178256}
-    - target: {fileID: 2193343881149173964, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-        type: 3}
-      propertyPath: SecondBox
-      value: 
-      objectReference: {fileID: 2203788721707721973}
     - target: {fileID: 8014049440578428612, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
         type: 3}
       propertyPath: m_Pivot.x
@@ -675,24 +660,6 @@ PrefabInstance:
 --- !u!224 &2203788723443980183 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8014049440578428612, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-    type: 3}
-  m_PrefabInstance: {fileID: 8188372791183771987}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2203788723055178256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8014049441269726019, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-    type: 3}
-  m_PrefabInstance: {fileID: 8188372791183771987}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2203788721707721973 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8014049442617175462, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-    type: 3}
-  m_PrefabInstance: {fileID: 8188372791183771987}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2203788722692542794 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8014049441464080409, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
     type: 3}
   m_PrefabInstance: {fileID: 8188372791183771987}
   m_PrefabAsset: {fileID: 0}

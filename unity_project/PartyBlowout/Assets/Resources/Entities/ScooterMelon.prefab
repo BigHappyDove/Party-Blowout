@@ -254,9 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleCarController: {fileID: 4318976762678856085}
-  lastCheckpoint: {fileID: 0}
-  checkpointsManager: {fileID: 0}
-  posCheckpoint: 0
 --- !u!114 &6636144371850715875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,21 +635,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6614195378696938297}
     m_Modifications:
-    - target: {fileID: 2193343881149173964, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-        type: 3}
-      propertyPath: MilliBox
-      value: 
-      objectReference: {fileID: 1139255915199714552}
-    - target: {fileID: 2193343881149173964, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-        type: 3}
-      propertyPath: MinuteBox
-      value: 
-      objectReference: {fileID: 1139255915373082530}
-    - target: {fileID: 2193343881149173964, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-        type: 3}
-      propertyPath: SecondBox
-      value: 
-      objectReference: {fileID: 1139255916189884743}
     - target: {fileID: 8014049440578428612, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
         type: 3}
       propertyPath: m_Pivot.x
@@ -768,24 +750,6 @@ PrefabInstance:
 --- !u!224 &1139255916064395813 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8014049440578428612, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-    type: 3}
-  m_PrefabInstance: {fileID: 6987595104389139681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1139255915373082530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8014049441269726019, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-    type: 3}
-  m_PrefabInstance: {fileID: 6987595104389139681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1139255916189884743 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8014049442617175462, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
-    type: 3}
-  m_PrefabInstance: {fileID: 6987595104389139681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1139255915199714552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8014049441464080409, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
     type: 3}
   m_PrefabInstance: {fileID: 6987595104389139681}
   m_PrefabAsset: {fileID: 0}

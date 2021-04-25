@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class CheckpointTracker : MonoBehaviour
 {
+    [NonSerialized] public CheckpointSingle lastCheckpoint;
+    [NonSerialized] public CheckpointsManager checkpointsManager;
+    [NonSerialized] public int posCheckpoint = 0;
     public SimpleCarController _simpleCarController;
-    public CheckpointSingle lastCheckpoint;
-    public CheckpointsManager checkpointsManager;
-    public int posCheckpoint = 0;
-    // public GameObject checkpointsManager;
     private int _lapCount = 0;
     private PhotonView _pv;
 
@@ -21,13 +20,15 @@ public class CheckpointTracker : MonoBehaviour
     private void Start()
     {
         _pv = GetComponent<PhotonView>();
+        if(!_pv.IsMine) return;
+        lastCheckpoint = checkpointsManager.checkpointSingles[0];
     }
 
     public void PassedCheckpoint(CheckpointSingle checkpointSingle)
     {
+        if(!_pv.IsMine) return;
         lastCheckpoint = checkpointSingle;
-        if(_pv.IsMine)
-            RPC_PassedCheckpoint(checkpointsManager.checkpointSingles[0] == lastCheckpoint);
+        _pv.RPC("RPC_PassedCheckpoint", RpcTarget.All, checkpointsManager.checkpointSingles[0] == lastCheckpoint);
     }
 
     [PunRPC]

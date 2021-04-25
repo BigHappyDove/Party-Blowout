@@ -8,8 +8,6 @@ using Photon.Pun;
 public class SimpleCarController : MonoBehaviour
 {
     [NonSerialized] public PhotonView PV;
-    [NonSerialized] public PhotonTransformView TPV;
-    [NonSerialized] public LapTimeManager CarUI;
 
     public Rigidbody theRB;
     public float forwardAccel, reverseAccel, maxSpeed, turnStrength, gravityForce, dragGround;
@@ -51,7 +49,6 @@ public class SimpleCarController : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        TPV = GetComponent<PhotonTransformView>();
 
         if (!PV.IsMine)
         {

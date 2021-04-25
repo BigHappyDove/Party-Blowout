@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1149183346401992002}
   - component: {fileID: 5051370477836051180}
   - component: {fileID: 947698982926194857}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MotoCerise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f698381746918ea4db7689b40409a156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theRB: {fileID: 7393275615134913018}
+  theRB: {fileID: 1734798285853321965}
   forwardAccel: 25
   reverseAccel: 10
   maxSpeed: 115
@@ -148,7 +148,6 @@ MonoBehaviour:
   leftFrontWheel: {fileID: 7274099095084600876}
   rightFrontWheel: {fileID: 7274099095084600876}
   maxWheelTurn: 35
-  CarUI: {fileID: 0}
 --- !u!1 &6210567919688926648
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +190,9 @@ GameObject:
   - component: {fileID: 250982264235047901}
   - component: {fileID: 612812086873758315}
   - component: {fileID: 9102010829182624603}
-  - component: {fileID: 7393275615134913018}
+  - component: {fileID: 1734798285853321965}
+  - component: {fileID: 5208368696419994181}
+  - component: {fileID: 1877101078188468849}
   m_Layer: 0
   m_Name: MotoCerise
   m_TagString: Untagged
@@ -273,7 +274,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.45
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7393275615134913018
+--- !u!54 &1734798285853321965
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,6 +290,44 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5208368696419994181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151131107239774023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd03ffff086b81469c83a751347fe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _simpleCarController: {fileID: 947698982926194857}
+  lastCheckpoint: {fileID: 0}
+  checkpointsManager: {fileID: 0}
+  posCheckpoint: 0
+--- !u!114 &1877101078188468849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151131107239774023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7483688588178891262
 GameObject:
   m_ObjectHideFlags: 0

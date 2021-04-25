@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 1262879374546712017}
   - component: {fileID: 6338218856675594877}
   - component: {fileID: 2361586669066193892}
+  - component: {fileID: 1887354261891478970}
+  - component: {fileID: 1570800491490838399}
   m_Layer: 0
   m_Name: VoitureAvocat
   m_TagString: Untagged
@@ -171,6 +173,44 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1887354261891478970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262648190698504641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd03ffff086b81469c83a751347fe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _simpleCarController: {fileID: 4553873654841999031}
+  lastCheckpoint: {fileID: 0}
+  checkpointsManager: {fileID: 0}
+  posCheckpoint: 0
+--- !u!114 &1570800491490838399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262648190698504641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7518891374921995713
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +224,7 @@ GameObject:
   - component: {fileID: 1574127150929855436}
   - component: {fileID: 5437157518885820200}
   - component: {fileID: 3268684559111802670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AvocatTuning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +277,6 @@ MonoBehaviour:
   leftFrontWheel: {fileID: 7818405633843060068}
   rightFrontWheel: {fileID: 3495867957121771771}
   maxWheelTurn: 35
-  CarUI: {fileID: 0}
 --- !u!114 &1574127150929855436
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -142,6 +142,8 @@ GameObject:
   - component: {fileID: 4854320120383868691}
   - component: {fileID: 4280685766527911021}
   - component: {fileID: 9190073255372509594}
+  - component: {fileID: 2010998735789062499}
+  - component: {fileID: 6636144371850715875}
   m_Layer: 0
   m_Name: ScooterMelon
   m_TagString: Untagged
@@ -239,6 +241,44 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2010998735789062499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461204914585939039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd03ffff086b81469c83a751347fe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _simpleCarController: {fileID: 4318976762678856085}
+  lastCheckpoint: {fileID: 0}
+  checkpointsManager: {fileID: 0}
+  posCheckpoint: 0
+--- !u!114 &6636144371850715875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461204914585939039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4409275173964143439
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +322,7 @@ GameObject:
   - component: {fileID: 2431461030683815664}
   - component: {fileID: 221179101709530609}
   - component: {fileID: 4318976762678856085}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ScooterMelon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +426,6 @@ MonoBehaviour:
   leftFrontWheel: {fileID: 3034794710403160132}
   rightFrontWheel: {fileID: 3034794710403160132}
   maxWheelTurn: 35
-  CarUI: {fileID: 0}
 --- !u!1 &9175842325113138711
 GameObject:
   m_ObjectHideFlags: 0

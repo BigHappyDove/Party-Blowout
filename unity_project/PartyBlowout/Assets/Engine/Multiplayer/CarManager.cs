@@ -8,31 +8,26 @@ using Random = System.Random;
 
 public class CarManager : MonoBehaviour
 {
-    private PhotonView PV;
 
     [NonSerialized] public List<SimpleCarController> listCars = new List<SimpleCarController>();
+    public CheckpointsManager checkpointsManager;
 
-    private void Awake()
-    {
-        PV = GetComponent<PhotonView>();
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-
-        if (PV.IsMine)
-        {
-            InstantiateCar();
-        }
+        InstantiateCar();
     }
 
     void InstantiateCar()
     {
         GameObject g;
+        if (checkpointsManager == null)
+            throw new ArgumentException("Couldn't find checkpointsManager / start checkpoint");
+
         Random rand = new Random();
         int vehiclechoice = rand.Next(4);
-        
+
         switch (vehiclechoice)
         {
             case 0:
@@ -54,7 +49,8 @@ public class CarManager : MonoBehaviour
             listCars.Add(g.GetComponent<SimpleCarController>());
             //DebugTools.PrintOnGUI(listCars != null);
         }
+        g.GetComponentInChildren<CheckpointTracker>().checkpointsManager = checkpointsManager;
     }
-    
+
     //Regarder le systeme de spawn de titouan pour modif les strings de pathspour varier les voiture.
 }

@@ -6,9 +6,10 @@ using System.IO;
 using Photon.Pun;
 
 public class SimpleCarController : MonoBehaviour
-{ 
+{
     [NonSerialized] public PhotonView PV;
     [NonSerialized] public PhotonTransformView TPV;
+    [NonSerialized] public LapTimeManager CarUI;
 
     public Rigidbody theRB;
     public float forwardAccel, reverseAccel, maxSpeed, turnStrength, gravityForce, dragGround;
@@ -22,8 +23,8 @@ public class SimpleCarController : MonoBehaviour
 
     public Transform leftFrontWheel, rightFrontWheel;
     public float maxWheelTurn;
-    
-    
+
+
     // public float BestLapTime { get; private set; } = Mathf.Infinity;
     // public float LastLapTime { get; private set; } = 0;
     // public float CurrentLapTime { get; private set; } = 0;
@@ -35,12 +36,12 @@ public class SimpleCarController : MonoBehaviour
     // private int checkpointCount;
     // private int checkpointLayer;
 
-    public LapTimeManager CarUI;
+
     void Awake()
     {
         // PV = GetComponent<PhotonView>();
         // TPV = GetComponent<PhotonTransformView>();
-       
+
         //
         // checkpointsParent = GameObject.Find("CHECKPOINTS").transform;
         // checkpointCount = checkpointsParent.childCount;
@@ -51,7 +52,7 @@ public class SimpleCarController : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         TPV = GetComponent<PhotonTransformView>();
-        
+
         if (!PV.IsMine)
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
@@ -79,12 +80,12 @@ public class SimpleCarController : MonoBehaviour
 
         if (grounded)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));   
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
         }
-        
+
         //leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) -180,  leftFrontWheel.localRotation.eulerAngles.z);
         //rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn,  rightFrontWheel.localRotation.eulerAngles.z);
-        
+
 
         //CurrentLapTime = lapTimer > 0 ? Time.time - lapTimer : 0;
         // if (CurrentLap == 4)

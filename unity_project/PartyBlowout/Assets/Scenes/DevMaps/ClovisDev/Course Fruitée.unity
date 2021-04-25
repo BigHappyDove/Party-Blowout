@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 175353226}
   - component: {fileID: 175353225}
   m_Layer: 9
-  m_Name: 5
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1203440392}
   nextCheckpoint: {fileID: 1865639676}
+  id: 4
 --- !u!65 &175353226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -786,7 +787,7 @@ GameObject:
   - component: {fileID: 380609211}
   - component: {fileID: 380609210}
   m_Layer: 9
-  m_Name: 9
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1650737330}
   nextCheckpoint: {fileID: 684583051}
+  id: 8
 --- !u!65 &380609211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -939,7 +941,7 @@ GameObject:
   - component: {fileID: 479430792}
   - component: {fileID: 479430791}
   m_Layer: 9
-  m_Name: 11
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,6 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 684583051}
   nextCheckpoint: {fileID: 1991674454}
+  id: 10
 --- !u!65 &479430792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1438,7 +1441,7 @@ GameObject:
   - component: {fileID: 684583052}
   - component: {fileID: 684583051}
   m_Layer: 9
-  m_Name: 10
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,6 +1475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 380609210}
   nextCheckpoint: {fileID: 479430791}
+  id: 9
 --- !u!65 &684583052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1775,7 +1779,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 890156471}
-  - component: {fileID: 890156472}
   m_Layer: 8
   m_Name: circuit
   m_TagString: Untagged
@@ -1800,19 +1803,6 @@ Transform:
   m_Father: {fileID: 2147465893}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &890156472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890156470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a7fa32147b550346b7a81762cdae977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkpoints: {fileID: 1832481728}
 --- !u!1 &901067794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1907,7 @@ GameObject:
   - component: {fileID: 927110747}
   - component: {fileID: 927110746}
   m_Layer: 9
-  m_Name: 13
+  m_Name: 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1951,6 +1941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1991674454}
   nextCheckpoint: {fileID: 1653767543}
+  id: 12
 --- !u!65 &927110747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2149,7 +2140,7 @@ GameObject:
   - component: {fileID: 1016800339}
   - component: {fileID: 1016800338}
   m_Layer: 9
-  m_Name: 2
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2183,6 +2174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1867128592}
   nextCheckpoint: {fileID: 1304159412}
+  id: 1
 --- !u!65 &1016800339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2772,7 +2764,7 @@ GameObject:
   - component: {fileID: 1203440393}
   - component: {fileID: 1203440392}
   m_Layer: 9
-  m_Name: 4
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2806,6 +2798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1304159412}
   nextCheckpoint: {fileID: 175353225}
+  id: 3
 --- !u!65 &1203440393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3207,7 +3200,7 @@ GameObject:
   - component: {fileID: 1304159413}
   - component: {fileID: 1304159412}
   m_Layer: 9
-  m_Name: 3
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3241,6 +3234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1016800338}
   nextCheckpoint: {fileID: 1203440392}
+  id: 2
 --- !u!65 &1304159413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3414,6 +3408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77961b9107814d74d82434a3ca734df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointsManager: {fileID: 1832481730}
 --- !u!1 &1371710992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3939,7 +3934,7 @@ GameObject:
   - component: {fileID: 1504118656}
   - component: {fileID: 1504118655}
   m_Layer: 9
-  m_Name: 7
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3973,6 +3968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1865639676}
   nextCheckpoint: {fileID: 1650737330}
+  id: 6
 --- !u!65 &1504118656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4280,7 +4276,7 @@ GameObject:
   - component: {fileID: 1650737331}
   - component: {fileID: 1650737330}
   m_Layer: 9
-  m_Name: 8
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4314,6 +4310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1504118655}
   nextCheckpoint: {fileID: 380609210}
+  id: 7
 --- !u!65 &1650737331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4339,7 +4336,7 @@ GameObject:
   - component: {fileID: 1653767544}
   - component: {fileID: 1653767543}
   m_Layer: 9
-  m_Name: 14
+  m_Name: 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4373,6 +4370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 927110746}
   nextCheckpoint: {fileID: 1867128592}
+  id: 13
 --- !u!65 &1653767544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4820,6 +4818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1832481729}
+  - component: {fileID: 1832481730}
   m_Layer: 9
   m_Name: CHECKPOINTS
   m_TagString: Untagged
@@ -4855,6 +4854,18 @@ Transform:
   m_Father: {fileID: 2147465893}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1832481730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832481728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa385c6ed0ecac4ead19f2158484905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1834752973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,7 +5051,7 @@ GameObject:
   - component: {fileID: 1865639677}
   - component: {fileID: 1865639676}
   m_Layer: 9
-  m_Name: 6
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5074,6 +5085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 175353225}
   nextCheckpoint: {fileID: 1504118655}
+  id: 5
 --- !u!65 &1865639677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5099,7 +5111,7 @@ GameObject:
   - component: {fileID: 1867128593}
   - component: {fileID: 1867128592}
   m_Layer: 9
-  m_Name: 1
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5133,6 +5145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 1653767543}
   nextCheckpoint: {fileID: 1016800338}
+  id: 0
 --- !u!65 &1867128593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5425,7 +5438,7 @@ GameObject:
   - component: {fileID: 1991674455}
   - component: {fileID: 1991674454}
   m_Layer: 9
-  m_Name: 12
+  m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5459,6 +5472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousCheckpoint: {fileID: 479430791}
   nextCheckpoint: {fileID: 927110746}
+  id: 11
 --- !u!65 &1991674455
 BoxCollider:
   m_ObjectHideFlags: 0

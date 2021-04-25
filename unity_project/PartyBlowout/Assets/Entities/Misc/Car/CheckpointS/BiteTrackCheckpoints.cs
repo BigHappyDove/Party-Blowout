@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TrackCheckpoints : MonoBehaviour
+public class BiteTrackCheckpoints : MonoBehaviour
 {
     private List<CheckpointSingle> checkpointSingleList = new List<CheckpointSingle>();
-    
+
     private List<int> nextCheckpointSingleIndexList;
-    
+
     public static CarManager carManager;
-    
+
     private List<SimpleCarController> carTransformList = carManager.listCars;
 
     public GameObject checkpoints;
-    
+
     // public GameObject LapCompleteTrig;
     //
     // public GameObject MinuteDisplay;
@@ -24,17 +24,17 @@ public class TrackCheckpoints : MonoBehaviour
     // public GameObject LapTimeBox;
 
     private int LapCount = 0;
-    
+
     private void Start()
     {
         for (int i = 0; i < checkpoints.transform.childCount; i++)
         {
             GameObject checkpoint = checkpoints.transform.GetChild(i).gameObject;
             CheckpointSingle checkpointSingle = checkpoint.GetComponent<CheckpointSingle>();
-            checkpointSingle.SetTrackCheckpoints(this);
+            // checkpointSingle.SetTrackCheckpoints(this);
             checkpointSingleList.Add(checkpointSingle);
         }
-    
+
         //nextCheckpointSingleIndexList = new List<int>();
 
         // DebugTools.PrintOnGUI(carTransformList.Count);
@@ -94,7 +94,7 @@ public class TrackCheckpoints : MonoBehaviour
         // if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         // {
         //     Debug.Log("Correct Checkpoint");
-        //     
+        //
         //     //CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
         //     nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
         //
@@ -102,7 +102,7 @@ public class TrackCheckpoints : MonoBehaviour
         // else
         // {
         //     Debug.Log("Wrong Checkpoint");
-        //     
+        //
         //     //faire une fonction qui tp au checkpoint précédent
         //     //et affiche sur le UI que c'est pas le bon checkpoint.
         // }

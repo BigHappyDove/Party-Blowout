@@ -6,22 +6,26 @@ using Photon.Pun;
 
 public class CheckpointSingle : MonoBehaviour
 {
-    private TrackCheckpoints trackCheckpoints;
+    // private TrackCheckpoints trackCheckpoints;
     public CheckpointSingle previousCheckpoint;
     public CheckpointSingle nextCheckpoint;
+    public int id;
     [NonSerialized] public CheckpointSingle lastCheckpointPassed = null;
     [NonSerialized] public CheckpointSingle checkpointToPass = null;
 
-    public void SetTrackCheckpoints(TrackCheckpoints trackCheckpoints)
-    {
-        this.trackCheckpoints = trackCheckpoints;
-    }
+    // public void SetTrackCheckpoints(TrackCheckpoints trackCheckpoints)
+    // {
+    //     this.trackCheckpoints = trackCheckpoints;
+    // }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out SimpleCarController car))
+        DebugTools.PrintOnGUI(id + "passed owo" + other.name);
+        if (other.TryGetComponent(out CheckpointTracker checkpointTracker))
         {
-            trackCheckpoints.PlayerThroughCheckpoint(this, car);
+            // TODO: Vérifier que c'est le bon checkpoint
+            checkpointTracker.PassedCheckpoint(this);
         }
     }
 }

@@ -47,8 +47,8 @@ public class DebugTools : MonoBehaviour
     {
         if (showOnGui)
         {
-            GUI.TextArea(new Rect(10, 10, Screen.width / 4, Screen.height - 10),
-                $"<size=15>{_logText}</size>", new GUIStyle {richText = true});
+            GUI.TextArea(new Rect(Screen.width / 4 * 3, 10, Screen.width / 4, Screen.height - 10),
+                $"<size=15>{_logText}</size>", new GUIStyle {richText = true, alignment = TextAnchor.UpperRight});
         }
     }
 }

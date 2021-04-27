@@ -13,11 +13,11 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected int clipSize;
     [SerializeField] protected int damage;
     [SerializeField] protected int impactForce;
-    [SerializeField] protected int reservedAmmoCapacity;
+    // [SerializeField] protected int reservedAmmoCapacity;
 
-    [SerializeField] protected bool canShoot;
-    [SerializeField] protected int currentAmmoClip;
-    [SerializeField] protected int ammoInReserve;
+    [SerializeField] public bool canShoot;
+    [SerializeField] public int currentAmmoClip;
+    [SerializeField] public int ammoInReserve;
 
     //Muzzle Flash (sinon c'est moche quand on tire)
     [SerializeField] private Image muzzleFlashImage;
@@ -36,14 +36,14 @@ public class WeaponBase : MonoBehaviour
     private void Start()
     {
         currentAmmoClip = clipSize;
-        ammoInReserve = reservedAmmoCapacity;
+        // ammoInReserve = reservedAmmoCapacity;
         canShoot = true;
         PV = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        if(!PV.IsMine) return; //TODO: THIS IS A TEMPORARY FIX. WE MUST FIND A WAY TO DEAL WITH DAMAGES
+        if(!PV.IsMine) return;
         DetermineAim();
         //shoots
         if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
@@ -58,15 +58,13 @@ public class WeaponBase : MonoBehaviour
         {
             int ammountNeeded = clipSize - currentAmmoClip;
             if (ammountNeeded >= ammoInReserve)
-            {
                 currentAmmoClip += ammoInReserve;
-                ammoInReserve -= ammountNeeded;
-            }
             else
-            {
                 currentAmmoClip = clipSize;
-                ammoInReserve -= ammountNeeded;
-            }
+            ammoInReserve = Math.Max(0, ammoInReserve - ammountNeeded);
+            // Let's call this event to update the player's ui, we may have to edit this in the future
+            // TODO: Edit this dirty implementation
+            onWeaponShoot();
         }
     }
 
@@ -115,7 +113,7 @@ public class WeaponBase : MonoBehaviour
             AliveEntity target = hit.transform.GetComponent<AliveEntity>();
             if (target != null)
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, GetComponentInParent<Player>());
             }
 
             // Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
@@ -127,12 +125,16 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
+    public static event Action onWeaponShootHook;
+    public static void onWeaponShoot() => onWeaponShootHook?.Invoke();
+
     /// <summary>
     /// applies recoil and shoots raycasts.
     /// </summary>
     /// <returns> return if the player can shoot another time</returns>
     IEnumerator ShootGun()
     {
+        onWeaponShoot();
         DetermineRecoil();
         StartCoroutine(MuzzleFlash());
         RayCastForEnemy();

@@ -20,9 +20,7 @@ public class PlayMenu : MonoBehaviourPunCallbacks
 
     public void CreateMultiplayerGame()
     {
-        DebugTools.PrintOnGUI("Called1");
         if (!PhotonNetwork.IsConnected) return;
-        DebugTools.PrintOnGUI("Called2");
         playMenu.SetActive(false);
         roomMenu.SetActive(false);
         loadingScreen.SetActive(true);

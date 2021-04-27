@@ -303,9 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleCarController: {fileID: 947698982926194857}
-  lastCheckpoint: {fileID: 0}
-  checkpointsManager: {fileID: 0}
-  posCheckpoint: 0
 --- !u!114 &1877101078188468849
 MonoBehaviour:
   m_ObjectHideFlags: 0

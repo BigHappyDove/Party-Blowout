@@ -38,11 +38,13 @@ public class animationStateController : MonoBehaviour
         if (!isWalking && forwardPressed)
         {
             animator.SetBool("isWalking", true);
+            FindObjectOfType<AudioManager>().Play("Walk");
         }
 
         if (isWalking && !forwardPressed)
         {
             animator.SetBool("isWalking", false);
+            FindObjectOfType<AudioManager>().Stop("Walk");
         }
         
         if (!isWalkingBack && backwardsPressed)

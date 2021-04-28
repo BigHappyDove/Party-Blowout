@@ -186,9 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleCarController: {fileID: 4553873654841999031}
-  lastCheckpoint: {fileID: 0}
-  checkpointsManager: {fileID: 0}
-  posCheckpoint: 0
 --- !u!114 &1570800491490838399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f698381746918ea4db7689b40409a156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointTracker: {fileID: 1887354261891478970}
   theRB: {fileID: 2361586669066193892}
   forwardAccel: 30
   reverseAccel: 15

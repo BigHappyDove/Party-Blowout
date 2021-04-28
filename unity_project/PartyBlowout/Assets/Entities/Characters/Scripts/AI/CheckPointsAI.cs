@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CheckPointsAI : MonoBehaviour
 {
@@ -18,14 +19,15 @@ public class CheckPointsAI : MonoBehaviour
         }
 
         _pv = GetComponent<PhotonView>();
+        foreach (CheckPointsAI c in _linkedCheckPointsList)
+            Debug.DrawLine(transform.position, c.transform.position, Color.red, 900 ,false);
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if(!_pv.IsMine || _linkedCheckPointsList.Count <= 0) return;
         AgentScript agentScript = col.gameObject.GetComponent<AgentScript>();
-        if (agentScript != null)
-            agentScript.UpdatePath(_linkedCheckPointsList, this);
+        if (agentScript != null) agentScript.UpdatePath(_linkedCheckPointsList, this);
     }
 
 }

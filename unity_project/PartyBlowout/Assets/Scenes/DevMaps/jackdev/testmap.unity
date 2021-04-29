@@ -3943,7 +3943,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Shoot
-    clip: {fileID: 8300000, guid: f8afb52f47216934c9e6f2fd1e3cba08, type: 3}
+    clip: {fileID: 8300000, guid: 0ae8f4f826bade8479233f0658e692b8, type: 3}
     volume: 1
     pitch: 1
     loop: 0

@@ -3317,6 +3317,7 @@ MonoBehaviour:
   jumpForce: 400
   smoothTime: 0.15
   doubleJumpMultiplier: 0.8
+  grounded: 0
 --- !u!114 &2346656906912211478
 MonoBehaviour:
   m_ObjectHideFlags: 0

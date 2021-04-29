@@ -48,7 +48,8 @@ public class WeaponBase : MonoBehaviour
         //shoots
         if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
         {
-            FindObjectOfType<AudioManager>().Play("Shoot");
+            // AudioManager audioManager = FindObjectOfType<AudioManager>();
+            FindObjectOfType<AudioManager>()?.Play("Shoot");
             canShoot = false;
             currentAmmoClip--;
             StartCoroutine(ShootGun());

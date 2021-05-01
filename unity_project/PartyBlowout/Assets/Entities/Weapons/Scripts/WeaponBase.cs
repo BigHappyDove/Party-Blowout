@@ -41,7 +41,10 @@ public class WeaponBase : MonoBehaviour
         // ammoInReserve = reservedAmmoCapacity;
         canShoot = true;
         PV = GetComponent<PhotonView>();
+        muzzleFlashImage.sprite = null;
+        muzzleFlashImage.color = new Color(0, 0, 0, 0);
     }
+
 
     private void Update()
     {
@@ -147,11 +150,11 @@ public class WeaponBase : MonoBehaviour
     /// <returns> return if the player can shoot another time</returns>
     IEnumerator ShootGun()
     {
+        ShootBullet();
         onWeaponShoot();
         DetermineRecoil();
         StartCoroutine(MuzzleFlash());
         // RayCastForEnemy();
-        ShootBullet();
         yield return new WaitForSeconds(fireRate);
         canShoot = true;
     }

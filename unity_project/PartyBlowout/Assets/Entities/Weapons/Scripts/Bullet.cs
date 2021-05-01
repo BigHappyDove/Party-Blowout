@@ -36,10 +36,17 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
 
     private void OnCollisionEnter(Collision other)
     {
-        if(!_pv.IsMine || _pv == null) return;
+        if(!_pv.IsMine) return;
         AliveEntity target = other.gameObject.GetComponent<AliveEntity>();
         if (target != null)
             target.TakeDamage(_damage, GetComponentInParent<Player>());
-        PhotonNetwork.Destroy(gameObject);
+        _pv.RPC("RPC_DestroyBullet", RpcTarget.All); // We could use PhotonNetwork.Destroy(..) but it doesn't work
+    }
+
+    [PunRPC]
+    void RPC_DestroyBullet()
+    {
+        if(this != null && gameObject != null)
+            Destroy(gameObject);
     }
 }

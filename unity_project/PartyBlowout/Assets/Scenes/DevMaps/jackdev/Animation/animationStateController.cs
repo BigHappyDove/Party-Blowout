@@ -8,7 +8,7 @@ public class animationStateController : MonoBehaviour
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
-    
+
     private PhotonView _photonView;
 
     // Start is called before the first frame update
@@ -38,20 +38,24 @@ public class animationStateController : MonoBehaviour
         if (!isWalking && forwardPressed)
         {
             animator.SetBool("isWalking", true);
+            FindObjectOfType<AudioManager>().Play("Walk");
         }
 
         if (isWalking && !forwardPressed)
         {
             animator.SetBool("isWalking", false);
+            FindObjectOfType<AudioManager>().Stop("Walk");
         }
         
         if (!isWalkingBack && backwardsPressed)
         {
             animator.SetBool("isWalkingBack", true);
+            FindObjectOfType<AudioManager>().Play("Walk");
         }
         if (isWalkingBack && !backwardsPressed)
         {
             animator.SetBool("isWalkingBack", false);
+            FindObjectOfType<AudioManager>().Stop("Walk");
         }
         
         if (!isRunning && (runPressed && (forwardPressed || backwardsPressed)))

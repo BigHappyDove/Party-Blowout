@@ -19,9 +19,9 @@ public class AgentScript : AliveEntity
 
     private void Start()
     {
-        if(!PV.IsMine) return;
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        if(!PV.IsMine) return;
         agent.speed = sprintSpeed;
         InvokeRepeating(nameof(RandomMaxSpeed), 1, 1.5f);
         _target = GetRandomPosOnNavMesh();
@@ -86,6 +86,9 @@ public class AgentScript : AliveEntity
     {
         if (!PV.IsMine)
             return;
+        if(!agent.hasPath)
+            _target = GetRandomPosOnNavMesh();
+
 
         float velocity = agent.velocity.magnitude;
         bool isRunning = velocity >= sprintSpeed * 0.9;

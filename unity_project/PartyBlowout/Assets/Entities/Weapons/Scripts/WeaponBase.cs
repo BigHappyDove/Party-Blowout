@@ -3,12 +3,14 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 using Random = System.Random;
 
 public class WeaponBase : MonoBehaviour
 {
     //à compléter si vous avez des idées
     [Header("Gun Settings")]
+    [SerializeField] protected Transform bulletSpawnerPos;
     [SerializeField] protected float fireRate;
     [SerializeField] protected int clipSize;
     [SerializeField] protected int damage;
@@ -48,6 +50,8 @@ public class WeaponBase : MonoBehaviour
         //shoots
         if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
         {
+            // AudioManager audioManager = FindObjectOfType<AudioManager>();
+            FindObjectOfType<AudioManager>()?.Play("Shoot");
             canShoot = false;
             currentAmmoClip--;
             StartCoroutine(ShootGun());
@@ -125,6 +129,15 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
+    void ShootBullet()
+    {
+        if(!PV.IsMine) return;
+        //TODO: TEMPORARY VALUES. NEED TO BE SERIALIZED
+        float forceBullet = 15;
+        PhotonNetwork.Instantiate("Entities/Weapons/Bullet", bulletSpawnerPos.position, transform.rotation, 0,
+            new object[] {transform.eulerAngles, forceBullet});
+    }
+
     public static event Action onWeaponShootHook;
     public static void onWeaponShoot() => onWeaponShootHook?.Invoke();
 
@@ -137,7 +150,8 @@ public class WeaponBase : MonoBehaviour
         onWeaponShoot();
         DetermineRecoil();
         StartCoroutine(MuzzleFlash());
-        RayCastForEnemy();
+        // RayCastForEnemy();
+        ShootBullet();
         yield return new WaitForSeconds(fireRate);
         canShoot = true;
     }

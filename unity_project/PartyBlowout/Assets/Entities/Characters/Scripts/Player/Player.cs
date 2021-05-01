@@ -12,7 +12,7 @@ public class Player : AliveEntity
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
     float verticalLookRotation;
-    bool grounded;
+    public bool grounded;
     bool canDoubleJump;
 
     Vector3 smoothMoveVelocity;
@@ -72,6 +72,7 @@ public class Player : AliveEntity
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(transform.up * jumpForce);
+                FindObjectOfType<AudioManager>().Play("Jump");
             }
         }
         else

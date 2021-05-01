@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        if(!_pv.IsMine) return;
+        // For an unknown reason, we shouldn't use _pv.isMine on this function, it works better withtout it
         object[] args = info.photonView.InstantiationData;
         if (args[0] is Vector3 v && args[1] is float f)
         {

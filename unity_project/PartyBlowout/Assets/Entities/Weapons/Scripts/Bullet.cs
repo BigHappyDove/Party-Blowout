@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
 {
     private Rigidbody _rb;
     private PhotonView _pv;
+    private int _damage = 0;
     private float timeAlive = 5;
 
     private void Awake()
@@ -28,14 +29,17 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
         // For an unknown reason, we shouldn't use _pv.isMine on this function, it works better withtout it
         object[] args = info.photonView.InstantiationData;
         if (args[0] is Vector3 v && args[1] is float f)
-        {
             _rb.AddRelativeForce(Vector3.forward * f);
-        }
+        if (args[2] is int damage_arg)
+            _damage = damage_arg;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if(!_pv.IsMine) return;
+        if(!_pv.IsMine || _pv == null) return;
+        AliveEntity target = other.gameObject.GetComponent<AliveEntity>();
+        if (target != null)
+            target.TakeDamage(_damage, GetComponentInParent<Player>());
         PhotonNetwork.Destroy(gameObject);
     }
 }

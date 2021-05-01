@@ -14,7 +14,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected float fireRate;
     [SerializeField] protected int clipSize;
     [SerializeField] protected int damage;
-    [SerializeField] protected int impactForce;
+    // [SerializeField] protected int impactForce;
     // [SerializeField] protected int reservedAmmoCapacity;
 
     [SerializeField] public bool canShoot;
@@ -132,9 +132,10 @@ public class WeaponBase : MonoBehaviour
     void ShootBullet()
     {
         //TODO: TEMPORARY VALUES. NEED TO BE SERIALIZED
+        if(!PV.IsMine) return;
         float forceBullet = 15;
         PhotonNetwork.Instantiate("Entities/Weapons/Bullet", bulletSpawnerPos.position, transform.rotation, 0,
-            new object[] {transform.eulerAngles, forceBullet});
+            new object[] {transform.eulerAngles, forceBullet, damage});
     }
 
     public static event Action onWeaponShootHook;

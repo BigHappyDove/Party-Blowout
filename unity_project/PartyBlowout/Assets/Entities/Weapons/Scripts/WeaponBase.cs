@@ -30,6 +30,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected Vector3 aimingLocalPosition;
     private float aimSmoothing = 10f;
     private PhotonView PV;
+    private AudioManager _audioManager;
 
     // voir plus bas dans DetermineRecoil.
     // public bool randomizeRecoil;
@@ -43,6 +44,7 @@ public class WeaponBase : MonoBehaviour
         PV = GetComponent<PhotonView>();
         muzzleFlashImage.sprite = null;
         muzzleFlashImage.color = new Color(0, 0, 0, 0);
+        _audioManager = GetComponentInParent<AudioManager>();
     }
 
 
@@ -54,7 +56,7 @@ public class WeaponBase : MonoBehaviour
         if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
         {
             // AudioManager audioManager = FindObjectOfType<AudioManager>();
-            FindObjectOfType<AudioManager>()?.Play("Shoot");
+            _audioManager.Play("Shoot");
             canShoot = false;
             currentAmmoClip--;
             StartCoroutine(ShootGun());

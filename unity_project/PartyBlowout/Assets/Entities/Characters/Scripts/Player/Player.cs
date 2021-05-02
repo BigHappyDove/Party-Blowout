@@ -14,12 +14,14 @@ public class Player : AliveEntity
     float verticalLookRotation;
     public bool grounded;
     bool canDoubleJump;
+    private AudioManager _audioManager;
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
 
     void Start()
     {
+        _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
@@ -72,7 +74,7 @@ public class Player : AliveEntity
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(transform.up * jumpForce);
-                FindObjectOfType<AudioManager>().Play("Jump");
+                _audioManager.Play("Jump");
             }
         }
         else

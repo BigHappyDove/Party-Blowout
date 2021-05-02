@@ -61,11 +61,7 @@ public class AudioManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void RPC_Play(string name)
-    {
-        DebugTools.PrintOnGUI("Played on pos " + transform.position);
-        FindSound(name)?.sound.source.Play();
-    }
+    public void RPC_Play(string name) => FindSound(name)?.sound.source.Play();
 
     [PunRPC]
     public void RPC_Stop(string name) => FindSound(name)?.sound.source.Stop();

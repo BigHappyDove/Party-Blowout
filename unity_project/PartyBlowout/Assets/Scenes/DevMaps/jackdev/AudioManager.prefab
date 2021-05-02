@@ -44,27 +44,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Walk
-    clip: {fileID: 8300000, guid: e49373ef553a6d04282a4b550df2b49a, type: 3}
-    volume: 0.3
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: Sprint
-    clip: {fileID: 8300000, guid: d4dd5bef6c3416140b23e97319144630, type: 3}
-    volume: 0.3
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: Jump
-    clip: {fileID: 8300000, guid: 6fc0815bd61216c4b8e7b6aff863d93d, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Shoot
-    clip: {fileID: 8300000, guid: 0ae8f4f826bade8479233f0658e692b8, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
+  - sound:
+      name: Walk
+      clip: {fileID: 8300000, guid: e49373ef553a6d04282a4b550df2b49a, type: 3}
+      volume: 0.4
+      pitch: 0
+      loop: 1
+      source: {fileID: 0}
+    maxDistance: 10
+  - sound:
+      name: Jump
+      clip: {fileID: 8300000, guid: 6fc0815bd61216c4b8e7b6aff863d93d, type: 3}
+      volume: 0.4
+      pitch: 0
+      loop: 1
+      source: {fileID: 0}
+    maxDistance: 30
+  - sound:
+      name: Sprint
+      clip: {fileID: 8300000, guid: d4dd5bef6c3416140b23e97319144630, type: 3}
+      volume: 0.4
+      pitch: 0
+      loop: 0
+      source: {fileID: 0}
+    maxDistance: 30
+  - sound:
+      name: Shoot
+      clip: {fileID: 8300000, guid: 0ae8f4f826bade8479233f0658e692b8, type: 3}
+      volume: 0.695
+      pitch: 0
+      loop: 0
+      source: {fileID: 0}
+    maxDistance: 30

@@ -5,9 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+
+    void Start()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Pausemenu");
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneAt(0))
+        {
+            if (objects.Length > 1)
+            {
+                Destroy(this.gameObject);
+            }
+            return;
+        }
+        if (objects.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+    
     public static bool GameIsPaused = false; //to see if the game is already on pause
 
     public GameObject pausemenuUI;
+
 
     // Update is called once per frame
     void Update()

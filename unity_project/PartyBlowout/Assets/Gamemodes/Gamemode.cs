@@ -24,7 +24,6 @@ public abstract class Gamemode : MonoBehaviour
         Alone = 2 // For Racing gamemode
     }
 
-    public CurrentGamemode gamemodeToLaunch;
     public int timeLimit; //Seconds
     protected static List<PhotonPlayer> PlayersList;
     protected static List<PhotonPlayer> AlivePlayersList;
@@ -56,7 +55,7 @@ public abstract class Gamemode : MonoBehaviour
     {
         bool alone = Math.Abs(redRatio - 1) < 0.01 || redRatio == 0;
         int redToFill = 0;
-        if (alone)
+        if (!alone)
         {
             redToFill = (int)Math.Round(PlayersList.Count * redRatio);
             ShuffleList(PlayersList);

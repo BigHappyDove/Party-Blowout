@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine;
 using Object = System.Object;
 
-public class Player : AliveEntity
+public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
 
     public enum PlayerTeam
@@ -27,6 +27,8 @@ public class Player : AliveEntity
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
 
+    public PlayerTeam playerTeam;
+
     void Start()
     {
         _audioManager = GetComponent<AudioManager>();
@@ -35,6 +37,13 @@ public class Player : AliveEntity
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
         }
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        object[] args = info.photonView.InstantiationData;
+        if (args.Length > 1 && args[0] is PlayerTeam p)
+            playerTeam = p;
     }
 
     private void Update()

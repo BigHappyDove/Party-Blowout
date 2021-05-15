@@ -9,13 +9,6 @@ using Random = UnityEngine.Random;
 public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
 
-    public enum PlayerTeam : uint
-    {
-        Blue = 0,
-        Red = 1,
-        Alone = 2 // For Racing gamemode
-    }
-
     [SerializeField] GameObject cameraHolder;
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
@@ -30,7 +23,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
 
     [Header("Team settings")]
-    public PlayerTeam playerTeam;
+    public Gamemode.PlayerTeam playerTeam;
     [SerializeField] private Material[] _materialsTeam = new Material[3];
 
 
@@ -48,7 +41,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     [PunRPC]
     void RPC_SyncAttributes(int team)
     {
-        playerTeam = (PlayerTeam) team;
+        playerTeam = (Gamemode.PlayerTeam) team;
         ApplyTeamMaterial();
     }
 
@@ -58,10 +51,10 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         object[] args = info.photonView.InstantiationData;
         //TODO: WILL ALWAYS BE EQUAL TO NULL, WE HAVE TO BOUND THE TEAM TO THE PLAYER WITH PHOTONNETWORK
         //Team will always be random on respawn
-        if (args != null && args.Length > 0 && args[0] is PlayerTeam p)
+        if (args != null && args.Length > 0 && args[0] is Gamemode.PlayerTeam p)
             playerTeam = p;
         else
-            playerTeam = (PlayerTeam) Random.Range(0, 2);
+            playerTeam = (Gamemode.PlayerTeam) Random.Range(0, 2);
 
         PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);
     }

@@ -16,7 +16,7 @@ public class GuessWho : Gamemode
 
     }
 
-    public override void LoadGamemode()
+    public static int LoadGamemode()
     {
         throw new System.NotImplementedException();
     }

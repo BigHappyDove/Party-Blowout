@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Object = System.Object;
 using Random = UnityEngine.Random;
 
@@ -48,13 +49,17 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         if (!PV.IsMine) return;
-        object[] args = info.photonView.InstantiationData;
-        //TODO: WILL ALWAYS BE EQUAL TO NULL, WE HAVE TO BOUND THE TEAM TO THE PLAYER WITH PHOTONNETWORK
-        //Team will always be random on respawn
-        if (args != null && args.Length > 0 && args[0] is Gamemode.PlayerTeam p)
-            playerTeam = p;
+        Hashtable playerProperties = PV.Owner.CustomProperties;
+        if (playerProperties.ContainsKey("team") && playerProperties["team"] is Gamemode.PlayerTeam team)
+        {
+            playerTeam = team;
+            DebugTools.PrintOnGUI($"Team found in custom properties of the player! {playerTeam}");
+        }
         else
+        {
             playerTeam = (Gamemode.PlayerTeam) Random.Range(0, 2);
+            DebugTools.PrintOnGUI($"Team not found in custom properties of the player! {playerTeam}", DebugTools.LogType.WARNING);
+        }
 
         PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);
     }

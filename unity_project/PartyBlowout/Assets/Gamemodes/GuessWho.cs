@@ -5,9 +5,10 @@ using UnityEngine;
 public class GuessWho : Gamemode
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-
+        redRatio = 0.3;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -16,8 +17,4 @@ public class GuessWho : Gamemode
 
     }
 
-    public static int LoadGamemode()
-    {
-        throw new System.NotImplementedException();
-    }
 }

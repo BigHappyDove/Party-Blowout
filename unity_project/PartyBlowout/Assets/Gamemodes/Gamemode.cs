@@ -26,23 +26,20 @@ public abstract class Gamemode : MonoBehaviour
 
     public CurrentGamemode gamemodeToLaunch;
     public int timeLimit; //Seconds
-    protected List<PhotonPlayer> PlayersList;
-    protected List<PhotonPlayer> AlivePlayersList;
-    private Dictionary<CurrentGamemode, Func<int>> gamemodesStartup = new Dictionary<CurrentGamemode, Func<int>>
-    {
-        {CurrentGamemode.Race, Race.LoadGamemode},
-        {CurrentGamemode.Shooter, Shooter.LoadGamemode},
-        {CurrentGamemode.GuessWho, GuessWho.LoadGamemode}
-    };
+    protected static List<PhotonPlayer> PlayersList;
+    protected static List<PhotonPlayer> AlivePlayersList;
+    [SerializeField] protected static double redRatio = 0.5;
 
-    private void Start()
+
+    protected virtual void Start()
     {
+        PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
-        gamemodesStartup[gamemodeToLaunch]();
+        CreateTeams();
     }
 
 
-    private void ShuffleList<T>(List<T> list)
+    private static void ShuffleList<T>(List<T> list)
     {
         System.Random rng = new System.Random();
         int n = list.Count;
@@ -55,12 +52,13 @@ public abstract class Gamemode : MonoBehaviour
         }
     }
 
-    protected void CreateTeams(bool alone, double propToBeRed = 0)
+    private static void CreateTeams()
     {
+        bool alone = Math.Abs(redRatio - 1) < 0.01 || redRatio == 0;
         int redToFill = 0;
         if (alone)
         {
-            redToFill = (int)Math.Round(PlayersList.Count * propToBeRed);
+            redToFill = (int)Math.Round(PlayersList.Count * redRatio);
             ShuffleList(PlayersList);
         }
         foreach (PhotonPlayer p in PlayersList)

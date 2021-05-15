@@ -42,16 +42,32 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
         }
+
+    }
+
+    [PunRPC]
+    void RPC_SyncAttributes(int team)
+    {
+        playerTeam = (PlayerTeam) team;
+        ApplyTeamMaterial();
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
+        if (!PV.IsMine) return;
         object[] args = info.photonView.InstantiationData;
-        DebugTools.PrintOnGUI(args != null);
-        if (args != null && args.Length > 1 && args[0] is PlayerTeam p)
+        //TODO: WILL ALWAYS BE EQUAL TO NULL, WE HAVE TO BOUND THE TEAM TO THE PLAYER WITH PHOTONNETWORK
+        //Team will always be random on respawn
+        if (args != null && args.Length > 0 && args[0] is PlayerTeam p)
             playerTeam = p;
         else
             playerTeam = (PlayerTeam) Random.Range(0, 2);
+
+        PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);
+    }
+
+    void ApplyTeamMaterial()
+    {
         foreach (Transform t in transform)
         {
             Renderer r = t.gameObject.GetComponent<Renderer>();

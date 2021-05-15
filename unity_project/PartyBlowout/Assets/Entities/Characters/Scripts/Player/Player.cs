@@ -7,6 +7,14 @@ using Object = System.Object;
 
 public class Player : AliveEntity
 {
+
+    public enum PlayerTeam
+    {
+        Blue,
+        Red,
+        Alone // For Racing gamemode
+    }
+
     [SerializeField] GameObject cameraHolder;
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement

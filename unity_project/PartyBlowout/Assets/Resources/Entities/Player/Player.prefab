@@ -2865,6 +2865,11 @@ MonoBehaviour:
   smoothTime: 0.15
   doubleJumpMultiplier: 0.8
   grounded: 0
+  playerTeam: 0
+  _materialsTeam:
+  - {fileID: 2100000, guid: cfa46d55a68c94049b9c722615a9d923, type: 2}
+  - {fileID: 2100000, guid: 9786f243bdf630c4694dfc410abf8414, type: 2}
+  - {fileID: 2100000, guid: 3a33f8fee76c0ae4b9dc46efa27db591, type: 2}
 --- !u!114 &2346656906912211478
 MonoBehaviour:
   m_ObjectHideFlags: 0

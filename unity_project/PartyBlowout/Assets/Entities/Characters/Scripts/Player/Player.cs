@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using Object = System.Object;
+using Random = UnityEngine.Random;
 
 public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
 
-    public enum PlayerTeam
+    public enum PlayerTeam : uint
     {
-        Blue,
-        Red,
-        Alone // For Racing gamemode
+        Blue = 0,
+        Red = 1,
+        Alone = 2 // For Racing gamemode
     }
 
     [SerializeField] GameObject cameraHolder;
@@ -27,7 +28,11 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
 
+
+    [Header("Team settings")]
     public PlayerTeam playerTeam;
+    [SerializeField] private Material[] _materialsTeam = new Material[3];
+
 
     void Start()
     {
@@ -42,8 +47,17 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         object[] args = info.photonView.InstantiationData;
-        if (args.Length > 1 && args[0] is PlayerTeam p)
+        DebugTools.PrintOnGUI(args != null);
+        if (args != null && args.Length > 1 && args[0] is PlayerTeam p)
             playerTeam = p;
+        else
+            playerTeam = (PlayerTeam) Random.Range(0, 2);
+        foreach (Transform t in transform)
+        {
+            Renderer r = t.gameObject.GetComponent<Renderer>();
+            if (r != null)
+                r.material = _materialsTeam[(int) playerTeam];
+        }
     }
 
     private void Update()

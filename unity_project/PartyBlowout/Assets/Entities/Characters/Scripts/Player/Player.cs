@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Object = System.Object;
+using Random = UnityEngine.Random;
 
-public class Player : AliveEntity
+public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
+
     [SerializeField] GameObject cameraHolder;
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
@@ -19,6 +22,12 @@ public class Player : AliveEntity
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
 
+
+    [Header("Team settings")]
+    public Gamemode.PlayerTeam playerTeam;
+    [SerializeField] private Material[] _materialsTeam = new Material[3];
+
+
     void Start()
     {
         _audioManager = GetComponent<AudioManager>();
@@ -26,6 +35,42 @@ public class Player : AliveEntity
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
+        }
+
+    }
+
+    [PunRPC]
+    void RPC_SyncAttributes(int team)
+    {
+        playerTeam = (Gamemode.PlayerTeam) team;
+        ApplyTeamMaterial();
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        if (!PV.IsMine) return;
+        Hashtable playerProperties = PV.Owner.CustomProperties;
+        if (playerProperties.ContainsKey("team") && playerProperties["team"] is Gamemode.PlayerTeam team)
+        {
+            playerTeam = team;
+            DebugTools.PrintOnGUI($"Team found in custom properties of the player! {playerTeam}");
+        }
+        else
+        {
+            playerTeam = (Gamemode.PlayerTeam) Random.Range(0, 2);
+            DebugTools.PrintOnGUI($"Team not found in custom properties of the player! {playerTeam}", DebugTools.LogType.WARNING);
+        }
+
+        PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);
+    }
+
+    void ApplyTeamMaterial()
+    {
+        foreach (Transform t in transform)
+        {
+            Renderer r = t.gameObject.GetComponent<Renderer>();
+            if (r != null)
+                r.material = _materialsTeam[(int) playerTeam];
         }
     }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Object = System.Object;
 using Random = UnityEngine.Random;
+using PhotonPlayer = Photon.Realtime.Player;
 
 public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
@@ -48,11 +49,21 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        if (!PV.IsMine) return;
-        Hashtable playerProperties = PV.Owner.CustomProperties;
-        if (playerProperties.ContainsKey("team") && playerProperties["team"] is Gamemode.PlayerTeam team)
+        if (PV.IsMine && PV.Owner.CustomProperties.ContainsKey("team"))
+            SetTeam();
+    }
+
+    public override void OnPlayerPropertiesUpdate(PhotonPlayer targetPlayer, Hashtable changedProps)
+    {
+        if (PV.IsMine && PV.Owner == targetPlayer && changedProps.ContainsKey("team")) SetTeam();
+    }
+
+    void SetTeam()
+    {
+        Gamemode.PlayerTeam? team = GetTeam(PV);
+        if(team != null)
         {
-            playerTeam = team;
+            playerTeam = (Gamemode.PlayerTeam) team;
             DebugTools.PrintOnGUI($"Team found in custom properties of the player! {playerTeam}");
         }
         else

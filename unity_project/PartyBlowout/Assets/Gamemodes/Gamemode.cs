@@ -7,7 +7,7 @@ using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using PhotonPlayer = Photon.Realtime.Player;
 
-public abstract class Gamemode : MonoBehaviour
+public abstract class Gamemode : MonoBehaviourPunCallbacks
 {
 
     public enum CurrentGamemode
@@ -34,6 +34,7 @@ public abstract class Gamemode : MonoBehaviour
     {
         PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
+        if(!PhotonNetwork.IsMasterClient) return;
         CreateTeams();
     }
 
@@ -64,15 +65,15 @@ public abstract class Gamemode : MonoBehaviour
         {
             Hashtable h = new Hashtable();
             if (alone)
-                h["team"] = PlayerTeam.Alone;
+                h["team"] = (int) PlayerTeam.Alone;
             else if (redToFill > 0)
             {
-                h["team"] = PlayerTeam.Red;
+                h["team"] = (int) PlayerTeam.Red;
                 redToFill--;
             }
             else
-                h["team"] = PlayerTeam.Blue;
-            p.CustomProperties = h;
+                h["team"] = (int) PlayerTeam.Blue;
+            p.SetCustomProperties(h);
         }
     }
 

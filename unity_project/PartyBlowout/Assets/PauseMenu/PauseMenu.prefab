@@ -1167,8 +1167,8 @@ GameObject:
   - component: {fileID: 4500232548201377562}
   - component: {fileID: 4500232548201377558}
   m_Layer: 5
-  m_Name: Pause
-  m_TagString: Untagged
+  m_Name: PauseMenu
+  m_TagString: Pausemenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -31,7 +32,8 @@ namespace Gamemodes
             }
 
             int idMap = listMaps[Random.Range(0, listMaps.Count)];
-            RoomController.LoadScene(idMap);
+            // RoomController.LoadScene(idMap);
+            if (PhotonNetwork.IsMasterClient) PhotonNetwork.LoadLevel(idMap);
         }
     }
 }

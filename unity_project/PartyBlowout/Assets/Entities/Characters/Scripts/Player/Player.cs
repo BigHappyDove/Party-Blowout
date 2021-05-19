@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
-using Object = System.Object;
 using Random = UnityEngine.Random;
 using PhotonPlayer = Photon.Realtime.Player;
 
@@ -34,7 +30,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            GetComponentInChildren<Camera>().gameObject.SetActive(false);
             Destroy(rb);
         }
 
@@ -79,6 +75,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         foreach (Transform t in transform)
         {
+            if(t.gameObject.name == "UserInfo") return;
             Renderer r = t.gameObject.GetComponent<Renderer>();
             if (r != null)
                 r.material = _materialsTeam[(int) playerTeam];

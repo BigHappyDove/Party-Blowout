@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using PhotonPlayer = Photon.Realtime.Player;
 
 public class ShowUserInfo : MonoBehaviourPunCallbacks
 {
-    private TextMesh _textMesh;
+    private TextMeshPro _textMesh;
     private Player _player;
     private PhotonView _pv;
 
@@ -15,9 +16,8 @@ public class ShowUserInfo : MonoBehaviourPunCallbacks
     void Awake()
     {
         _pv = GetComponent<PhotonView>();
-        // if(_pv.IsMine) Destroy(gameObject);
         _player = GetComponentInParent<Player>();
-        _textMesh = GetComponent<TextMesh>();
+        _textMesh = GetComponent<TextMeshPro>();
         CheckColor();
     }
 
@@ -51,8 +51,7 @@ public class ShowUserInfo : MonoBehaviourPunCallbacks
     // Update is called once per frame
     private void Update()
     {
-        if(_textMesh == null) return;
-        transform.LookAt(transform.position);
-        _textMesh.text = _pv.Owner.NickName + "\n" + (_player != null ? ((int) _player.health) + "%" : "");
+        if(_textMesh == null || _pv.Owner == null) return;
+        _textMesh.SetText(_pv.Owner.NickName + "\n" + (_player != null ? (int) _player.health + "%" : ""));
     }
 }

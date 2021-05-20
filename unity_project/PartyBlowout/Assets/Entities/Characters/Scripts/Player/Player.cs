@@ -16,6 +16,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     public bool grounded;
     bool canDoubleJump;
     private AudioManager _audioManager;
+    private PauseMenu _pauseMenu;
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
@@ -28,11 +29,13 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     void Start()
     {
+        _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
             Destroy(rb);
+            Destroy(_pauseMenu.gameObject);
         }
 
     }
@@ -85,9 +88,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     private void Update()
     {
-        if (!PV.IsMine)
-            return;
-        if (PauseMenu.GameIsPaused)
+        if (!PV.IsMine || _pauseMenu == null ||_pauseMenu.GameIsPaused)
             return;
         Look();
         Move();

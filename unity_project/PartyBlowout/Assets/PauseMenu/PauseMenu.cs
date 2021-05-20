@@ -1,32 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
-    /*void Start()
-    {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Pausemenu");
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneAt(0))
-        {
-            if (objects.Length > 1)
-            {
-                Destroy(this.gameObject);
-            }
-            return;
-        }
-        if (objects.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }*/
-    
-    public static bool GameIsPaused = false; //to see if the game is already on pause
-
+    private PhotonView _pv;
+    public bool GameIsPaused = false; //to see if the game is already on pause
     public GameObject pausemenuUI;
+
+    void Start()
+    {
+        _pv = GetComponent<PhotonView>();
+    }
 
 
     // Update is called once per frame
@@ -35,9 +22,7 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) //esc is the key to press to access this menu
         {
             if (GameIsPaused)
-            {
                 Resume(); // to leave the pause menu
-            }
             else
             {
                 Cursor.visible = true;
@@ -50,26 +35,26 @@ public class PauseMenu : MonoBehaviour
     {
         GameIsPaused = false; //to reset the bool
         pausemenuUI.SetActive(false); // stop showing the menu UI
-        Time.timeScale = 1f; //normal game speed
     }
 
     public void Pause()
     {
         GameIsPaused = true; // set the bool
         pausemenuUI.SetActive(true); // to show the UI
-        Time.timeScale = 0f; // freeze the game
     }
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
+        if(!_pv.IsMine) return;
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
+        if (!_pv.IsMine) return;
         Debug.Log("Player quit the game");
         Application.Quit();
     }
-    
+
 }

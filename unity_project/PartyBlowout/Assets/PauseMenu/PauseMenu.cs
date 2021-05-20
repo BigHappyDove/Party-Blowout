@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
 
-    void Start()
+    /*void Start()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Pausemenu");
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneAt(0))
@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }
+    }*/
     
     public static bool GameIsPaused = false; //to see if the game is already on pause
 
@@ -40,6 +40,7 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
+                Cursor.visible = true;
                 Pause(); // to access the pause menu
             }
         }
@@ -47,16 +48,16 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        GameIsPaused = false; //to reset the bool
         pausemenuUI.SetActive(false); // stop showing the menu UI
         Time.timeScale = 1f; //normal game speed
-        GameIsPaused = false; //to reset the bool
     }
 
-    void Pause()
+    public void Pause()
     {
+        GameIsPaused = true; // set the bool
         pausemenuUI.SetActive(true); // to show the UI
         Time.timeScale = 0f; // freeze the game
-        GameIsPaused = true; // set the bool
     }
 
     public void LoadMenu()

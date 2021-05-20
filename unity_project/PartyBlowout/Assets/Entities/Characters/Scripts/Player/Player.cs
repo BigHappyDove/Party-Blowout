@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Random = UnityEngine.Random;
 using PhotonPlayer = Photon.Realtime.Player;
@@ -86,7 +87,8 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         if (!PV.IsMine)
             return;
-
+        if (PauseMenu.GameIsPaused)
+            return;
         Look();
         Move();
         Jump();
@@ -95,7 +97,6 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         if (!PV.IsMine)
             return;
-
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }

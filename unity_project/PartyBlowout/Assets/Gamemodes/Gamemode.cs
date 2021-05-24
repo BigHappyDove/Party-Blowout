@@ -25,21 +25,43 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         Alone = 2 // For Racing gamemode
     }
 
-    public int timeLimit; //Seconds
+    public float timeLimit; //Seconds
+    private float timeLimitSync = 1;
+    private float timeLeftBeforeSync;
     protected CurrentGamemode? _currentGamemode = null;
     protected static List<PhotonPlayer> PlayersList;
     protected static List<PhotonPlayer> AlivePlayersList;
+    private PhotonView _photonView;
     [SerializeField] protected static double redRatio = 0.5;
 
 
     protected virtual void Start()
     {
+        timeLeftBeforeSync = timeLimitSync;
+        _photonView = GetComponent<PhotonView>();
         PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
         if(!PhotonNetwork.IsMasterClient) return;
         CreateTeams();
     }
 
+    protected void FixedUpdate()
+    {
+        if(!_photonView.IsMine) return;
+        timeLimit -= Time.fixedDeltaTime;
+        timeLeftBeforeSync -= Time.fixedDeltaTime;
+        if(_photonView.IsMine && timeLeftBeforeSync < 0)
+            _photonView.RPC("RPC_PleaseSyncTime", RpcTarget.All, timeLimit);
+    }
+
+    [PunRPC]
+    protected void RPC_PleaseSyncTime(float time)
+    {
+        timeLimit = time;
+        timeLeftBeforeSync = timeLimitSync;
+        // DebugTools.PrintOnGUI($"Time left is {timeLimit}", DebugTools.LogType.LOG);
+
+    }
 
     public void SetRandomGamemode()
     {

@@ -2,6 +2,7 @@
 using System.Collections;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Object = System.Object;
 using Random = System.Random;
@@ -31,6 +32,7 @@ public class WeaponBase : MonoBehaviour
     private float aimSmoothing = 10f;
     private PhotonView PV;
     private AudioManager _audioManager;
+    public PauseMenu pauseMenu;
 
     // voir plus bas dans DetermineRecoil.
     // public bool randomizeRecoil;
@@ -53,7 +55,7 @@ public class WeaponBase : MonoBehaviour
         if(!PV.IsMine) return;
         DetermineAim();
         //shoots
-        if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0)
+        if (Input.GetMouseButton(0) && canShoot && currentAmmoClip > 0 && !pauseMenu.GameIsPaused)
         {
             // AudioManager audioManager = FindObjectOfType<AudioManager>();
             _audioManager.Play("Shoot");

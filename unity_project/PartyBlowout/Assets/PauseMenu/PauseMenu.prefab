@@ -189,19 +189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4500232548201377558, guid: 744b65c5c91a8e346b0bc7de419d2f88,
-          type: 3}
-        m_MethodName: Resume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8364562479828795105}
+      - m_Target: {fileID: 8173126690961079671}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -224,7 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070f55a4bd71e2243a471c6a0bd25730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameIsPaused: 0
   pausemenuUI: {fileID: 8364562481256455542}
 --- !u!1 &8364562479779280365
 GameObject:
@@ -441,7 +428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070f55a4bd71e2243a471c6a0bd25730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameIsPaused: 0
   pausemenuUI: {fileID: 8173126690961079671}
 --- !u!114 &6043142146679979996
 MonoBehaviour:
@@ -2036,7 +2022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070f55a4bd71e2243a471c6a0bd25730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameIsPaused: 0
   pausemenuUI: {fileID: 0}
 --- !u!114 &7741066450989229004
 MonoBehaviour:
@@ -2084,7 +2069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070f55a4bd71e2243a471c6a0bd25730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameIsPaused: 0
   pausemenuUI: {fileID: 0}
 --- !u!1 &8364562481430140539
 GameObject:

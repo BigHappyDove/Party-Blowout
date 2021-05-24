@@ -31,13 +31,16 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         if (!PV.IsMine)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
             Destroy(rb);
             Destroy(_pauseMenu.gameObject);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
     }
@@ -90,8 +93,18 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     private void Update()
     {
-        if (!PV.IsMine || _pauseMenu == null ||_pauseMenu.GameIsPaused)
+        if (!PV.IsMine)
             return;
+        if (_pauseMenu != null)
+        {
+            if (_pauseMenu.GameIsPaused)
+            {
+                moveAmount = Vector3.zero;
+                return;
+            }
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         Look();
         Move();
         Jump();

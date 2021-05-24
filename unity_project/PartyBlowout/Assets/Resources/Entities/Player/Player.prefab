@@ -3940,6 +3940,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2529449899467942341}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6273105306107926315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8364562479828795118, guid: 500793f404596284a94de4e5c78aeb7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2529449899467942341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070f55a4bd71e2243a471c6a0bd25730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2995235223717796980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4179,6 +4191,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
         type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 6273105306107926315}
+    - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
+        type: 3}
       propertyPath: impactForce
       value: 250
       objectReference: {fileID: 0}
@@ -4199,6 +4216,12 @@ PrefabInstance:
       objectReference: {fileID: 2152826922809954244}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad41dc4ac9da094468c274d1c567a236, type: 3}
+--- !u!4 &7862299919568602185 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3147742819961233907, guid: ad41dc4ac9da094468c274d1c567a236,
+    type: 3}
+  m_PrefabInstance: {fileID: 5094564535963706810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2152826922809954244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6580858404403112574, guid: ad41dc4ac9da094468c274d1c567a236,
@@ -4211,12 +4234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7862299919568602185 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3147742819961233907, guid: ad41dc4ac9da094468c274d1c567a236,
-    type: 3}
-  m_PrefabInstance: {fileID: 5094564535963706810}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5589587256985720042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4324,6 +4341,11 @@ PrefabInstance:
       propertyPath: fireRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 6273105306107926315}
     - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
         type: 3}
       propertyPath: impactForce
@@ -4451,6 +4473,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 6273105306107926315}
     - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
         type: 3}
       propertyPath: muzzleFlashImage

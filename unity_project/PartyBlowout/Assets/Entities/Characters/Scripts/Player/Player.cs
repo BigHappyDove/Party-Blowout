@@ -31,6 +31,8 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (!PV.IsMine)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);

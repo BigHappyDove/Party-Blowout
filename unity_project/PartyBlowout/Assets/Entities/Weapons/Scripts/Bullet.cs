@@ -28,9 +28,9 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
     {
         // For an unknown reason, we shouldn't use _pv.isMine on this function, it works better withtout it
         object[] args = info.photonView.InstantiationData;
-        if (args[0] is Vector3 v && args[1] is float f)
+        if (args[0] is float f)
             _rb.AddRelativeForce(Vector3.forward * f);
-        if (args[2] is int damage_arg)
+        if (args[1] is int damage_arg)
             _damage = damage_arg;
     }
 

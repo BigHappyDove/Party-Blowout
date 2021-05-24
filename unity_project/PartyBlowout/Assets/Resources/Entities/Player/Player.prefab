@@ -4348,6 +4348,11 @@ PrefabInstance:
       objectReference: {fileID: 6273105306107926315}
     - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
         type: 3}
+      propertyPath: forceBullet
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
+        type: 3}
       propertyPath: impactForce
       value: 1000
       objectReference: {fileID: 0}

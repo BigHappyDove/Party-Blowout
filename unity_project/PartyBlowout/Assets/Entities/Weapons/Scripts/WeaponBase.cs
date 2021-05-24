@@ -15,6 +15,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected float fireRate;
     [SerializeField] protected int clipSize;
     [SerializeField] protected int damage;
+    [SerializeField] private float forceBullet = 15;
     // [SerializeField] protected int impactForce;
     // [SerializeField] protected int reservedAmmoCapacity;
 
@@ -73,8 +74,6 @@ public class WeaponBase : MonoBehaviour
             else
                 currentAmmoClip = clipSize;
             ammoInReserve = Math.Max(0, ammoInReserve - ammountNeeded);
-            // Let's call this event to update the player's ui, we may have to edit this in the future
-            // TODO: Edit this dirty implementation
             onWeaponShoot();
         }
     }
@@ -140,9 +139,8 @@ public class WeaponBase : MonoBehaviour
     {
         //TODO: TEMPORARY VALUES. NEED TO BE SERIALIZED
         if(!PV.IsMine) return;
-        float forceBullet = 15;
         PhotonNetwork.Instantiate("Entities/Weapons/Bullet", bulletSpawnerPos.position, transform.rotation, 0,
-            new object[] {transform.eulerAngles, forceBullet, damage});
+            new object[] {forceBullet, damage});
     }
 
     public static event Action onWeaponShootHook;

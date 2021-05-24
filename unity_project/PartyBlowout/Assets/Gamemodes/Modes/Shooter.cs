@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Race : Gamemode
+public class Shooter : Gamemode
 {
     // Start is called before the first frame update
     protected override void Start()
     {
-        redRatio = 0;
+        _currentGamemode = CurrentGamemode.Shooter;
+        redRatio = 0.5;
         base.Start();
     }
 
@@ -16,5 +17,4 @@ public class Race : Gamemode
     {
 
     }
-
 }

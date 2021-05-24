@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : Gamemode
+public class GuessWho : Gamemode
 {
     // Start is called before the first frame update
     protected override void Start()
     {
-        redRatio = 0.5;
+        _currentGamemode = CurrentGamemode.GuessWho;
+        redRatio = 0.3;
         base.Start();
     }
 
@@ -16,4 +17,5 @@ public class Shooter : Gamemode
     {
 
     }
+
 }

@@ -1,32 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private PhotonView _pv;
+    public bool GameIsPaused = false; //to see if the game is already on pause
+    public GameObject pausemenuUI;
 
     void Start()
     {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Pausemenu");
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneAt(0))
-        {
-            if (objects.Length > 1)
-            {
-                Destroy(this.gameObject);
-            }
-            return;
-        }
-        if (objects.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        _pv = GetComponent<PhotonView>();
     }
-    
-    public static bool GameIsPaused = false; //to see if the game is already on pause
-
-    public GameObject pausemenuUI;
 
 
     // Update is called once per frame
@@ -35,11 +22,10 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) //esc is the key to press to access this menu
         {
             if (GameIsPaused)
-            {
                 Resume(); // to leave the pause menu
-            }
             else
             {
+                Cursor.visible = true;
                 Pause(); // to access the pause menu
             }
         }
@@ -47,28 +33,28 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        pausemenuUI.SetActive(false); // stop showing the menu UI
-        Time.timeScale = 1f; //normal game speed
         GameIsPaused = false; //to reset the bool
+        pausemenuUI.SetActive(false); // stop showing the menu UI
     }
 
-    void Pause()
+    public void Pause()
     {
-        pausemenuUI.SetActive(true); // to show the UI
-        Time.timeScale = 0f; // freeze the game
         GameIsPaused = true; // set the bool
+        pausemenuUI.SetActive(true); // to show the UI
     }
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
+        if(!_pv.IsMine) return;
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
+        if (!_pv.IsMine) return;
         Debug.Log("Player quit the game");
         Application.Quit();
     }
-    
+
 }

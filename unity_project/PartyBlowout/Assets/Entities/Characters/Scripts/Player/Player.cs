@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
-using Object = System.Object;
 using Random = UnityEngine.Random;
+using PhotonPlayer = Photon.Realtime.Player;
 
 public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
@@ -18,6 +16,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     public bool grounded;
     bool canDoubleJump;
     private AudioManager _audioManager;
+    private PauseMenu _pauseMenu;
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
@@ -30,11 +29,13 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     void Start()
     {
+        _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            GetComponentInChildren<Camera>().gameObject.SetActive(false);
             Destroy(rb);
+            Destroy(_pauseMenu.gameObject);
         }
 
     }
@@ -48,11 +49,21 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        if (!PV.IsMine) return;
-        Hashtable playerProperties = PV.Owner.CustomProperties;
-        if (playerProperties.ContainsKey("team") && playerProperties["team"] is Gamemode.PlayerTeam team)
+        if (PV.IsMine && PV.Owner.CustomProperties.ContainsKey("team"))
+            SetTeam();
+    }
+
+    public override void OnPlayerPropertiesUpdate(PhotonPlayer targetPlayer, Hashtable changedProps)
+    {
+        if (PV.IsMine && PV.Owner == targetPlayer && changedProps.ContainsKey("team")) SetTeam();
+    }
+
+    void SetTeam()
+    {
+        Gamemode.PlayerTeam? team = GetTeam(PV);
+        if(team != null)
         {
-            playerTeam = team;
+            playerTeam = (Gamemode.PlayerTeam) team;
             DebugTools.PrintOnGUI($"Team found in custom properties of the player! {playerTeam}");
         }
         else
@@ -68,6 +79,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         foreach (Transform t in transform)
         {
+            if(t.gameObject.name == "UserInfo") return;
             Renderer r = t.gameObject.GetComponent<Renderer>();
             if (r != null)
                 r.material = _materialsTeam[(int) playerTeam];
@@ -76,9 +88,8 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     private void Update()
     {
-        if (!PV.IsMine)
+        if (!PV.IsMine || _pauseMenu == null ||_pauseMenu.GameIsPaused)
             return;
-
         Look();
         Move();
         Jump();
@@ -87,7 +98,6 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         if (!PV.IsMine)
             return;
-
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }

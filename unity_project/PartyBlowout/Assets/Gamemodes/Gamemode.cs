@@ -6,15 +6,16 @@ using Photon.Pun;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using PhotonPlayer = Photon.Realtime.Player;
+using Random = UnityEngine.Random;
 
-public abstract class Gamemode : MonoBehaviour
+public abstract class Gamemode : MonoBehaviourPunCallbacks
 {
 
-    public enum CurrentGamemode
+    public enum CurrentGamemode : uint
     {
-        Race,
-        Shooter,
-        GuessWho
+        Race = 0,
+        Shooter = 1,
+        GuessWho = 2
     }
 
     public enum PlayerTeam : uint
@@ -25,6 +26,7 @@ public abstract class Gamemode : MonoBehaviour
     }
 
     public int timeLimit; //Seconds
+    protected CurrentGamemode? _currentGamemode = null;
     protected static List<PhotonPlayer> PlayersList;
     protected static List<PhotonPlayer> AlivePlayersList;
     [SerializeField] protected static double redRatio = 0.5;
@@ -34,9 +36,18 @@ public abstract class Gamemode : MonoBehaviour
     {
         PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
+        if(!PhotonNetwork.IsMasterClient) return;
         CreateTeams();
     }
 
+
+    public void SetRandomGamemode()
+    {
+        CurrentGamemode? newGamemode = null;
+        while (newGamemode == null || _currentGamemode == newGamemode)
+            newGamemode = (CurrentGamemode) Random.Range(0, 2);
+        _currentGamemode = newGamemode;
+    }
 
     private static void ShuffleList<T>(List<T> list)
     {
@@ -64,15 +75,15 @@ public abstract class Gamemode : MonoBehaviour
         {
             Hashtable h = new Hashtable();
             if (alone)
-                h["team"] = PlayerTeam.Alone;
+                h["team"] = (int) PlayerTeam.Alone;
             else if (redToFill > 0)
             {
-                h["team"] = PlayerTeam.Red;
+                h["team"] = (int) PlayerTeam.Red;
                 redToFill--;
             }
             else
-                h["team"] = PlayerTeam.Blue;
-            p.CustomProperties = h;
+                h["team"] = (int) PlayerTeam.Blue;
+            p.SetCustomProperties(h);
         }
     }
 

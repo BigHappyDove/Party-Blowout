@@ -32,10 +32,13 @@ public class PauseMenu : MonoBehaviour
             if (GameIsPaused)
                 Resume(); // to leave the pause menu
             else
-            {
-                Cursor.visible = true;
                 Pause(); // to access the pause menu
-            }
+        }
+
+        if (GameIsPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

@@ -8,18 +8,18 @@ using PhotonPlayer = Photon.Realtime.Player;
 public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
 
-    [SerializeField] GameObject cameraHolder;
+    [SerializeField] protected GameObject cameraHolder;
 
-    [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
+    [SerializeField] protected float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
     float verticalLookRotation;
     public bool grounded;
     bool canDoubleJump;
     private AudioManager _audioManager;
-    private PauseMenu _pauseMenu;
+    protected PauseMenu _pauseMenu;
 
     Vector3 smoothMoveVelocity;
-    Vector3 moveAmount;
+    protected Vector3 moveAmount;
 
 
     [Header("Team settings")]
@@ -27,7 +27,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     [SerializeField] private Material[] _materialsTeam = new Material[3];
 
 
-    void Start()
+    protected virtual void Start()
     {
         _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
@@ -91,7 +91,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!PV.IsMine)
             return;
@@ -109,7 +109,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         Move();
         Jump();
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!PV.IsMine)
             return;
@@ -118,7 +118,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     }
 
 
-    void Look()
+    protected void Look()
     {
         transform.Rotate(Vector3.up * (Input.GetAxisRaw("Mouse X") * mouseSensitivity));
 
@@ -128,7 +128,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
     }
 
-    void Move()
+    protected virtual void Move()
     {
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 

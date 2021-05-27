@@ -17,6 +17,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     bool canDoubleJump;
     private AudioManager _audioManager;
     protected PauseMenu _pauseMenu;
+    public GameObject cameraObj = null;
 
     Vector3 smoothMoveVelocity;
     protected Vector3 moveAmount;
@@ -29,6 +30,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     protected virtual void Start()
     {
+        cameraObj = GetComponentInChildren<Camera>().gameObject;
         _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)

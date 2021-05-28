@@ -49,6 +49,12 @@ public class CheckpointTracker : MonoBehaviour
         pv.transform.position = lastCheckpoint.transform.position;
         pv.transform.rotation = lastCheckpoint.transform.rotation;
     }
+
+    private void RaceEnd()
+    {
+        //TODO
+    }
+    
     void Update()
      {
          if (Input.GetKeyDown(KeyCode.K) && _pv.IsMine)
@@ -56,5 +62,7 @@ public class CheckpointTracker : MonoBehaviour
              int playerID = _pv.ViewID;
              GetComponent<PhotonView>().RPC("TeleportOnCP", RpcTarget.All, playerID);
          }
+         
+         RaceEnd();
      }
 }

@@ -11,11 +11,14 @@ public class ShowUserInfo : MonoBehaviourPunCallbacks
     private TextMeshPro _textMesh;
     private Player _player;
     private PhotonView _pv;
+    [SerializeField] private bool DestroyForMyPOV = false;
 
     // Start is called before the first frame update
+
     void Awake()
     {
         _pv = GetComponent<PhotonView>();
+        if(_pv.IsMine && DestroyForMyPOV) Destroy(gameObject);
         _player = GetComponentInParent<Player>();
         _textMesh = GetComponent<TextMeshPro>();
         CheckColor();

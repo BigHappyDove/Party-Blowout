@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -7,12 +8,19 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private PhotonView _pv;
-    public bool GameIsPaused = false; //to see if the game is already on pause
     public GameObject pausemenuUI;
+    public bool GameIsPaused => pausemenuUI != null && pausemenuUI.activeSelf; //to see if the game is already on pause
 
     void Start()
     {
         _pv = GetComponent<PhotonView>();
+    }
+
+    private void OnEnable()
+    {
+        if(_pv != null && !_pv.IsMine) return;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 
@@ -24,22 +32,23 @@ public class PauseMenu : MonoBehaviour
             if (GameIsPaused)
                 Resume(); // to leave the pause menu
             else
-            {
-                Cursor.visible = true;
                 Pause(); // to access the pause menu
-            }
+        }
+
+        if (GameIsPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
     public void Resume()
     {
-        GameIsPaused = false; //to reset the bool
         pausemenuUI.SetActive(false); // stop showing the menu UI
     }
 
     public void Pause()
     {
-        GameIsPaused = true; // set the bool
         pausemenuUI.SetActive(true); // to show the UI
     }
 

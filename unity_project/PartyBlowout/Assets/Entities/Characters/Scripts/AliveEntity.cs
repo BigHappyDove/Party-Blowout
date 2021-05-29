@@ -12,7 +12,7 @@ public class AliveEntity : MonoBehaviourPunCallbacks
 
 
 
-    void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();

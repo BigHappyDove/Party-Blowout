@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
             Player shooter = origin != null ? origin.GetComponentInParent<Player>() : null;
             Gamemode.PlayerTeam? teamSource = AliveEntity.GetTeam(_pv);
             Gamemode.PlayerTeam? teamTarget = AliveEntity.GetTeam(target.PV);
-            if (teamTarget == null || teamSource != teamTarget)
+            if (target is AgentScript || teamTarget == null || teamSource != teamTarget)
                 target.TakeDamage(_damage, shooter);
             if (target is AgentScript && shooter != null && Gamemode.CurGamemode == Gamemode.CurrentGamemode.GuessWho)
                 shooter.TakeDamage(10f, null);

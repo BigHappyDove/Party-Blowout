@@ -1523,7 +1523,7 @@ GameObject:
   - component: {fileID: 7184040297923233815}
   - component: {fileID: 26183986965629113}
   m_Layer: 0
-  m_Name: Agent2
+  m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1674,6 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6bcc1e5db29e24f860d3ddb19d46eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PV: {fileID: 0}
   health: 100
   maxDist: 50
   sprintSpeed: 6

@@ -40,6 +40,13 @@ public class AgentScript : AliveEntity
         return hit.position;
     }
 
+    internal void Die(bool respawn = true)
+    {
+        PhotonNetwork.Destroy(gameObject);
+        if(!respawn) return;
+        EntitiesManager.CreateEntity("Entities/AI/Agent", GetRandomPosOnNavMesh(), Quaternion.identity);
+    }
+
     /// <summary>
     /// Set randomly the agent.speed to walkSpeed or sprintSpeed
     /// </summary>

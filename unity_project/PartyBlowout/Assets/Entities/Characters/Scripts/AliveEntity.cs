@@ -48,6 +48,11 @@ public class AliveEntity : MonoBehaviourPunCallbacks
             Gamemode.onPlayerDeath(this, originDamage);
             if(PV.IsMine)
             {
+                if (this is AgentScript a)
+                {
+                    a.Die();
+                    return;
+                }
                 if (spawnEntity != null)
                     spawnEntity.RespawnController(gameObject);
                 else

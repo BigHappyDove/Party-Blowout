@@ -7,8 +7,8 @@ public class Shooter : Gamemode
     // Start is called before the first frame update
     protected override void Start()
     {
-        _currentGamemode = CurrentGamemode.Shooter;
-        redRatio = 0.5;
+        CurGamemode = CurrentGamemode.Shooter;
+        RedRatio = 0.5;
         base.Start();
     }
 

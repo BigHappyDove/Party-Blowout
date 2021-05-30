@@ -27,17 +27,18 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     public float timeLimit; //Seconds
     private float timeLimitSync = 1;
-    private float timeLeftBeforeSync;
-    protected CurrentGamemode? _currentGamemode = null;
+    private float _timeLeftBeforeSync;
+    public static CurrentGamemode? CurGamemode = null;
+    public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
     protected static List<PhotonPlayer> AlivePlayersList;
     private PhotonView _photonView;
-    [SerializeField] protected static double redRatio = 0.5;
+    [SerializeField] protected static double RedRatio = 0.5;
 
 
     protected virtual void Start()
     {
-        timeLeftBeforeSync = timeLimitSync;
+        _timeLeftBeforeSync = timeLimitSync;
         _photonView = GetComponent<PhotonView>();
         PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
@@ -49,8 +50,8 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     {
         if(!_photonView.IsMine) return;
         timeLimit -= Time.fixedDeltaTime;
-        timeLeftBeforeSync -= Time.fixedDeltaTime;
-        if(_photonView.IsMine && timeLeftBeforeSync < 0)
+        _timeLeftBeforeSync -= Time.fixedDeltaTime;
+        if(_photonView.IsMine && _timeLeftBeforeSync < 0)
             _photonView.RPC("RPC_PleaseSyncTime", RpcTarget.All, timeLimit);
     }
 
@@ -58,7 +59,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     protected void RPC_PleaseSyncTime(float time)
     {
         timeLimit = time;
-        timeLeftBeforeSync = timeLimitSync;
+        _timeLeftBeforeSync = timeLimitSync;
         // DebugTools.PrintOnGUI($"Time left is {timeLimit}", DebugTools.LogType.LOG);
 
     }
@@ -66,9 +67,9 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public void SetRandomGamemode()
     {
         CurrentGamemode? newGamemode = null;
-        while (newGamemode == null || _currentGamemode == newGamemode)
+        while (newGamemode == null || CurGamemode == newGamemode)
             newGamemode = (CurrentGamemode) Random.Range(0, 2);
-        _currentGamemode = newGamemode;
+        CurGamemode = newGamemode;
     }
 
     private static void ShuffleList<T>(List<T> list)
@@ -86,11 +87,11 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     private static void CreateTeams()
     {
-        bool alone = Math.Abs(redRatio - 1) < 0.01 || redRatio == 0;
+        bool alone = Math.Abs(RedRatio - 1) < 0.01 || RedRatio == 0;
         int redToFill = 0;
         if (!alone)
         {
-            redToFill = (int)Math.Round(PlayersList.Count * redRatio);
+            redToFill = (int)Math.Round(PlayersList.Count * RedRatio);
             ShuffleList(PlayersList);
         }
         foreach (PhotonPlayer p in PlayersList)
@@ -122,8 +123,8 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public static event Action onGamemodeStartedHook;
     public static void onGamemodeStarted() {onRoundStartedHook?.Invoke();}
 
-    public static event Action<AliveEntity, object> onTakeDamageHook;
-    public static void onTakeDamage(AliveEntity victim, object origin) {onTakeDamageHook?.Invoke(victim, origin);}
+    public static event Action<AliveEntity, object, float> onTakeDamageHook;
+    public static void onTakeDamage(AliveEntity victim, object origin, float dmg) {onTakeDamageHook?.Invoke(victim, origin, dmg);}
 
     public static event Action<AliveEntity, object> onPlayerDeathHook;
     public static void onPlayerDeath(AliveEntity victim, object origin) {onPlayerDeathHook?.Invoke(victim, origin);}

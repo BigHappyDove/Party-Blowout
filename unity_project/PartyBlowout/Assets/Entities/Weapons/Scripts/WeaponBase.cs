@@ -139,8 +139,9 @@ public class WeaponBase : MonoBehaviour
     {
         //TODO: TEMPORARY VALUES. NEED TO BE SERIALIZED
         if(!PV.IsMine) return;
-        PhotonNetwork.Instantiate("Entities/Weapons/Bullet", bulletSpawnerPos.position, bulletSpawnerPos.rotation, 0,
-            new object[] {forceBullet, damage});
+        Bullet b = PhotonNetwork.Instantiate("Entities/Weapons/Bullet", bulletSpawnerPos.position, bulletSpawnerPos.rotation, 0,
+            new object[] {forceBullet, damage}).GetComponent<Bullet>();
+        if (b != null) b.origin = this;
     }
 
     public static event Action onWeaponShootHook;

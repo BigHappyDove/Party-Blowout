@@ -40,7 +40,8 @@ public class UIHealth : MonoBehaviour
     /// </summary>
     /// <param name="ply">Useless arg</param>
     /// <param name="obj">Useless arg</param>
-    void UpdateHealth(AliveEntity ply = null, object obj = null)
+    /// <param name="dmg">Useless arg</param>
+    void UpdateHealth(AliveEntity ply = null, object obj = null, float dmg = 0)
     {
         if (!(_player is null) && !(healthUI is null))
         {

@@ -7,8 +7,8 @@ public class Race : Gamemode
     // Start is called before the first frame update
     protected override void Start()
     {
-        _currentGamemode = CurrentGamemode.Race;
-        redRatio = 0;
+        CurGamemode = CurrentGamemode.Race;
+        RedRatio = 0;
         base.Start();
     }
 

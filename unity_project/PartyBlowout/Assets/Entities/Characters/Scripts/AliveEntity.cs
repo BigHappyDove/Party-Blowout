@@ -42,7 +42,7 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     public void RPC_TakeDamage(float amount)
     {
         health -= amount;
-        Gamemode.onTakeDamage(this, originDamage);
+        Gamemode.onTakeDamage(this, originDamage, amount);
         if (health <= 0f)
         {
             Gamemode.onPlayerDeath(this, originDamage);

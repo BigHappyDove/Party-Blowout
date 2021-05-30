@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
     private PhotonView _pv;
     private int _damage = 0;
     private float timeAlive = 5;
+    public WeaponBase origin;
 
     private void Awake()
     {
@@ -40,10 +41,13 @@ public class Bullet : MonoBehaviour, IPunInstantiateMagicCallback
         AliveEntity target = other.gameObject.GetComponent<AliveEntity>();
         if (target != null)
         {
+            Player shooter = origin != null ? origin.GetComponentInParent<Player>() : null;
             Gamemode.PlayerTeam? teamSource = AliveEntity.GetTeam(_pv);
             Gamemode.PlayerTeam? teamTarget = AliveEntity.GetTeam(target.PV);
             if (teamTarget == null || teamSource != teamTarget)
-                target.TakeDamage(_damage, GetComponentInParent<Player>());
+                target.TakeDamage(_damage, shooter);
+            if (target is AgentScript && shooter != null && Gamemode.CurGamemode == Gamemode.CurrentGamemode.GuessWho)
+                shooter.TakeDamage(10f, null);
         }
         _pv.RPC("RPC_DestroyBullet", RpcTarget.All); // We could use PhotonNetwork.Destroy(..) but it doesn't work
     }

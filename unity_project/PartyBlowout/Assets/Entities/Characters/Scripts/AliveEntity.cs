@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class AliveEntity : MonoBehaviour
+public class AliveEntity : MonoBehaviourPunCallbacks
 {
-    protected PhotonView PV;
+    public PhotonView PV;
     protected Rigidbody rb;
     public float health = 100;
     private object originDamage = null;
@@ -13,7 +12,7 @@ public class AliveEntity : MonoBehaviour
 
 
 
-    void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
@@ -28,6 +27,15 @@ public class AliveEntity : MonoBehaviour
     {
         originDamage = origin;
         PV.RPC("RPC_TakeDamage", RpcTarget.All, amount);
+    }
+
+    public static Gamemode.PlayerTeam? GetTeam(PhotonView PV)
+    {
+        if (PV == null || PV.Owner == null) return null;
+        Hashtable playerProperties = PV.Owner.CustomProperties;
+        if (playerProperties.ContainsKey("team") && playerProperties["team"] is int team)
+            return (Gamemode.PlayerTeam) team;
+        return null;
     }
 
     [PunRPC]

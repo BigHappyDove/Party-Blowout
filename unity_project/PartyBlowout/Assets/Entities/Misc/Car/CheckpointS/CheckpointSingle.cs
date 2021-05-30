@@ -16,7 +16,7 @@ public class CheckpointSingle : MonoBehaviour
         {
             if(checkpointTracker.lastCheckpoint.nextCheckpoint == this)
                 checkpointTracker.PassedCheckpoint(this);
-            //TODO: Clovis fais un truc quand le gars se plante de checkpoint stppppp
+            ////////////TODO: Clovis fais un truc quand le gars se plante de checkpoint stppppp/////////////////
         }
     }
 }

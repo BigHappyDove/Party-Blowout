@@ -1,54 +1,126 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
-using Object = System.Object;
+using UnityEngine.SceneManagement;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Random = UnityEngine.Random;
+using PhotonPlayer = Photon.Realtime.Player;
 
-public class Player : AliveEntity
+public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
-    [SerializeField] GameObject cameraHolder;
 
-    [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
+    [SerializeField] protected GameObject cameraHolder;
+
+    [SerializeField] protected float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
     float verticalLookRotation;
     public bool grounded;
     bool canDoubleJump;
     private AudioManager _audioManager;
+    protected PauseMenu _pauseMenu;
+    public GameObject cameraObj = null;
 
     Vector3 smoothMoveVelocity;
-    Vector3 moveAmount;
+    protected Vector3 moveAmount;
 
-    void Start()
+
+    [Header("Team settings")]
+    public Gamemode.PlayerTeam playerTeam;
+    [SerializeField] private Material[] _materialsTeam = new Material[3];
+
+
+    protected virtual void Start()
     {
+        cameraObj = GetComponentInChildren<Camera>().gameObject;
+        _pauseMenu = GetComponentInChildren<PauseMenu>();
         _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            GetComponentInChildren<Camera>().gameObject.SetActive(false);
             Destroy(rb);
+            Destroy(_pauseMenu.gameObject);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+    }
+
+    [PunRPC]
+    void RPC_SyncAttributes(int team)
+    {
+        playerTeam = (Gamemode.PlayerTeam) team;
+        ApplyTeamMaterial();
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        if (PV.IsMine && PV.Owner.CustomProperties.ContainsKey("team"))
+            SetTeam();
+    }
+
+    public override void OnPlayerPropertiesUpdate(PhotonPlayer targetPlayer, Hashtable changedProps)
+    {
+        if (PV.IsMine && PV.Owner == targetPlayer && changedProps.ContainsKey("team")) SetTeam();
+    }
+
+    void SetTeam()
+    {
+        Gamemode.PlayerTeam? team = GetTeam(PV);
+        if(team != null)
+        {
+            playerTeam = (Gamemode.PlayerTeam) team;
+            DebugTools.PrintOnGUI($"Team found in custom properties of the player! {playerTeam}");
+        }
+        else
+        {
+            playerTeam = (Gamemode.PlayerTeam) Random.Range(0, 2);
+            DebugTools.PrintOnGUI($"Team not found in custom properties of the player! {playerTeam}", DebugTools.LogType.WARNING);
+        }
+
+        PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);
+    }
+
+    void ApplyTeamMaterial()
+    {
+        foreach (Transform t in transform)
+        {
+            if(t.gameObject.name == "UserInfo") return;
+            Renderer r = t.gameObject.GetComponent<Renderer>();
+            if (r != null)
+                r.material = _materialsTeam[(int) playerTeam];
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!PV.IsMine)
             return;
-
+        if (_pauseMenu != null)
+        {
+            if (_pauseMenu.GameIsPaused)
+            {
+                moveAmount = Vector3.zero;
+                return;
+            }
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         Look();
         Move();
         Jump();
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!PV.IsMine)
             return;
-
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }
 
 
-    void Look()
+    protected void Look()
     {
         transform.Rotate(Vector3.up * (Input.GetAxisRaw("Mouse X") * mouseSensitivity));
 
@@ -58,7 +130,7 @@ public class Player : AliveEntity
         cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
     }
 
-    void Move()
+    protected virtual void Move()
     {
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 

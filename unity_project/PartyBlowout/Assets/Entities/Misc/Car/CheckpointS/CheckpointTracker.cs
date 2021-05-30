@@ -42,48 +42,27 @@ public class CheckpointTracker : MonoBehaviour
             onCheckpointPassed(posCheckpoint - _lapCount *checkpointsManager.checkpointSingles.Count,_lapCount);
     }
 
-    // [PunRPC]
-    // private void TeleportOnCP()
-    // {
-    //     _simpleCarController.transform.position = lastCheckpoint.transform.position;
-    //     _simpleCarController.transform.rotation = lastCheckpoint.transform.rotation;
-    // }
-    //
-    // private void OnDestroy()
-    // {
-    //     if (_pv.IsMine)
-    //     {
-    //         GameObject g = PhotonNetwork.Instantiate("Entities/" + _simpleCarController.gameObject.name,
-    //             lastCheckpoint.transform.position, lastCheckpoint.transform.rotation);
-    //     }
-    // }
-    //
-    // void Update()
-    // {
-    //     if (Input.GetKey(KeyCode.K) && _pv.IsMine)
-    //     {
-    //         PhotonNetwork.Destroy(_simpleCarController.gameObject);
+    [PunRPC]
+    private void TeleportOnCP(int playerID)
+    {
+        var pv = PhotonView.Find(playerID);
+        pv.transform.position = lastCheckpoint.transform.position;
+        pv.transform.rotation = lastCheckpoint.transform.rotation;
+    }
 
-            // CheckpointTracker checkpointTracker = g.GetComponentInChildren<CheckpointTracker>();
-            // checkpointTracker._lapCount = _lapCount;
-            // checkpointTracker._simpleCarController = g.GetComponent<SimpleCarController>();
-            //PhotonNetwork.RaiseEvent(1, new object[] {lastCheckpoint.transform.position, lastCheckpoint.transform.rotation}, new RaiseEventOptions() {Receivers = ReceiverGroup.All}, SendOptions.SendReliable);
-    //     }
-    // }
-
-    // public void OnEvent(EventData photonevent)
-    // {
-    //     object[] data = (object[]) photonevent.CustomData;
-    //     _simpleCarController.transform.position = (Vector3) data[0];
-    //     _simpleCarController.transform.rotation = (Quaternion) data[1];
-    // }
-    // private void OnEnable()
-    // {
-    //     PhotonNetwork.AddCallbackTarget(this);
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     PhotonNetwork.RemoveCallbackTarget(this);
-    // }
+    private void RaceEnd()
+    {
+        //TODO
+    }
+    
+    void Update()
+     {
+         if (Input.GetKeyDown(KeyCode.K) && _pv.IsMine)
+         {
+             int playerID = _pv.ViewID;
+             GetComponent<PhotonView>().RPC("TeleportOnCP", RpcTarget.All, playerID);
+         }
+         
+         RaceEnd();
+     }
 }

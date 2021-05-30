@@ -23,18 +23,18 @@ public class SpawnEntity : MonoBehaviour
             CreateController();
     }
 
-    void CreateController()
+    void CreateController(object[] args = null)
     {
-        GameObject g = EntitiesManager.CreateEntity(path, _spawnManager.GetSpawnpoint());
+        GameObject g = EntitiesManager.CreateEntity(path, _spawnManager.GetSpawnpoint(), args);
         AliveEntity aliveEntity = g.GetComponent<AliveEntity>();
         if(aliveEntity != null)
             aliveEntity.spawnEntity = this;
         // PhotonNetwork.Instantiate(Path.Combine("Entities", "Player/Player"), spawnpoint.position, spawnpoint.rotation);
     }
 
-    public void RespawnController(GameObject gameObject)
+    public void RespawnController(GameObject gameObject, object[] args = null)
     {
         PhotonNetwork.Destroy(gameObject);
-        CreateController();
+        CreateController(args);
     }
 }

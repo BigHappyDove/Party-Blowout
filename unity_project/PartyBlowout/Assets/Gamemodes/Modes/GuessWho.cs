@@ -7,8 +7,9 @@ public class GuessWho : Gamemode
     // Start is called before the first frame update
     protected override void Start()
     {
-        _currentGamemode = CurrentGamemode.GuessWho;
-        redRatio = 0.3;
+        CurGamemode = CurrentGamemode.GuessWho;
+        CanRespawn = false;
+        RedRatio = 0.3;
         base.Start();
     }
 

@@ -1680,6 +1680,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: cfa46d55a68c94049b9c722615a9d923, type: 2}
   - {fileID: 2100000, guid: 9786f243bdf630c4694dfc410abf8414, type: 2}
   - {fileID: 2100000, guid: 3a33f8fee76c0ae4b9dc46efa27db591, type: 2}
+  _spectatorPrefab: {fileID: 0}
   maxDist: 50
   sprintSpeed: 6
   walkSpeed: 3

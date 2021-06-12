@@ -2887,6 +2887,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: cfa46d55a68c94049b9c722615a9d923, type: 2}
   - {fileID: 2100000, guid: 9786f243bdf630c4694dfc410abf8414, type: 2}
   - {fileID: 2100000, guid: 3a33f8fee76c0ae4b9dc46efa27db591, type: 2}
+  _spectatorPrefab: {fileID: 3651096782749664222, guid: d5a29a14eb34f7c40b2b2927734e4388,
+    type: 3}
   cameraHolder: {fileID: 5877163036829536534}
   mouseSensitivity: 3
   sprintSpeed: 6

@@ -78,7 +78,8 @@ public class Spectator : Player
                 selectedPlayer++;
                 if (selectedPlayer > alivePlayers.Length - 1)
                     selectedPlayer = 0;
-            } while (i++ < alivePlayers.Length && alivePlayers[selectedPlayer].cameraObj == null);
+            } while (i++ < alivePlayers.Length && CanSpecHim(alivePlayers[selectedPlayer])
+                                               && alivePlayers[selectedPlayer].cameraObj == null);
             SwitchPlayer();
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
@@ -113,5 +114,6 @@ public class Spectator : Player
         moveAmount = moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed);
     }
 
-
+    private bool CanSpecHim(Player player) =>
+        Gamemode.CurGamemode != Gamemode.CurrentGamemode.GuessWho || playerTeam != player.playerTeam;
 }

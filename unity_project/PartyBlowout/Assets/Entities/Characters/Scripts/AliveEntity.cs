@@ -10,6 +10,7 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     private object originDamage = null;
     [System.NonSerialized] public SpawnEntity spawnEntity;
     [SerializeField] private Material[] _materialsTeam = new Material[3];
+    [SerializeField] private GameObject _spectatorPrefab;
 
 
 
@@ -55,10 +56,15 @@ public class AliveEntity : MonoBehaviourPunCallbacks
                     a.Die();
                     return;
                 }
-                if (spawnEntity != null)
+                if (spawnEntity != null && Gamemode.CanRespawn)
                     spawnEntity.RespawnController(gameObject);
                 else
+                {
+                    Transform rememberTransform = transform;
                     PhotonNetwork.Destroy(gameObject);
+                    if (_spectatorPrefab)
+                        Instantiate(_spectatorPrefab, rememberTransform.position, rememberTransform.rotation);
+                }
             }
         }
     }

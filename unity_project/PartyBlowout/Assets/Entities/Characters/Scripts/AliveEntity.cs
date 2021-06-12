@@ -9,6 +9,8 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     public float health = 100;
     private object originDamage = null;
     [System.NonSerialized] public SpawnEntity spawnEntity;
+    [SerializeField] private Material[] _materialsTeam = new Material[3];
+
 
 
 
@@ -58,6 +60,18 @@ public class AliveEntity : MonoBehaviourPunCallbacks
                 else
                     PhotonNetwork.Destroy(gameObject);
             }
+        }
+    }
+
+    protected void ApplyTeamMaterial()
+    {
+        foreach (Transform t in transform)
+        {
+            if(t.gameObject.name == "UserInfo") continue;
+            Renderer r = t.gameObject.GetComponent<Renderer>();
+            if (r == null) continue;
+            Gamemode.PlayerTeam index = this is Player p ? p.playerTeam : 0;
+            r.material = _materialsTeam[(int) index];
         }
     }
 }

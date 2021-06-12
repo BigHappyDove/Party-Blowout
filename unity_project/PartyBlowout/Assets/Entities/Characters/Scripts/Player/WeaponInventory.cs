@@ -72,5 +72,7 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
+    public void StripPlayer() => gameObject.SetActive(false);
+
     public WeaponBase GetCurrentWeapon() => curWeapon;
 }

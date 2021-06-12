@@ -34,9 +34,17 @@ public class UIWeapon : MonoBehaviour
     // So we don't have to check everytime if the weapon changed
     private void OnDestroy()
     {
-        if (!_pv.IsMine) return;
+        if (!_pv || !_pv.IsMine) return;
         _weaponInventory.onWeaponChangedHook -= ChangeCurWeapon;
         WeaponBase.onWeaponShootHook -= UpdateAmmo;
+    }
+
+    private void OnDisable()
+    {
+        if(ammoInMag)
+            ammoInMag.gameObject.SetActive(false);
+        if(ammoInReserve)
+            ammoInReserve.gameObject.SetActive(false);
     }
 
     /// <summary>

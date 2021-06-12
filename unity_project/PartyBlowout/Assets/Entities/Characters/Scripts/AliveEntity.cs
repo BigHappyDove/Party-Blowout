@@ -60,10 +60,17 @@ public class AliveEntity : MonoBehaviourPunCallbacks
                     spawnEntity.RespawnController(gameObject);
                 else
                 {
+                    Player p = GetComponent<Player>();
                     Transform rememberTransform = transform;
+                    Gamemode.PlayerTeam playerTeam = Gamemode.PlayerTeam.Alone;
+                    if (p)
+                        playerTeam = p.playerTeam;
                     PhotonNetwork.Destroy(gameObject);
-                    if (_spectatorPrefab)
-                        Instantiate(_spectatorPrefab, rememberTransform.position, rememberTransform.rotation);
+                    if (!_spectatorPrefab) return;
+                    GameObject g = Instantiate(_spectatorPrefab, rememberTransform.position, rememberTransform.rotation);
+                    Spectator s = g.GetComponent<Spectator>();
+                    if (!s) return;
+                    s.playerTeam = playerTeam;
                 }
             }
         }

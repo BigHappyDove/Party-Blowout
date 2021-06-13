@@ -30,8 +30,8 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     private float _timeLeftBeforeSync;
     public static CurrentGamemode? CurGamemode = null;
     public static bool CanRespawn = true;
+    public static int[] alivePlayers = {0, 0, 0}; // BLUE, RED, ALONE
     protected static List<PhotonPlayer> PlayersList;
-    protected static List<PhotonPlayer> AlivePlayersList;
     private PhotonView _photonView;
     [SerializeField] protected static double RedRatio = 0.5;
 

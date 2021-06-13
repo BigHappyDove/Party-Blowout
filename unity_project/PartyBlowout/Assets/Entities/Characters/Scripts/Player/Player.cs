@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -52,12 +53,20 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         }
     }
 
+    private void OnDestroy() // Destroyed => Died somehow
+    {
+        DebugTools.PrintOnGUI("Called");
+        Gamemode.alivePlayers[(int) playerTeam]--;
+        Gamemode.onPlayerDeath(this, originDamage);
+    }
+
     [PunRPC]
     void RPC_SyncAttributes(int team)
     {
         playerTeam = (Gamemode.PlayerTeam) team;
         TryStripPlayer();
         ApplyTeamMaterial();
+        Gamemode.alivePlayers[team]++;
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)

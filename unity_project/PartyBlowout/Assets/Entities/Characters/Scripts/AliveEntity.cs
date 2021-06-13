@@ -7,7 +7,7 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     public PhotonView PV;
     protected Rigidbody rb;
     public float health = 100;
-    private object originDamage = null;
+    public object originDamage = null;
     [System.NonSerialized] public SpawnEntity spawnEntity;
     [SerializeField] private Material[] _materialsTeam = new Material[3];
     [SerializeField] private GameObject _spectatorPrefab;
@@ -48,7 +48,6 @@ public class AliveEntity : MonoBehaviourPunCallbacks
         Gamemode.onTakeDamage(this, originDamage, amount);
         if (health <= 0f)
         {
-            Gamemode.onPlayerDeath(this, originDamage);
             if(PV.IsMine)
             {
                 if (this is AgentScript a)

@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -24,8 +25,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
 
     [Header("Team settings")]
-    public Gamemode.PlayerTeam playerTeam;
-    [SerializeField] private Material[] _materialsTeam = new Material[3];
+    public Gamemode.PlayerTeam playerTeam = Gamemode.PlayerTeam.Alone;
 
 
     protected virtual void Start()
@@ -41,17 +41,32 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         }
         else
         {
+            foreach (Transform t in transform)
+            {
+                if(t.gameObject.name == "UserInfo") continue;
+                Renderer r = t.gameObject.GetComponent<Renderer>();
+                if (r == null) continue;
+                r.enabled = false;
+            }
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
 
+    private void OnDestroy() // Destroyed => Died somehow
+    {
+        DebugTools.PrintOnGUI("Called");
+        Gamemode.alivePlayers[(int) playerTeam]--;
+        Gamemode.onPlayerDeath(this, originDamage);
     }
 
     [PunRPC]
     void RPC_SyncAttributes(int team)
     {
         playerTeam = (Gamemode.PlayerTeam) team;
+        TryStripPlayer();
         ApplyTeamMaterial();
+        Gamemode.alivePlayers[team]++;
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -75,23 +90,13 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         }
         else
         {
-            playerTeam = (Gamemode.PlayerTeam) Random.Range(0, 2);
+            playerTeam = Gamemode.PlayerTeam.Alone;
             DebugTools.PrintOnGUI($"Team not found in custom properties of the player! {playerTeam}", DebugTools.LogType.WARNING);
         }
 
         PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);
     }
 
-    void ApplyTeamMaterial()
-    {
-        foreach (Transform t in transform)
-        {
-            if(t.gameObject.name == "UserInfo") return;
-            Renderer r = t.gameObject.GetComponent<Renderer>();
-            if (r != null)
-                r.material = _materialsTeam[(int) playerTeam];
-        }
-    }
 
     protected virtual void Update()
     {
@@ -162,5 +167,12 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     public void SetGroundedState(bool _grounded)
     {
         grounded = _grounded;
+    }
+
+    private void TryStripPlayer()
+    {
+        if (playerTeam != Gamemode.PlayerTeam.Blue || Gamemode.CurGamemode != Gamemode.CurrentGamemode.GuessWho) return;
+        WeaponInventory wp = GetComponentInChildren<WeaponInventory>();
+        if(wp) wp.StripPlayer();
     }
 }

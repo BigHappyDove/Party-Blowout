@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -19,7 +20,6 @@ public class Spectator : Player
         freeCam = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        DebugTools.PrintOnGUI(alivePlayers.Length);
     }
 
     protected override void Awake() { }
@@ -48,10 +48,10 @@ public class Spectator : Player
             transform.position = boundPlayer.cameraObj.transform.position;
             freeCam.transform.rotation = boundPlayer.cameraObj.transform.rotation;
             boundPlayer.cameraObj.SetActive(false);
-            boundPlayer = null;
             RecoverFreeCam();
         }
-        RecoverFreeCam();
+        if(boundPlayer == null || boundPlayer.cameraObj == null)
+            RecoverFreeCam();
         SelectPlayer();
     }
 
@@ -62,13 +62,16 @@ public class Spectator : Player
 
     private void RecoverFreeCam()
     {
-        if (boundPlayer != null && boundPlayer.cameraObj != null) return;
+        if (boundPlayer != null && boundPlayer.cameraObj != null)
+            boundPlayer = null;
         freeCam.gameObject.SetActive(true);
         selectedPlayer = 0;
     }
 
+    //TODO: REFACTOR ME!!!
     private void SelectPlayer()
     {
+        bool atLeastOneIsEligible = false;
         int i = 0;
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
@@ -78,8 +81,12 @@ public class Spectator : Player
                 selectedPlayer++;
                 if (selectedPlayer > alivePlayers.Length - 1)
                     selectedPlayer = 0;
-            } while (i++ < alivePlayers.Length && alivePlayers[selectedPlayer].cameraObj == null);
-            SwitchPlayer();
+                atLeastOneIsEligible = atLeastOneIsEligible || CanSpecHim(alivePlayers[selectedPlayer])
+                    && alivePlayers[selectedPlayer].cameraObj != null;
+            } while (i++ < alivePlayers.Length && !CanSpecHim(alivePlayers[selectedPlayer])
+                                               && alivePlayers[selectedPlayer].cameraObj == null);
+            if(atLeastOneIsEligible)
+                SwitchPlayer();
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
@@ -89,20 +96,30 @@ public class Spectator : Player
                 selectedPlayer--;
                 if (selectedPlayer < 0)
                     selectedPlayer = alivePlayers.Length - 1;
-            } while (i++ < alivePlayers.Length && alivePlayers[selectedPlayer].cameraObj == null);
-            SwitchPlayer();
+                atLeastOneIsEligible = atLeastOneIsEligible || CanSpecHim(alivePlayers[selectedPlayer])
+                    && alivePlayers[selectedPlayer].cameraObj != null;
+            } while (i++ < alivePlayers.Length && !CanSpecHim(alivePlayers[selectedPlayer])
+                                               && alivePlayers[selectedPlayer].cameraObj == null);
+            if(atLeastOneIsEligible)
+                SwitchPlayer();
         }
     }
 
     private void SwitchPlayer()
     {
+        bool atLeatOneIsSelected = false;
         for (int i = 0; i < alivePlayers.Length; i++)
         {
             Player p = alivePlayers[i];
+            if(p.cameraObj == null) continue;
             p.cameraObj.SetActive(i == selectedPlayer);
             boundPlayer = i == selectedPlayer ? p : boundPlayer;
-
+            atLeatOneIsSelected = atLeatOneIsSelected || i == selectedPlayer;
         }
+
+        if (!atLeatOneIsSelected)
+            boundPlayer = null;
+
         freeCam.gameObject.SetActive(false);
     }
 
@@ -113,5 +130,10 @@ public class Spectator : Player
         moveAmount = moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed);
     }
 
-
+    private bool CanSpecHim(Player player)
+    {
+        return !(player is Spectator) && (Gamemode.CurGamemode != Gamemode.CurrentGamemode.GuessWho
+                                          || playerTeam == Gamemode.PlayerTeam.Blue
+                                          || playerTeam == player.playerTeam);
+    }
 }

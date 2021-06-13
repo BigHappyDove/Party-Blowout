@@ -31,7 +31,7 @@ public class UIHealth : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(_pv.IsMine)
+        if(_pv && _pv.IsMine)
             Gamemode.onTakeDamageHook -= UpdateHealth;
     }
 

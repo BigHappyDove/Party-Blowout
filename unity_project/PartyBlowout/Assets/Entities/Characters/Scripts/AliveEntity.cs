@@ -7,8 +7,11 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     public PhotonView PV;
     protected Rigidbody rb;
     public float health = 100;
-    private object originDamage = null;
+    public object originDamage = null;
     [System.NonSerialized] public SpawnEntity spawnEntity;
+    [SerializeField] private Material[] _materialsTeam = new Material[3];
+    [SerializeField] private GameObject _spectatorPrefab;
+
 
 
 
@@ -45,7 +48,6 @@ public class AliveEntity : MonoBehaviourPunCallbacks
         Gamemode.onTakeDamage(this, originDamage, amount);
         if (health <= 0f)
         {
-            Gamemode.onPlayerDeath(this, originDamage);
             if(PV.IsMine)
             {
                 if (this is AgentScript a)
@@ -53,11 +55,35 @@ public class AliveEntity : MonoBehaviourPunCallbacks
                     a.Die();
                     return;
                 }
-                if (spawnEntity != null)
+                if (spawnEntity != null && Gamemode.CanRespawn)
                     spawnEntity.RespawnController(gameObject);
                 else
+                {
+                    Player p = GetComponent<Player>();
+                    Transform rememberTransform = transform;
+                    Gamemode.PlayerTeam playerTeam = Gamemode.PlayerTeam.Alone;
+                    if (p)
+                        playerTeam = p.playerTeam;
                     PhotonNetwork.Destroy(gameObject);
+                    if (!_spectatorPrefab) return;
+                    GameObject g = Instantiate(_spectatorPrefab, rememberTransform.position, rememberTransform.rotation);
+                    Spectator s = g.GetComponent<Spectator>();
+                    if (!s) return;
+                    s.playerTeam = playerTeam;
+                }
             }
+        }
+    }
+
+    protected void ApplyTeamMaterial()
+    {
+        foreach (Transform t in transform)
+        {
+            if(t.gameObject.name == "UserInfo") continue;
+            Renderer r = t.gameObject.GetComponent<Renderer>();
+            if (r == null) continue;
+            Gamemode.PlayerTeam index = this is Player p ? p.playerTeam : 0;
+            r.material = _materialsTeam[(int) index];
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
@@ -48,6 +49,8 @@ public class ShowUserInfo : MonoBehaviourPunCallbacks
 
         if (color != default)
             _textMesh.color = color;
+        if(_textMesh.color == Color.blue && Gamemode.CurGamemode == Gamemode.CurrentGamemode.GuessWho)
+            _textMesh.gameObject.SetActive(false);
     }
 
 

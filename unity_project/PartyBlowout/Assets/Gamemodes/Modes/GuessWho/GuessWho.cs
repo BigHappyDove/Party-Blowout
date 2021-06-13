@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GuessWho : Gamemode
 {
+
+    // RED => SEEKERS
+    // BLUE => HIDING
+
     // Start is called before the first frame update
     protected override void Start()
     {

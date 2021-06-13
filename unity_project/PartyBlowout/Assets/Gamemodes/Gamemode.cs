@@ -30,7 +30,6 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     private float _timeLeftBeforeSync;
     public static CurrentGamemode? CurGamemode = null;
     public static bool CanRespawn = true;
-    public static int[] alivePlayers = {0, 0, 0}; // BLUE, RED, ALONE
     protected static List<PhotonPlayer> PlayersList;
     private PhotonView _photonView;
     [SerializeField] protected static double RedRatio = 0.5;
@@ -48,6 +47,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     protected void FixedUpdate()
     {
+        DebugTools.PrintOnGUI($"({Shooter.Score[0]},{Shooter.Score[1]})");
         if(!_photonView.IsMine) return;
         timeLimit -= Time.fixedDeltaTime;
         _timeLeftBeforeSync -= Time.fixedDeltaTime;

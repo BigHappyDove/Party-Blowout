@@ -56,7 +56,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     private void OnDestroy() // Destroyed => Died somehow
     {
         DebugTools.PrintOnGUI("Called");
-        Gamemode.alivePlayers[(int) playerTeam]--;
+        GuessWho.alivePlayers[(int) playerTeam]--;
         Gamemode.onPlayerDeath(this, originDamage);
     }
 
@@ -66,7 +66,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         playerTeam = (Gamemode.PlayerTeam) team;
         TryStripPlayer();
         ApplyTeamMaterial();
-        Gamemode.alivePlayers[team]++;
+        GuessWho.alivePlayers[team]++;
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)

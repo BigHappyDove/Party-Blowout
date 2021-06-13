@@ -5,6 +5,8 @@ using UnityEngine;
 public class GuessWho : Gamemode
 {
 
+    public static int[] alivePlayers = {0, 0, 0}; // BLUE, RED, ALONE
+
     // RED => SEEKERS
     // BLUE => HIDING
 

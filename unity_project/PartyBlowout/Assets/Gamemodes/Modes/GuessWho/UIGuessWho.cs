@@ -15,8 +15,8 @@ public class UIGuessWho : MonoBehaviour
     void Update()
     {
         if(seekersUI != null)
-            seekersUI.SetText("Seekers: " + GuessWho.alivePlayers[1]);
+            seekersUI.SetText("Seekers: " + GuessWho.AlivePlayers[1]);
         if(hidersUI != null)
-            hidersUI.SetText("Hiders: " + GuessWho.alivePlayers[0]);
+            hidersUI.SetText("Hiders: " + GuessWho.AlivePlayers[0]);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
+using NUnit.Framework.Constraints;
 using Photon.Pun;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -32,11 +33,13 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
     private PhotonView _photonView;
+    protected bool IsEnded;
     [SerializeField] protected static double RedRatio = 0.5;
 
 
     protected virtual void Start()
     {
+        IsEnded = false;
         _timeLeftBeforeSync = timeLimitSync;
         _photonView = GetComponent<PhotonView>();
         PlayersList = new List<PhotonPlayer>();
@@ -45,9 +48,11 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         CreateTeams();
     }
 
+    protected virtual void OnDestroy()
+    { }
+
     protected void FixedUpdate()
     {
-        DebugTools.PrintOnGUI($"({Shooter.Score[0]},{Shooter.Score[1]})");
         if(!_photonView.IsMine) return;
         timeLimit -= Time.fixedDeltaTime;
         _timeLeftBeforeSync -= Time.fixedDeltaTime;
@@ -111,17 +116,13 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     }
 
     //TODO: Add arguments and documentation for each events
-    public static event Action onRoundEndedHook;
-    public static void onRoundEnded() { onRoundEndedHook?.Invoke(); }
+    public static event Action<PlayerTeam> onRoundEndedHook;
 
-    public static event Action onRoundStartedHook;
-    public static void onRoundStarted() {onRoundStartedHook?.Invoke();}
-
-    public static event Action onGamemodeEndedHook;
-    public void onGamemodended() { onRoundEndedHook?.Invoke(); }
-
-    public static event Action onGamemodeStartedHook;
-    public static void onGamemodeStarted() {onRoundStartedHook?.Invoke();}
+    public static void onRoundEnded(PlayerTeam pt)
+    {
+        DebugTools.PrintOnGUI("Event called with " + pt);
+        onRoundEndedHook?.Invoke(pt);
+    }
 
     public static event Action<AliveEntity, object, float> onTakeDamageHook;
     public static void onTakeDamage(AliveEntity victim, object origin, float dmg) {onTakeDamageHook?.Invoke(victim, origin, dmg);}

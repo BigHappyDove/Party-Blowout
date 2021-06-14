@@ -5,23 +5,33 @@ using UnityEngine;
 
 public class Shooter : Gamemode
 {
-    public static readonly int[] Score = {0, 0}; // BLUE, RED
+    public static int[] Score; // BLUE, RED
+    public static int ScoreLimit = 10;
+
+    protected void Awake()
+    {
+        Score = new[] {0, 0};
+        CurGamemode = CurrentGamemode.Shooter;
+        RedRatio = 0.5;
+        onPlayerDeathHook += UpdateScore;
+    }
 
     protected override void Start()
     {
-        CurGamemode = CurrentGamemode.Shooter;
-        RedRatio = 0.5;
-        onPlayerDeathHook += updateScore;
         base.Start();
     }
 
-    private void OnDestroy() => onPlayerDeathHook -= updateScore;
 
-    private void updateScore(AliveEntity victim, object origin)
+    protected override void OnDestroy() => onPlayerDeathHook -= UpdateScore;
+
+    private void UpdateScore(AliveEntity victim, object origin)
     {
-        if (!(victim is Player p)) return;
+        if (IsEnded || !(victim is Player p) || p is Spectator) return;
         int index = p.playerTeam == PlayerTeam.Blue ? 1 : 0;
         Score[index]++;
+        if (Score[index] < ScoreLimit) return;
+        IsEnded = true;
+        onRoundEnded((PlayerTeam) index);
     }
 
     // Update is called once per frame

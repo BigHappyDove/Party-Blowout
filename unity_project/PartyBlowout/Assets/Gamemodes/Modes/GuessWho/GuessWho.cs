@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GuessWho : Gamemode
 {
@@ -21,9 +22,12 @@ public class GuessWho : Gamemode
         onPlayerDeathHook += UpdatePlayerTeam;
     }
 
-    protected override void Start()
+    protected override void FixedUpdate()
     {
-        base.Start();
+        base.FixedUpdate();
+        if (time > 0) return;
+        if(!IsEnded && AlivePlayers[0] > 0)
+            onRoundEnded(PlayerTeam.Blue);
     }
 
     protected override void OnDestroy()
@@ -38,7 +42,6 @@ public class GuessWho : Gamemode
         AlivePlayers[(int) p.playerTeam]--;
         if (AlivePlayers[(int) p.playerTeam] > 0) return;
         onRoundEnded(p.playerTeam == PlayerTeam.Blue ? PlayerTeam.Red : PlayerTeam.Blue);
-        IsEnded = true;
     }
 
     void Update()

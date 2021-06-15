@@ -116,12 +116,12 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     }
 
     //TODO: Add arguments and documentation for each events
-    public static event Action<PlayerTeam> onRoundEndedHook;
+    public static event Action<PlayerTeam, Player> onRoundEndedHook;
 
-    public static void onRoundEnded(PlayerTeam pt)
+    public static void onRoundEnded(PlayerTeam pt, Player p = null)
     {
         DebugTools.PrintOnGUI("Event called with " + pt);
-        onRoundEndedHook?.Invoke(pt);
+        onRoundEndedHook?.Invoke(pt, p);
     }
 
     public static event Action<AliveEntity, object, float> onTakeDamageHook;

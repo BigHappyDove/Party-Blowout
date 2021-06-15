@@ -26,7 +26,9 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         Alone = 2 // For Racing gamemode
     }
 
-    public float timeLimit; //Seconds
+    [SerializeField] private float timeLimit; //Seconds
+    public static float time;
+
     private float timeLimitSync = 1;
     private float _timeLeftBeforeSync;
     public static CurrentGamemode? CurGamemode = null;
@@ -40,6 +42,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     protected virtual void Start()
     {
         IsEnded = false;
+        time = timeLimit;
         _timeLeftBeforeSync = timeLimitSync;
         _photonView = GetComponent<PhotonView>();
         PlayersList = new List<PhotonPlayer>();
@@ -54,16 +57,16 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     protected void FixedUpdate()
     {
         if(!_photonView.IsMine) return;
-        timeLimit -= Time.fixedDeltaTime;
+        time -= Time.fixedDeltaTime;
         _timeLeftBeforeSync -= Time.fixedDeltaTime;
         if(_photonView.IsMine && _timeLeftBeforeSync < 0)
-            _photonView.RPC("RPC_PleaseSyncTime", RpcTarget.All, timeLimit);
+            _photonView.RPC("RPC_PleaseSyncTime", RpcTarget.All, time);
     }
 
     [PunRPC]
-    protected void RPC_PleaseSyncTime(float time)
+    protected void RPC_PleaseSyncTime(float t)
     {
-        timeLimit = time;
+        time = t;
         _timeLeftBeforeSync = timeLimitSync;
         // DebugTools.PrintOnGUI($"Time left is {timeLimit}", DebugTools.LogType.LOG);
 

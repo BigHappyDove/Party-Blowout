@@ -6333,6 +6333,11 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4038172256713527016, guid: 74e0d84ffbc98db45accdffd36b283f6,
+        type: 3}
+      propertyPath: timeLimit
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 4038172256713527017, guid: 74e0d84ffbc98db45accdffd36b283f6,
         type: 3}
       propertyPath: m_RootOrder
@@ -6392,6 +6397,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GamemodeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038172257340017968, guid: 74e0d84ffbc98db45accdffd36b283f6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038271445753674146, guid: 74e0d84ffbc98db45accdffd36b283f6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e0d84ffbc98db45accdffd36b283f6, type: 3}

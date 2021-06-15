@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Shooter : Gamemode
@@ -16,11 +17,13 @@ public class Shooter : Gamemode
         onPlayerDeathHook += UpdateScore;
     }
 
-    protected override void Start()
+    protected override void FixedUpdate()
     {
-        base.Start();
+        base.FixedUpdate();
+        if (time > 0) return;
+        if(!IsEnded)
+            onRoundEnded((PlayerTeam) Array.IndexOf(Score, Score.Max()));
     }
-
 
     protected override void OnDestroy() => onPlayerDeathHook -= UpdateScore;
 
@@ -30,7 +33,6 @@ public class Shooter : Gamemode
         int index = p.playerTeam == PlayerTeam.Blue ? 1 : 0;
         Score[index]++;
         if (Score[index] < ScoreLimit) return;
-        IsEnded = true;
         onRoundEnded((PlayerTeam) index);
     }
 

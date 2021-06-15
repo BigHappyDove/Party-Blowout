@@ -17,6 +17,7 @@ public class UITime : MonoBehaviour
 
     string ConvertFloatToTime(float milliC)
     {
+        if (milliC < 0) milliC = 0;
         int secondCount = (int) milliC % 60;
         int minuteCount = (int) (milliC / 60);
         string secondDisplay = (secondCount <= 9 ? "0" : "") + secondCount;

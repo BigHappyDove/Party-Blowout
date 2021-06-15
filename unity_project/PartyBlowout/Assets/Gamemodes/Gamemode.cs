@@ -35,7 +35,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
     private PhotonView _photonView;
-    protected bool IsEnded;
+    protected static bool IsEnded;
     [SerializeField] protected static double RedRatio = 0.5;
 
 
@@ -54,7 +54,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     protected virtual void OnDestroy()
     { }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if(!_photonView.IsMine) return;
         time -= Time.fixedDeltaTime;
@@ -124,6 +124,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public static void onRoundEnded(PlayerTeam pt, Player p = null)
     {
         DebugTools.PrintOnGUI("Event called with " + pt);
+        IsEnded = true;
         onRoundEndedHook?.Invoke(pt, p);
     }
 

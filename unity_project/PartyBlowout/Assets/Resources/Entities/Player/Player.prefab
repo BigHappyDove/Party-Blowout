@@ -4390,7 +4390,7 @@ PrefabInstance:
         type: 3}
       propertyPath: muzzleFlashImage
       value: 
-      objectReference: {fileID: 2152826922809954244}
+      objectReference: {fileID: 0}
     - target: {fileID: 7188106065179766347, guid: ad41dc4ac9da094468c274d1c567a236,
         type: 3}
       propertyPath: aimingLocalPosition.x
@@ -4414,18 +4414,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5094564535963706810}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2152826922809954244 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6580858404403112574, guid: ad41dc4ac9da094468c274d1c567a236,
-    type: 3}
-  m_PrefabInstance: {fileID: 5094564535963706810}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5877163036147163087
 PrefabInstance:
   m_ObjectHideFlags: 0

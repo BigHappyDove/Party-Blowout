@@ -11,14 +11,14 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     [SerializeField] protected GameObject cameraHolder;
 
-    [SerializeField] protected float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
+    [SerializeField] protected float mouseSensitivity, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
 
     float verticalLookRotation;
     public bool grounded;
     bool canDoubleJump;
-    private AudioManager _audioManager;
     protected PauseMenu _pauseMenu;
     public GameObject cameraObj = null;
+    private bool isPlayingSoundMove;
 
     Vector3 smoothMoveVelocity;
     protected Vector3 moveAmount;
@@ -30,9 +30,9 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
     protected virtual void Start()
     {
+        isPlayingSoundMove = false;
         cameraObj = GetComponentInChildren<Camera>().gameObject;
         _pauseMenu = GetComponentInChildren<PauseMenu>();
-        _audioManager = GetComponent<AudioManager>();
         if (!PV.IsMine)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
@@ -119,7 +119,6 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         if (!PV.IsMine)
             return;
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-        // FixedUpdate runs on a fixed interval -> Important to do all physics and movement calculations in the fixed update method so that movement speed isn't impacted by our fps
     }
 
 
@@ -139,6 +138,16 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
         //Compact if statement : if "LeftShift" key pressed down (sprint key) then use sprintSpeed value. Otherwise, use walkSpeed value
+        if (!isPlayingSoundMove && moveAmount.magnitude >= walkSpeed * 0.1)
+        {
+            _audioManager.Play("Walk");
+            isPlayingSoundMove = true;
+        }
+        if (isPlayingSoundMove && moveAmount.magnitude < walkSpeed * 0.1)
+        {
+            _audioManager.Stop("Walk");
+            isPlayingSoundMove = false;
+        }
     }
 
     void Jump()
@@ -149,7 +158,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(transform.up * jumpForce);
-                _audioManager.Play("Jump");
+                _audioManager.Play("Jump", true);
             }
         }
         else
@@ -157,6 +166,7 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
             if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump)
             {
                 rb.AddForce(transform.up * (jumpForce * doubleJumpMultiplier));
+                _audioManager.Play("Jump", true);
                 canDoubleJump = false;
             }
         }

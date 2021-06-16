@@ -22,10 +22,9 @@ public class Spectator : Player
         Cursor.visible = false;
     }
 
-    protected override void Awake() { }
-
     protected override void Update()
     {
+        base.Update();
         if (_pauseMenu != null)
         {
             if (_pauseMenu.GameIsPaused)

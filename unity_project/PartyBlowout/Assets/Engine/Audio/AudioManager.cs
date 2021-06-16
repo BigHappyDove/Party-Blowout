@@ -48,10 +48,10 @@ public class AudioManager : MonoBehaviour
         }
         return sound;
     }
-    public void Play(string name)
+    public void Play(string name, bool oneShot = false)
     {
         if(_pv == null || !_pv.IsMine) return;
-        _pv.RPC("RPC_Play", RpcTarget.All, name);
+        _pv.RPC("RPC_Play", RpcTarget.All, name, oneShot);
     }
 
     public void Stop(string name)
@@ -61,10 +61,23 @@ public class AudioManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void RPC_Play(string name) => FindSound(name)?.sound.source.Play();
+    public void RPC_Play(string name, bool oneShot = false)
+    {
+        AudioSource s = FindSound(name)?.sound.source;
+        if(!s) return;
+        if(oneShot)
+            s.PlayOneShot(s.clip);
+        else
+            s.Play();
+    }
 
     [PunRPC]
-    public void RPC_Stop(string name) => FindSound(name)?.sound.source.Stop();
+    public void RPC_Stop(string name)
+    {
+        AudioSource s = FindSound(name)?.sound.source;
+        if(!s) return;
+        s.Stop();
+    }
 
     // public void Pitch(string name, float value) => FindSound(name)?.sound.pitch = value;
 }

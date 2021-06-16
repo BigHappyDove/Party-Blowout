@@ -24,8 +24,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] public int ammoInReserve;
 
     //Muzzle Flash (sinon c'est moche quand on tire)
-    [SerializeField] private Image muzzleFlashImage;
-    [SerializeField] protected Sprite[] flashes;
+    [SerializeField] private ParticleSystem ps;
 
     //Viser
     [SerializeField] protected Vector3 normalLocalPosition;
@@ -45,8 +44,7 @@ public class WeaponBase : MonoBehaviour
         // ammoInReserve = reservedAmmoCapacity;
         canShoot = true;
         PV = GetComponent<PhotonView>();
-        muzzleFlashImage.sprite = null;
-        muzzleFlashImage.color = new Color(0, 0, 0, 0);
+        ps.Stop();
         _audioManager = GetComponentInParent<AudioManager>();
     }
 
@@ -156,7 +154,7 @@ public class WeaponBase : MonoBehaviour
         ShootBullet();
         onWeaponShoot();
         DetermineRecoil();
-        StartCoroutine(MuzzleFlash());
+        PV.RPC("RPC_MuzzleFlash", RpcTarget.All);
         // RayCastForEnemy();
         yield return new WaitForSeconds(fireRate);
         canShoot = true;
@@ -166,13 +164,6 @@ public class WeaponBase : MonoBehaviour
     /// randomly spawns sprites in front of gun
     /// </summary>
     /// <returns>return if a sprite can be shown</returns>
-    IEnumerator MuzzleFlash()
-    {
-        Random random = new Random();
-        muzzleFlashImage.sprite = flashes[random.Next(0, flashes.Length)];
-        muzzleFlashImage.color = Color.white;
-        yield return new WaitForSeconds(fireRate);
-        muzzleFlashImage.sprite = null;
-        muzzleFlashImage.color = new Color(0, 0, 0, 0);
-    }
+    [PunRPC]
+    void RPC_MuzzleFlash() => ps.Play();
 }

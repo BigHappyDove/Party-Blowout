@@ -40,11 +40,9 @@ public class animationStateController : MonoBehaviour
         {
             case false when forwardPressed:
                 animator.SetBool("isWalking", true);
-                _audioManager.Play("Walk");
                 break;
             case true when !forwardPressed:
                 animator.SetBool("isWalking", false);
-                _audioManager.Stop("Walk");
                 break;
         }
 
@@ -52,11 +50,9 @@ public class animationStateController : MonoBehaviour
         {
             case false when backwardsPressed:
                 animator.SetBool("isWalkingBack", true);
-                _audioManager.Play("Walk");
                 break;
             case true when !backwardsPressed:
                 animator.SetBool("isWalkingBack", false);
-                _audioManager.Stop("Walk");
                 break;
         }
 

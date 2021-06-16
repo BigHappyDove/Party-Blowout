@@ -10,8 +10,6 @@ using Random = UnityEngine.Random;
 public class AgentScript : AliveEntity
 {
     public float maxDist;
-    public float sprintSpeed;
-    public float walkSpeed;
     private Vector3 _target;
     private Animator animator;
     private NavMeshAgent agent;
@@ -105,9 +103,11 @@ public class AgentScript : AliveEntity
         {
             case false when isWalking:
                 animator.SetBool("isWalking", true);
+                _audioManager.Play("Walk");
                 break;
             case true when !isWalking:
                 animator.SetBool("isWalking", false);
+                _audioManager.Stop("Walk");
                 break;
         }
 

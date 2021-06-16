@@ -1,9 +1,11 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class AliveEntity : MonoBehaviourPunCallbacks
 {
+    protected AudioManager _audioManager;
     public PhotonView PV;
     protected Rigidbody rb;
     public float health = 100;
@@ -11,12 +13,14 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     [System.NonSerialized] public SpawnEntity spawnEntity;
     [SerializeField] private Material[] _materialsTeam = new Material[3];
     [SerializeField] private GameObject _spectatorPrefab;
+    [SerializeField] protected float sprintSpeed = 6, walkSpeed = 3;
 
 
 
 
     protected virtual void Awake()
     {
+        _audioManager = GetComponent<AudioManager>();
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
     }

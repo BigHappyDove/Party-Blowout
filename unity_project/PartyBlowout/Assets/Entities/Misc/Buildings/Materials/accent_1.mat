@@ -72,7 +72,7 @@ Material:
     - _Surface: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.2266, g: 0.1387, b: 0.0725, a: 0}
+    - _BaseColor: {r: 0.22659996, g: 0.13869995, b: 0.07249997, a: 0}
     - _Color: {r: 0.2266, g: 0.1387, b: 0.0725, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

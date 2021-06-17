@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Shooter : Gamemode
 {
-    public static int[] Score; // BLUE, RED
+    public static int[] Score = {0,0}; // BLUE, RED
     public static int ScoreLimit = 10;
 
     protected void Awake()
@@ -27,6 +27,7 @@ public class Shooter : Gamemode
     protected override void OnDestroy()
     {
         onPlayerDeathHook -= UpdateScore;
+        Score = new[] {0, 0};
         base.OnDestroy();
     }
 

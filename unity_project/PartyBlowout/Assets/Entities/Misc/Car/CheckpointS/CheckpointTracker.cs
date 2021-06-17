@@ -42,27 +42,28 @@ public class CheckpointTracker : MonoBehaviour
             onCheckpointPassed(posCheckpoint - _lapCount *checkpointsManager.checkpointSingles.Count,_lapCount);
     }
 
-    [PunRPC]
-    private void TeleportOnCP(int playerID)
-    {
-        var pv = PhotonView.Find(playerID);
-        pv.transform.position = lastCheckpoint.transform.position;
-        pv.transform.rotation = lastCheckpoint.transform.rotation;
-    }
+    // [PunRPC]
+    // private void TeleportOnCP(int playerID)
+    // {
+    //     var pv = PhotonView.Find(playerID);
+    //     pv.transform.position = lastCheckpoint.transform.position;
+    //     pv.transform.rotation = lastCheckpoint.transform.rotation;
+    // }
 
     private void RaceEnd()
     {
         //TODO
     }
-    
+
     void Update()
      {
          if (Input.GetKeyDown(KeyCode.K) && _pv.IsMine)
          {
-             int playerID = _pv.ViewID;
-             GetComponent<PhotonView>().RPC("TeleportOnCP", RpcTarget.All, playerID);
+             _pv.transform.position = lastCheckpoint.transform.position;
+             _simpleCarController.PV.transform.rotation = lastCheckpoint.transform.rotation;
+             _simpleCarController.theRB.velocity = Vector3.zero;
+             // GetComponent<PhotonView>().RPC("TeleportOnCP", RpcTarget.All, playerID);
          }
-         
          RaceEnd();
      }
 }

@@ -23,8 +23,6 @@ public class SpawnPoint : MonoBehaviour
 
     public bool IsSomeoneInRange(float range)
     {
-        DebugTools.PrintOnGUI(FindObjectsOfType<Player>().Length);
-        DebugTools.PrintOnGUI(GameObject.FindGameObjectsWithTag("Player").Length);
         return GameObject.FindGameObjectsWithTag("Player").Any(g =>
             Vector3.Distance(g.transform.position, transform.position) <= range);
     }

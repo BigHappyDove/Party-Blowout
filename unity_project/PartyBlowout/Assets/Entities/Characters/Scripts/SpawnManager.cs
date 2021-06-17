@@ -19,7 +19,6 @@ public class SpawnManager : MonoBehaviour
         {
             s = spawnpoints[Random.Range(0, spawnpoints.Length)];
             test = s.IsSomeoneInRange(5);
-            DebugTools.PrintOnGUI(test);
             i++;
         } while (test && i < maxIter);
 

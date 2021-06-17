@@ -2876,7 +2876,7 @@ MonoBehaviour:
   doubleJumpMultiplier: 0.8
   grounded: 0
   cameraObj: {fileID: 0}
-  playerTeam: 0
+  playerTeam: 2
 --- !u!114 &2346656906912211478
 MonoBehaviour:
   m_ObjectHideFlags: 0

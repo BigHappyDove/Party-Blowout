@@ -5,6 +5,7 @@ using ExitGames.Client.Photon;
 using NUnit.Framework.Constraints;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using PhotonPlayer = Photon.Realtime.Player;
 using Random = UnityEngine.Random;
@@ -31,10 +32,11 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     private float timeLimitSync = 1;
     private float _timeLeftBeforeSync;
+    private PhotonView _photonView;
+    private float _timeBeforeNewRound = 3;
     public static CurrentGamemode? CurGamemode = null;
     public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
-    private PhotonView _photonView;
     protected static bool IsEnded;
     [SerializeField] protected static double RedRatio = 0.5;
 
@@ -47,12 +49,16 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         _photonView = GetComponent<PhotonView>();
         PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
-        if(!PhotonNetwork.IsMasterClient) return;
+        if (!PhotonNetwork.IsMasterClient) return;
         CreateTeams();
+        onRoundEndedHook += StartCountdownNewRound;
     }
 
     protected virtual void OnDestroy()
-    { }
+    {
+        if(!PhotonNetwork.IsMasterClient) return;
+        onRoundEndedHook -= StartCountdownNewRound;
+    }
 
     protected virtual void FixedUpdate()
     {
@@ -70,6 +76,18 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         _timeLeftBeforeSync = timeLimitSync;
         // DebugTools.PrintOnGUI($"Time left is {timeLimit}", DebugTools.LogType.LOG);
 
+    }
+
+    private void StartCountdownNewRound(PlayerTeam pt, Player p)
+    {
+        // StartCoroutine(NewRound());
+    }
+
+    private IEnumerator NewRound()
+    {
+        if(!PhotonNetwork.IsMasterClient) yield break;
+        yield return new WaitForSeconds(_timeBeforeNewRound);
+        RoomController.StaticLoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
     }
 
     public void SetRandomGamemode()
@@ -123,7 +141,6 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     public static void onRoundEnded(PlayerTeam pt, Player p = null)
     {
-        DebugTools.PrintOnGUI("Event called with " + pt);
         IsEnded = true;
         onRoundEndedHook?.Invoke(pt, p);
     }

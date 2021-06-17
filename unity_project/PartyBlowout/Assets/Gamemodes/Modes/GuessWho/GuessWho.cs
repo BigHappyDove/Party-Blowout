@@ -16,6 +16,7 @@ public class GuessWho : Gamemode
 
     protected void Awake()
     {
+        AlivePlayers = new[] {0, 0, 0};
         CurGamemode = CurrentGamemode.GuessWho;
         CanRespawn = false;
         RedRatio = 0.3;
@@ -32,8 +33,8 @@ public class GuessWho : Gamemode
 
     protected override void OnDestroy()
     {
-        base.OnDestroy();
         onPlayerDeathHook -= UpdatePlayerTeam;
+        base.OnDestroy();
     }
 
     private void UpdatePlayerTeam(AliveEntity a, object o)

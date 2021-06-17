@@ -25,6 +25,7 @@ public class EndScreen : MonoBehaviour
         UIHandler.SetActive(true);
         string userName = p != null && p.PV != null && p.PV.Owner != null ? p.PV.Owner.NickName : "undefined";
         string winner = pt == Gamemode.PlayerTeam.Alone ? userName : pt + " team";
-        winnerTMP.SetText(winner + " won the round!");
+        winnerTMP.SetText(winner + " won the round!\n" +
+                          "Waiting fo a new round to start...");
     }
 }

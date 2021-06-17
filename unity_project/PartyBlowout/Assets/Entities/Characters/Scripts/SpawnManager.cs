@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -10,14 +11,18 @@ public class SpawnManager : MonoBehaviour
 
     public Transform GetSpawnpoint()
     {
-        SpawnPoint s;
         int maxIter = 20;
         int i = 0;
-        while ((s = spawnpoints[Random.Range(0, spawnpoints.Length)]).isOccupied && i < maxIter)
+        bool test;
+        SpawnPoint s;
+        do
         {
-            DebugTools.PrintOnGUI(i);
+            s = spawnpoints[Random.Range(0, spawnpoints.Length)];
+            test = s.IsSomeoneInRange(5);
+            DebugTools.PrintOnGUI(test);
             i++;
-        }
+        } while (test && i < maxIter);
+
         return s.transform;
     }
 }

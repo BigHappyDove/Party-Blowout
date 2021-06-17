@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7485448274779199027}
   - component: {fileID: 7376317000064796472}
   - component: {fileID: 2137503522068892481}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: VoitureBanane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,9 +191,9 @@ GameObject:
   - component: {fileID: 4104815526243456922}
   - component: {fileID: 4312983280578817829}
   - component: {fileID: 1156908944938281337}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: FormulaBanane
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -537,6 +537,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoueAvantGauche
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5858daf8376663d40b84aa5be79bfa1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5858daf8376663d40b84aa5be79bfa1b, type: 3}
 --- !u!4 &2489407149346238849 stripped
@@ -627,6 +632,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoueArriereGauche (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5858daf8376663d40b84aa5be79bfa1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5858daf8376663d40b84aa5be79bfa1b, type: 3}
 --- !u!1001 &3699382503818796179
@@ -636,6 +646,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1127684041857303282}
     m_Modifications:
+    - target: {fileID: 1560415538143012474, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862259542165729205, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630056670704897235, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049440497677753, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049440501332544, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8014049440578428612, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
         type: 3}
       propertyPath: m_Pivot.x
@@ -746,6 +781,76 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8014049440578428616, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049440687331136, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049440870047909, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441125552381, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441228423240, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441257145559, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441269726019, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441320061500, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441364216692, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441464080409, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049441572452850, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049442357477664, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049442523235716, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014049442617175462, guid: 4cfb72e2a7afa254f9d78c4640f2c318,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cfb72e2a7afa254f9d78c4640f2c318, type: 3}
 --- !u!224 &6656680102995313239 stripped
@@ -765,6 +870,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UserInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1671738608848549443, guid: 9e43086397582a04a962821542e390e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3483902848971321901, guid: 9e43086397582a04a962821542e390e7,
         type: 3}
@@ -971,6 +1081,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VoitureBanane
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6ee7cca5da639843be3ec602fbb751f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ee7cca5da639843be3ec602fbb751f, type: 3}
 --- !u!4 &6326398979484259301 stripped
@@ -1061,6 +1176,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoueAvantDroite
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5858daf8376663d40b84aa5be79bfa1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5858daf8376663d40b84aa5be79bfa1b, type: 3}
 --- !u!4 &7129297145621164449 stripped
@@ -1150,6 +1270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoueArriereGauche
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5858daf8376663d40b84aa5be79bfa1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5858daf8376663d40b84aa5be79bfa1b, type: 3}

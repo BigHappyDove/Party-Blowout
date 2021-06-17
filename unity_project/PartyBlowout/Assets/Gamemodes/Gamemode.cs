@@ -80,14 +80,24 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     private void StartCountdownNewRound(PlayerTeam pt, Player p)
     {
-        // StartCoroutine(NewRound());
+        StartCoroutine(NewRound());
     }
 
     private IEnumerator NewRound()
     {
         if(!PhotonNetwork.IsMasterClient) yield break;
         yield return new WaitForSeconds(_timeBeforeNewRound);
-        RoomController.StaticLoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
+        ChangeScene();
+    }
+
+    private void ChangeScene()
+    {
+        if(SceneManager.sceneCountInBuildSettings - 1 == 1) return;
+        int index;
+        do
+            index = Random.Range(1, SceneManager.sceneCountInBuildSettings);
+        while ( index == SceneManager.GetActiveScene().buildIndex);
+        RoomController.StaticLoadScene(index);
     }
 
     public void SetRandomGamemode()

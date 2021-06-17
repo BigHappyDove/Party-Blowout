@@ -14,6 +14,7 @@ public class UiShooter : MonoBehaviour
     }
     void Update()
     {
+        if(Shooter.Score.Length < 2) Shooter.Score = new []{0,0};
         if(blueUI != null)
             blueUI.SetText("Red: " + Shooter.Score[1]);
         if(redUI != null)

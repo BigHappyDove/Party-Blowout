@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomController : MonoBehaviourPunCallbacks
 {
@@ -16,11 +17,15 @@ public class RoomController : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public void LoadScene(int indexSceneToLoad)
+    public static void StaticLoadScene(int indexSceneToLoad)
     {
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel(indexSceneToLoad);
         }
     }
+
+    public void LoadScene(int indexSceneToLoad) => StaticLoadScene(indexSceneToLoad);
+
+    public void LoadScene() => StaticLoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
 }

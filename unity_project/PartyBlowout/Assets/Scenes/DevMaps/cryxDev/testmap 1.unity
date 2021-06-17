@@ -2692,8 +2692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba8a300c29b5674bbe31d7f0482b692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Entities/Player/Player
+  paths:
+  - Entities/Player/Player
   _spawnManager: {fileID: 1067382282}
+  doSpawnOnStart: 1
 --- !u!1 &1131041770
 GameObject:
   m_ObjectHideFlags: 0

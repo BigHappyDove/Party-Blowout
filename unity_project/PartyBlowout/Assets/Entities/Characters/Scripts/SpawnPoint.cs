@@ -12,7 +12,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (!isOccupied && TestSpawner(other))
         {
-            DebugTools.PrintOnGUI("EnteredSpawn, TRUE");
+            // DebugTools.PrintOnGUI("EnteredSpawn, TRUE");
             isOccupied = true;
         }
     }
@@ -21,7 +21,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (!isOccupied && TestSpawner(other))
         {
-            DebugTools.PrintOnGUI("StayedSpawn, TRUE");
+            // DebugTools.PrintOnGUI("StayedSpawn, TRUE");
             isOccupied = true;
         }
     }
@@ -30,7 +30,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (isOccupied && TestSpawner(other))
         {
-            DebugTools.PrintOnGUI("LeftSpawn, FALSE");
+            // DebugTools.PrintOnGUI("LeftSpawn, FALSE");
             isOccupied = false;
         }
     }
@@ -38,7 +38,8 @@ public class SpawnPoint : MonoBehaviour
     private bool TestSpawner(Collider other)
     {
         bool testHumans = other.TryGetComponent(out Player p) && !(p is Spectator);
-        bool testCars = other.TryGetComponent(out SimpleCarController s);
+        bool testCars = other.gameObject.layer == 10; // 10 => Layer car
+        DebugTools.PrintOnGUI($"{testHumans}, {testCars}");
         return testHumans || testCars;
     }
 

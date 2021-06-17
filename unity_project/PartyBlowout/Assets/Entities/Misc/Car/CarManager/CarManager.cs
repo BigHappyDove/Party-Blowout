@@ -11,6 +11,7 @@ public class CarManager : MonoBehaviour
 
     [NonSerialized] public List<SimpleCarController> listCars = new List<SimpleCarController>();
     public CheckpointsManager checkpointsManager;
+    public SpawnEntity _spawnEntity;
 
 
     // Start is called before the first frame update
@@ -21,33 +22,15 @@ public class CarManager : MonoBehaviour
 
     void InstantiateCar()
     {
-        GameObject g;
         if (checkpointsManager == null)
             throw new ArgumentException("Couldn't find checkpointsManager / start checkpoint");
 
-        Random rand = new Random();
-        int vehiclechoice = rand.Next(4);
-
-        switch (vehiclechoice)
-        {
-            case 0:
-                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "MotoCerise"), Vector3.zero, Quaternion.identity);
-                break;
-            case 1:
-                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "AvocatTuning"), Vector3.zero, Quaternion.identity);
-                break;
-            case 2:
-                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "FormulaBanane"), Vector3.zero, Quaternion.identity);
-                break;
-            default:
-                g = PhotonNetwork.Instantiate(Path.Combine("Entities", "ScooterMelon"), Vector3.zero, Quaternion.identity);
-                break;
-        }
+        GameObject g = _spawnEntity.CreateController();
+        DebugTools.PrintOnGUI(g != null);
 
         if (g != null)
         {
             listCars.Add(g.GetComponent<SimpleCarController>());
-            //DebugTools.PrintOnGUI(listCars != null);
         }
         g.GetComponentInChildren<CheckpointTracker>().checkpointsManager = checkpointsManager;
     }

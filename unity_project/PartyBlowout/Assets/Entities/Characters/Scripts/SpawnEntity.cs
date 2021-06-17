@@ -6,8 +6,9 @@ using System.IO;
 
 public class SpawnEntity : MonoBehaviour
 {
-    public string path;
+    public List<string> paths;
     public SpawnManager _spawnManager;
+    public bool doSpawnOnStart = true;
 
     void Start()
     {
@@ -19,17 +20,18 @@ public class SpawnEntity : MonoBehaviour
                 DebugTools.PrintOnGUI("SpawnEntity: Couldn't find any SpawnManager component! Entities will not be created!", DebugTools.LogType.ERROR);
         }
 
-        if(_spawnManager != null)
+        if(doSpawnOnStart && _spawnManager != null)
             CreateController();
     }
 
-    void CreateController(object[] args = null)
+    public GameObject CreateController(object[] args = null)
     {
-        GameObject g = EntitiesManager.CreateEntity(path, _spawnManager.GetSpawnpoint(), args);
+        string rndPath = paths[Random.Range(0, paths.Count)];
+        GameObject g = EntitiesManager.CreateEntity(rndPath, _spawnManager.GetSpawnpoint(), args);
         AliveEntity aliveEntity = g.GetComponent<AliveEntity>();
         if(aliveEntity != null)
             aliveEntity.spawnEntity = this;
-        // PhotonNetwork.Instantiate(Path.Combine("Entities", "Player/Player"), spawnpoint.position, spawnpoint.rotation);
+        return g;
     }
 
     public void RespawnController(GameObject gameObject, object[] args = null)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44663918, g: 0.4964863, b: 0.57485384, a: 1}
+  m_IndirectSpecularColor: {r: 0.18033208, g: 0.225773, b: 0.30695117, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4305,6 +4305,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpownPoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 856285337458761124, guid: b06909297002d534eb06e7b668c90c6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4258783823232419424, guid: b06909297002d534eb06e7b668c90c6c,
         type: 3}
       propertyPath: m_RootOrder
@@ -6040,6 +6045,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpownPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 856285337458761124, guid: b06909297002d534eb06e7b668c90c6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4258783823232419424, guid: b06909297002d534eb06e7b668c90c6c,
         type: 3}
       propertyPath: m_RootOrder
@@ -6261,7 +6271,7 @@ PrefabInstance:
     - target: {fileID: 4258783823232419424, guid: b06909297002d534eb06e7b668c90c6c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 5.54
       objectReference: {fileID: 0}
     - target: {fileID: 4258783823232419424, guid: b06909297002d534eb06e7b668c90c6c,
         type: 3}

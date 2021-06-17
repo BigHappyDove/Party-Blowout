@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4258783823232419424}
   - component: {fileID: 1182801430348771428}
+  - component: {fileID: 8623529859839889198}
   m_Layer: 0
   m_Name: SpownPoint
   m_TagString: Untagged
@@ -45,6 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 2602472237801490540}
+  isOccupied: 0
+--- !u!135 &8623529859839889198
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856285337458761124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0.31, z: 0}
 --- !u!1 &1226507409531813970
 GameObject:
   m_ObjectHideFlags: 0

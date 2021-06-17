@@ -10,6 +10,14 @@ public class SpawnManager : MonoBehaviour
 
     public Transform GetSpawnpoint()
     {
-        return spawnpoints[Random.Range(0, spawnpoints.Length)].transform;
+        SpawnPoint s;
+        int maxIter = 20;
+        int i = 0;
+        while ((s = spawnpoints[Random.Range(0, spawnpoints.Length)]).isOccupied && i < maxIter)
+        {
+            DebugTools.PrintOnGUI(i);
+            i++;
+        }
+        return s.transform;
     }
 }

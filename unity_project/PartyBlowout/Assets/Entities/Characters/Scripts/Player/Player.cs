@@ -64,7 +64,8 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         playerTeam = (Gamemode.PlayerTeam) team;
         TryStripPlayer();
         ApplyTeamMaterial();
-        GuessWho.AlivePlayers[team]++;
+        if(Gamemode.CurGamemode == Gamemode.CurrentGamemode.GuessWho)
+            GuessWho.AlivePlayers[team]++;
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -81,6 +82,8 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     void SetTeam()
     {
         Gamemode.PlayerTeam? team = GetTeam(PV);
+        // DebugTools.PrintOnGUI(team + " " + playerTeam);
+        if(team == playerTeam) return;
         if(team != null)
         {
             playerTeam = (Gamemode.PlayerTeam) team;

@@ -11,7 +11,6 @@ public class Shooter : Gamemode
 
     protected void Awake()
     {
-        Score = new[] {0, 0};
         CurGamemode = CurrentGamemode.Shooter;
         RedRatio = 0.5;
         onPlayerDeathHook += UpdateScore;
@@ -25,7 +24,11 @@ public class Shooter : Gamemode
             onRoundEnded((PlayerTeam) Array.IndexOf(Score, Score.Max()));
     }
 
-    protected override void OnDestroy() => onPlayerDeathHook -= UpdateScore;
+    protected override void OnDestroy()
+    {
+        onPlayerDeathHook -= UpdateScore;
+        base.OnDestroy();
+    }
 
     private void UpdateScore(AliveEntity victim, object origin)
     {

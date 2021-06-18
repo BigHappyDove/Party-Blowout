@@ -39,7 +39,8 @@ public class CheckpointTracker : MonoBehaviour
         if (newLap) _lapCount++;
         posCheckpoint++;
         if(_pv.IsMine)
-            onCheckpointPassed(posCheckpoint - _lapCount *checkpointsManager.checkpointSingles.Count,_lapCount);
+            onCheckpointPassed(posCheckpoint - _lapCount * checkpointsManager.checkpointSingles.Count, _lapCount);
+        if(_lapCount == 3) Gamemode.onRoundEnded(Gamemode.PlayerTeam.Alone, _pv);
     }
 
     // [PunRPC]

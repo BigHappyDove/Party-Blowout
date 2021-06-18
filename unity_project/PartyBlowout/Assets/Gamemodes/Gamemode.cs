@@ -78,7 +78,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
 
     }
 
-    private void StartCountdownNewRound(PlayerTeam pt, Player p)
+    private void StartCountdownNewRound(PlayerTeam pt, PhotonView photonView)
     {
         StartCoroutine(NewRound());
     }
@@ -147,12 +147,12 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     }
 
     //TODO: Add arguments and documentation for each events
-    public static event Action<PlayerTeam, Player> onRoundEndedHook;
+    public static event Action<PlayerTeam, PhotonView> onRoundEndedHook;
 
-    public static void onRoundEnded(PlayerTeam pt, Player p = null)
+    public static void onRoundEnded(PlayerTeam pt, PhotonView pv = null)
     {
         IsEnded = true;
-        onRoundEndedHook?.Invoke(pt, p);
+        onRoundEndedHook?.Invoke(pt, pv);
     }
 
     public static event Action<AliveEntity, object, float> onTakeDamageHook;

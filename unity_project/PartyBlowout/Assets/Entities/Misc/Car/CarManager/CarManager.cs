@@ -26,12 +26,9 @@ public class CarManager : MonoBehaviour
             throw new ArgumentException("Couldn't find checkpointsManager / start checkpoint");
 
         GameObject g = _spawnEntity.CreateController();
-        DebugTools.PrintOnGUI(g != null);
 
         if (g != null)
-        {
             listCars.Add(g.GetComponent<SimpleCarController>());
-        }
         g.GetComponentInChildren<CheckpointTracker>().checkpointsManager = checkpointsManager;
     }
 

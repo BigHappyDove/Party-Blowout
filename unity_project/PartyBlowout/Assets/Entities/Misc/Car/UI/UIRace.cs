@@ -55,12 +55,12 @@ public class UIRace : MonoBehaviour
     void UpdateUiCheckpoints(int checkpoint, int lap)
     {
         checkpointsBox.text = (checkpoint + 1).ToString();
-        if (lapsBox.text == lap.ToString()) return;
+        if (lapsBox.text == (lap+1).ToString()) return;
         if (_bestLapMilliCount == 0 || _lapMilliCount < _bestLapMilliCount)
             _bestLapMilliCount = _lapMilliCount;
         _lapMilliCount = 0;
         UpdateBoxes(bestMilliBox, bestSecondBox, bestMinuteBox, _bestLapMilliCount);
-        lapsBox.text = lap.ToString();
+        lapsBox.text = (lap+1).ToString();
     }
 
     void UpdateBoxes(Text milli, Text second, Text minute, float milliC)

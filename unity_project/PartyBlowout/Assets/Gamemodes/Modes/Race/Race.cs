@@ -12,4 +12,12 @@ public class Race : Gamemode
         base.Start();
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (time > 0) return;
+        if(!IsEnded)
+            onRoundEnded(PlayerTeam.Alone);
+    }
+
 }

@@ -19,6 +19,7 @@ public class SimpleCarController : MonoBehaviour
     public LayerMask whatIsGround;
     public float groundRayLength = 0.5f;
     public Transform groundRayPoint;
+    public PauseMenu ps;
 
     public Transform leftFrontWheel, rightFrontWheel;
     public float maxWheelTurn;
@@ -29,6 +30,7 @@ public class SimpleCarController : MonoBehaviour
 
         if (!PV.IsMine)
         {
+            Destroy(ps.gameObject);
             Destroy(GetComponentInChildren<Camera>().gameObject);
         }
         theRB.transform.parent = null;

@@ -186,4 +186,14 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         WeaponInventory wp = GetComponentInChildren<WeaponInventory>();
         if(wp) wp.StripPlayer();
     }
+
+    public float GetSensitivity()
+    {
+        return mouseSensitivity;
+    }
+
+    public void SetSensitivity(float newSensitivity)
+    {
+        mouseSensitivity = newSensitivity;
+    }
 }

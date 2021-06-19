@@ -10,14 +10,20 @@ public class Scope : MonoBehaviour
 
     public GameObject sniper;
 
+    public Player player;
+
     public Camera mainCamera;
 
     public float scopedFOV = 15;
     private float normalFOV;
 
+    public float sensitivity = 0.4f;
+    private float normalSensitivity;
+
     private void Start()
     {
         scopeOverlay.SetActive(false);
+        
     }
 
     void Update()
@@ -40,6 +46,7 @@ public class Scope : MonoBehaviour
         sniper.SetActive(true);
 
         mainCamera.fieldOfView = normalFOV;
+        player.SetSensitivity(normalSensitivity);
     }
 
     IEnumerator OnScoped()
@@ -52,6 +59,10 @@ public class Scope : MonoBehaviour
 
             normalFOV = mainCamera.fieldOfView;
             mainCamera.fieldOfView = scopedFOV;
+            
+            normalSensitivity = player.GetSensitivity();
+            player.SetSensitivity(sensitivity);
+
         }
     }
 }

@@ -14,6 +14,8 @@ public class AgentScript : AliveEntity
     private Animator animator;
     private NavMeshAgent agent;
     private CheckPointsAI _lastCheckpoint;
+    private const float _cdBeforeNewTarget = 5f;
+    private float _curCd = 5f;
 
     private void Start()
     {
@@ -22,7 +24,7 @@ public class AgentScript : AliveEntity
         if(!PV.IsMine) return;
         agent.speed = sprintSpeed;
         InvokeRepeating(nameof(RandomMaxSpeed), 1, 1.5f);
-        _target = GetRandomPosOnNavMesh();
+        UpdateTarget(GetRandomPosOnNavMesh());
 
     }
 
@@ -75,7 +77,7 @@ public class AgentScript : AliveEntity
             checkpoint = checkPoints[Random.Range(0, checkPoints.Count)];
         _lastCheckpoint = curCheckpoint;
         Bounds cpBounds = checkpoint.GetComponent<Collider>().bounds;
-        _target = _randomPosVector3(cpBounds.min, cpBounds.max);
+        UpdateTarget(_randomPosVector3(cpBounds.min, cpBounds.max));
     }
 
     /// <summary>
@@ -87,12 +89,23 @@ public class AgentScript : AliveEntity
     private Vector3 _randomPosVector3(Vector3 min, Vector3 max)
         => new Vector3(Random.Range(min.x, max.x), 0, Random.Range(min.z, max.z));
 
+    private void UpdateTarget(Vector3 pos)
+    {
+        _target = pos;
+        _curCd = _cdBeforeNewTarget;
+    }
+
     private void Update()
     {
         if (!PV.IsMine)
             return;
         if(!agent.hasPath)
-            _target = GetRandomPosOnNavMesh();
+            UpdateTarget(GetRandomPosOnNavMesh());
+        if (Gamemode.CurGamemode == Gamemode.CurrentGamemode.GuessWho)
+        {
+            sprintSpeed = 12;
+            walkSpeed = 6;
+        }
 
 
         float velocity = agent.velocity.magnitude;
@@ -126,6 +139,9 @@ public class AgentScript : AliveEntity
     private void FixedUpdate()
     {
         if(!PV.IsMine) return;
+        _curCd -= Time.fixedDeltaTime;
+        if(_curCd < 0)
+            UpdateTarget(GetRandomPosOnNavMesh());
         agent.SetDestination(_target);
     }
 }

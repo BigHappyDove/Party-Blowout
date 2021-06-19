@@ -103,6 +103,11 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
     {
         if (!PV.IsMine)
             return;
+        if (Gamemode.CurGamemode == Gamemode.CurrentGamemode.GuessWho)
+        {
+            sprintSpeed = 12;
+            walkSpeed = 6;
+        }
         if (_pauseMenu != null)
         {
             if (_pauseMenu.GameIsPaused)

@@ -262,9 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theRB: {fileID: 2361586669066193892}
-  forwardAccel: 30
-  reverseAccel: 15
-  maxSpeed: 110
+  forwardAccel: 25
+  reverseAccel: 10
+  maxSpeed: 125
   turnStrength: 180
   gravityForce: 10
   dragGround: 3

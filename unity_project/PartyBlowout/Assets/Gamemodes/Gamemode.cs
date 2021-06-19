@@ -33,11 +33,12 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     private float timeLimitSync = 1;
     private float _timeLeftBeforeSync;
     private PhotonView _photonView;
-    private float _timeBeforeNewRound = 3;
+    private float _timeBeforeNewRound = 10;
     public static CurrentGamemode? CurGamemode = null;
     public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
     protected static bool IsEnded;
+    [SerializeField] private TransitionManager _tm;
     [SerializeField] protected static double RedRatio = 0.5;
 
 
@@ -86,17 +87,26 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     private IEnumerator NewRound()
     {
         if(!PhotonNetwork.IsMasterClient) yield break;
+        int index = GetIndexNextScene();
+        if(index != 0)
+            _tm.PlaySelected((CurrentGamemode) (index-1));
         yield return new WaitForSeconds(_timeBeforeNewRound);
-        ChangeScene();
+        ChangeScene(index);
     }
 
-    private void ChangeScene()
+    private int GetIndexNextScene()
     {
-        if(SceneManager.sceneCountInBuildSettings - 1 == 1) return;
+        if(SceneManager.sceneCountInBuildSettings - 1 == 1) return 0;
         int index;
         do
             index = Random.Range(1, SceneManager.sceneCountInBuildSettings);
         while ( index == SceneManager.GetActiveScene().buildIndex);
+        return index;
+    }
+
+    private void ChangeScene(int index)
+    {
+        if(index == 0) return;
         RoomController.StaticLoadScene(index);
     }
 

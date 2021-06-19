@@ -4046,6 +4046,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 5
+  _tm: {fileID: 1826834294}
+--- !u!114 &1826834294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 28516548246342964, guid: 74e0d84ffbc98db45accdffd36b283f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1826834291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fb1ec3144eb514f9b7ba2763a317ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1832294996
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,5 +34,6 @@ public class RoomController : MonoBehaviourPunCallbacks
         StaticLoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
         if(objToDel)
             objToDel.SetActive(false);
+        PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 }

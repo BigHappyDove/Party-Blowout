@@ -1,14 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject playMenu, roomMenu, loadingScreen;
     [SerializeField] private TextMeshProUGUI textIDRoom;
+
+    private void Start()
+    {
+        AudioListener.volume = 0.5f;
+    }
 
     public static string TryCreateRoom()
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -10,8 +11,8 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
 {
 
     [SerializeField] protected GameObject cameraHolder;
-
     [SerializeField] protected float mouseSensitivity, jumpForce, smoothTime, doubleJumpMultiplier; // smoothTime smooth out our movement
+    [SerializeField] private TextMeshProUGUI _teamText;
 
     float verticalLookRotation;
     public bool grounded;
@@ -93,6 +94,12 @@ public class Player : AliveEntity, IPunInstantiateMagicCallback
         {
             playerTeam = Gamemode.PlayerTeam.Alone;
             DebugTools.PrintOnGUI($"Team not found in custom properties of the player! {playerTeam}", DebugTools.LogType.WARNING);
+        }
+
+        if(_teamText)
+        {
+            _teamText.SetText(playerTeam == Gamemode.PlayerTeam.Blue ? " Blue" : " Red");
+            _teamText.color = playerTeam == Gamemode.PlayerTeam.Blue ? Color.blue : Color.red;
         }
 
         PV.RPC("RPC_SyncAttributes", RpcTarget.All, (int)playerTeam);

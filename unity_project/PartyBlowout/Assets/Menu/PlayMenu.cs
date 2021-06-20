@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject playMenu, roomMenu, loadingScreen;
+    [SerializeField] private TextMeshProUGUI textIDRoom;
 
     public static string TryCreateRoom()
     {
@@ -37,6 +38,8 @@ public class PlayMenu : MonoBehaviourPunCallbacks
         playMenu.SetActive(false);
         loadingScreen.SetActive(false);
         roomMenu.SetActive(true);
+        if(textIDRoom)
+            textIDRoom.SetText("Room ID " + PhotonNetwork.CurrentRoom.Name);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

@@ -2921,6 +2921,7 @@ GameObject:
   - component: {fileID: 2409974659224452081}
   - component: {fileID: 7150877430710329840}
   - component: {fileID: 8613423401109976747}
+  - component: {fileID: 5914325211772899609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3167,6 +3168,59 @@ MonoBehaviour:
       loop: 0
       source: {fileID: 0}
     maxDistance: 200
+  - sound:
+      name: Nani
+      clip: {fileID: 8300000, guid: b4f33e015455ada41b8680ec74ba0ee9, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    maxDistance: 200
+  - sound:
+      name: Hello
+      clip: {fileID: 8300000, guid: 3e636bc9bba807e4cbdb9109c90fc0b4, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    maxDistance: 200
+  - sound:
+      name: Deja-vu
+      clip: {fileID: 8300000, guid: bff8d238cc04ca5448bbc4f33e5c40dd, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    maxDistance: 200
+  - sound:
+      name: French
+      clip: {fileID: 8300000, guid: 9afa59917c5897b479cfc9ae46946e91, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+    maxDistance: 200
+--- !u!114 &5914325211772899609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723462430055870351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb37b3e80a805324d9cf4f53f40ceea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PV: {fileID: 0}
+  health: 100
+  _materialsTeam:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spectatorPrefab: {fileID: 0}
+  sprintSpeed: 12
+  walkSpeed: 6
 --- !u!1 &6812503919358102740
 GameObject:
   m_ObjectHideFlags: 0
@@ -4656,15 +4710,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 773091063155245758}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7964666162872297831 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7220043798879300569, guid: aa5ae89f50dca71438d8347cf8d13635,
-    type: 3}
-  m_PrefabInstance: {fileID: 773091063155245758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &636072769141910252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 173770019927582802, guid: aa5ae89f50dca71438d8347cf8d13635,
+    type: 3}
+  m_PrefabInstance: {fileID: 773091063155245758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7964666162872297831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7220043798879300569, guid: aa5ae89f50dca71438d8347cf8d13635,
     type: 3}
   m_PrefabInstance: {fileID: 773091063155245758}
   m_PrefabAsset: {fileID: 0}
@@ -4787,6 +4841,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 500793f404596284a94de4e5c78aeb7b, type: 3}
+--- !u!224 &6273105306107926312 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8364562479828795117, guid: 500793f404596284a94de4e5c78aeb7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2529449899467942341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6273105306107926315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8364562479828795118, guid: 500793f404596284a94de4e5c78aeb7b,
@@ -4799,12 +4859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070f55a4bd71e2243a471c6a0bd25730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6273105306107926312 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8364562479828795117, guid: 500793f404596284a94de4e5c78aeb7b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2529449899467942341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2995235223717796980
 PrefabInstance:
   m_ObjectHideFlags: 0

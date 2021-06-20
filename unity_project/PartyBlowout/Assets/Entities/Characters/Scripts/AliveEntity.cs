@@ -13,7 +13,7 @@ public class AliveEntity : MonoBehaviourPunCallbacks
     [System.NonSerialized] public SpawnEntity spawnEntity;
     [SerializeField] private Material[] _materialsTeam = new Material[3];
     [SerializeField] private GameObject _spectatorPrefab;
-    [SerializeField] protected float sprintSpeed = 6, walkSpeed = 3;
+    [SerializeField] protected float sprintSpeed = 12, walkSpeed = 6;
 
 
 
@@ -23,6 +23,8 @@ public class AliveEntity : MonoBehaviourPunCallbacks
         _audioManager = GetComponent<AudioManager>();
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
+        sprintSpeed = 12;
+        walkSpeed = 6;
     }
 
     /// <summary>

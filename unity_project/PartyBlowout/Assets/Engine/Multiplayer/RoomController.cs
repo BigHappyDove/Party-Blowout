@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class RoomController : MonoBehaviourPunCallbacks
 {
 
+    [SerializeField] private GameObject objToDel;
+
     public override void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
@@ -27,5 +29,10 @@ public class RoomController : MonoBehaviourPunCallbacks
 
     public void LoadScene(int indexSceneToLoad) => StaticLoadScene(indexSceneToLoad);
 
-    public void LoadScene() => StaticLoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
+    public void LoadScene()
+    {
+        StaticLoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
+        if(objToDel)
+            objToDel.SetActive(false);
+    }
 }

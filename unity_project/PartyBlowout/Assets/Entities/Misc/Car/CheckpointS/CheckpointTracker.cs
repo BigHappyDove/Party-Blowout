@@ -40,7 +40,8 @@ public class CheckpointTracker : MonoBehaviour
         posCheckpoint++;
         if(_pv.IsMine)
             onCheckpointPassed(posCheckpoint - _lapCount * checkpointsManager.checkpointSingles.Count, _lapCount);
-        if(_lapCount == 3) Gamemode.onRoundEnded(Gamemode.PlayerTeam.Alone, _pv);
+        if(_lapCount == 3 && !Gamemode.IsEnded)
+            Gamemode.onRoundEnded(Gamemode.PlayerTeam.Alone, _pv);
     }
 
     // [PunRPC]
@@ -51,11 +52,6 @@ public class CheckpointTracker : MonoBehaviour
     //     pv.transform.rotation = lastCheckpoint.transform.rotation;
     // }
 
-    private void RaceEnd()
-    {
-        //TODO
-    }
-
     void Update()
      {
          if (Input.GetKeyDown(KeyCode.K) && _pv.IsMine)
@@ -65,6 +61,5 @@ public class CheckpointTracker : MonoBehaviour
              _simpleCarController.theRB.velocity = Vector3.zero;
              // GetComponent<PhotonView>().RPC("TeleportOnCP", RpcTarget.All, playerID);
          }
-         RaceEnd();
      }
 }

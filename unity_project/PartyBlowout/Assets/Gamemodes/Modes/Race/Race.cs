@@ -9,6 +9,7 @@ public class Race : Gamemode
     {
         CurGamemode = CurrentGamemode.Race;
         RedRatio = 0;
+        CanRespawn = true;
         base.Start();
     }
 

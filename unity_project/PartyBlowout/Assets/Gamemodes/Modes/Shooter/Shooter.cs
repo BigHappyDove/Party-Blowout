@@ -7,10 +7,11 @@ using UnityEngine;
 public class Shooter : Gamemode
 {
     public static int[] Score = {0,0}; // BLUE, RED
-    public static int ScoreLimit = 10;
+    public static int ScoreLimit = 50;
 
     protected void Awake()
     {
+        CanRespawn = true;
         CurGamemode = CurrentGamemode.Shooter;
         RedRatio = 0.5;
         onPlayerDeathHook += UpdateScore;

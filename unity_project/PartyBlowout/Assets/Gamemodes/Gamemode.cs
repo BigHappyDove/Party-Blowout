@@ -37,7 +37,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public static CurrentGamemode? CurGamemode = null;
     public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
-    protected static bool IsEnded;
+    public static bool IsEnded;
     [SerializeField] private TransitionManager _tm;
     [SerializeField] protected static double RedRatio = 0.5;
 

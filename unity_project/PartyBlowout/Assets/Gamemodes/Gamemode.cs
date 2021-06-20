@@ -131,11 +131,11 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         }
     }
 
-    private static void CreateTeams()
+    private static void CreateTeams(bool forceAlone = false)
     {
         bool alone = Math.Abs(RedRatio - 1) < 0.01 || RedRatio == 0;
         int redToFill = 0;
-        if (!alone)
+        if (!alone && !forceAlone)
         {
             redToFill = (int)Math.Round(PlayersList.Count * RedRatio);
             ShuffleList(PlayersList);
@@ -143,7 +143,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         foreach (PhotonPlayer p in PlayersList)
         {
             Hashtable h = new Hashtable();
-            if (alone)
+            if (alone || forceAlone)
                 h["team"] = (int) PlayerTeam.Alone;
             else if (redToFill > 0)
             {
@@ -163,6 +163,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     {
         IsEnded = true;
         onRoundEndedHook?.Invoke(pt, pv);
+        CreateTeams(true);
     }
 
     public static event Action<AliveEntity, object, float> onTakeDamageHook;

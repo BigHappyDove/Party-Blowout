@@ -33,6 +33,7 @@ public class GuessWho : Gamemode
 
     protected override void OnDestroy()
     {
+        AlivePlayers = new[] {0, 0, 0};
         onPlayerDeathHook -= UpdatePlayerTeam;
         base.OnDestroy();
     }

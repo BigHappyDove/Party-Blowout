@@ -59,13 +59,8 @@ public class Scope : MonoBehaviour
         {
             scopeOverlay.SetActive(true);
             sniper.SetActive(false);
-
-            normalFOV = mainCamera.fieldOfView;
             mainCamera.fieldOfView = scopedFOV;
-
-            normalSensitivity = player.GetSensitivity();
             player.SetSensitivity(sensitivity);
-
         }
     }
 }

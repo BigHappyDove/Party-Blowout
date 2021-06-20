@@ -20,11 +20,14 @@ public class Scope : MonoBehaviour
     public float sensitivity = 0.4f;
     private float normalSensitivity;
 
-    private void Start()
+    private void Awake()
     {
+        normalSensitivity = player.GetSensitivity();
+        normalFOV = mainCamera.fieldOfView;
         scopeOverlay.SetActive(false);
-        
     }
+
+    private void OnDisable() => OnUnscoped();
 
     void Update()
     {
@@ -37,7 +40,7 @@ public class Scope : MonoBehaviour
         {
             OnUnscoped();
         }
-        
+
     }
 
     void OnUnscoped()
@@ -51,7 +54,7 @@ public class Scope : MonoBehaviour
 
     IEnumerator OnScoped()
     {
-        yield return new WaitForSeconds(.20f);
+        yield return new WaitForSeconds(.01f);
         if (Input.GetButton("Fire2"))
         {
             scopeOverlay.SetActive(true);
@@ -59,7 +62,7 @@ public class Scope : MonoBehaviour
 
             normalFOV = mainCamera.fieldOfView;
             mainCamera.fieldOfView = scopedFOV;
-            
+
             normalSensitivity = player.GetSensitivity();
             player.SetSensitivity(sensitivity);
 

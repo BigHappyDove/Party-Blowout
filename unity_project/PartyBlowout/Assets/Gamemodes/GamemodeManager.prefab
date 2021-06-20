@@ -452,7 +452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 0
-  _tm: {fileID: 28516548246342964}
 --- !u!114 &4038172256713527014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +488,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIHandler: {fileID: 4038172257340017971}
   winnerTMP: {fileID: 4038172256428229708}
+  _tm: {fileID: 28516548246342964}
+  _pv: {fileID: 0}
 --- !u!1 &4038172257340017971
 GameObject:
   m_ObjectHideFlags: 0

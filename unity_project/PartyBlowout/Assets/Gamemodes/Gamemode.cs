@@ -38,8 +38,8 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     public static bool CanRespawn = true;
     protected static List<PhotonPlayer> PlayersList;
     public static bool IsEnded;
-    [SerializeField] private TransitionManager _tm;
     [SerializeField] protected static double RedRatio = 0.5;
+    protected EndScreen es;
 
 
     protected virtual void Start()
@@ -47,6 +47,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
         IsEnded = false;
         time = timeLimit;
         _timeLeftBeforeSync = timeLimitSync;
+        es = GetComponent<EndScreen>();
         _photonView = GetComponent<PhotonView>();
         PlayersList = new List<PhotonPlayer>();
         foreach (KeyValuePair<int, PhotonPlayer> p in PhotonNetwork.CurrentRoom.Players) PlayersList.Add(p.Value);
@@ -88,8 +89,7 @@ public abstract class Gamemode : MonoBehaviourPunCallbacks
     {
         if(!PhotonNetwork.IsMasterClient) yield break;
         int index = GetIndexNextScene();
-        if(index != 0)
-            _tm.PlaySelected((CurrentGamemode) (index-1));
+        es.ShowTransition(index);
         yield return new WaitForSeconds(_timeBeforeNewRound);
         ChangeScene(index);
     }

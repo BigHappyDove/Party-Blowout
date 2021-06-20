@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Scope : MonoBehaviour
@@ -20,27 +21,27 @@ public class Scope : MonoBehaviour
     public float sensitivity = 0.4f;
     private float normalSensitivity;
 
+    private PhotonView _pv;
+
     private void Awake()
     {
         normalSensitivity = player.GetSensitivity();
         normalFOV = mainCamera.fieldOfView;
         scopeOverlay.SetActive(false);
+        _pv = GetComponent<PhotonView>();
+        if(!_pv.IsMine) Destroy(this);
     }
 
     private void OnDisable() => OnUnscoped();
 
     void Update()
     {
+        if(!_pv.IsMine) return;
         if (Input.GetButtonDown("Fire2"))
-        {
             StartCoroutine(OnScoped());
-        }
 
         if (Input.GetButtonUp("Fire2"))
-        {
             OnUnscoped();
-        }
-
     }
 
     void OnUnscoped()
